@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\stu_homework\superwechat\assets"/><source path="D:\stu_homework\superwechat\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\stu_homework\superwechat\build-types\debug\assets"/></dataSet></merger>
