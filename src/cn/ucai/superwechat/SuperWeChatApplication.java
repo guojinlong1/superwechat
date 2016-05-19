@@ -19,7 +19,7 @@ import android.content.Context;
 import com.easemob.EMCallBack;
 
 public class SuperWeChatApplication extends Application {
-
+    public static final String SEVER_ROOT = "http://10.0.2.2:8080/SuperWeChatServer/Server";
 	public static Context applicationContext;
 	private static SuperWeChatApplication instance;
 	// login user name
@@ -66,7 +66,7 @@ public class SuperWeChatApplication extends Application {
 	/**
 	 * 获取当前登陆用户名
 	 *
-	 * @return
+	 *
 	 */
 	public String getUserName() {
 	    return hxSDKHelper.getHXId();
@@ -75,7 +75,7 @@ public class SuperWeChatApplication extends Application {
 	/**
 	 * 获取密码
 	 *
-	 * @return
+	 *
 	 */
 	public String getPassword() {
 		return hxSDKHelper.getPassword();
@@ -84,7 +84,7 @@ public class SuperWeChatApplication extends Application {
 	/**
 	 * 设置用户名
 	 *
-	 * @param user
+	 *
 	 */
 	public void setUserName(String username) {
 	    hxSDKHelper.setHXId(username);
@@ -94,7 +94,6 @@ public class SuperWeChatApplication extends Application {
 	 * 设置密码 下面的实例代码 只是demo，实际的应用中需要加password 加密后存入 preference 环信sdk
 	 * 内部的自动登录需要的密码，已经加密存储了
 	 *
-	 * @param pwd
 	 */
 	public void setPassword(String pwd) {
 	    hxSDKHelper.setPassword(pwd);
