@@ -294,6 +294,7 @@
 		    >
         </activity>
 
+
         <!-- 开机自启动服务 -->
         <receiver android:name="com.easemob.chat.StartServiceReceiver" >
             <intent-filter android:priority="1000" >
