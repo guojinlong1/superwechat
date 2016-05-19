@@ -27,9 +27,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMContactManager;
-import cn.ucai.superwechat.DemoApplication;
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.R;
 
@@ -126,7 +126,7 @@ public class AddContactActivity extends BaseActivity{
 						public void run() {
 							progressDialog.dismiss();
 							String s1 = getResources().getString(R.string.send_successful);
-							Toast.makeText(getApplicationContext(), s1, 1).show();
+							Toast.makeText(getApplicationContext(), s1, Toast.LENGTH_LONG).show();
 						}
 					});
 				} catch (final Exception e) {
@@ -134,7 +134,7 @@ public class AddContactActivity extends BaseActivity{
 						public void run() {
 							progressDialog.dismiss();
 							String s2 = getResources().getString(R.string.Request_add_buddy_failure);
-							Toast.makeText(getApplicationContext(), s2 + e.getMessage(), 1).show();
+							Toast.makeText(getApplicationContext(), s2 + e.getMessage(), Toast.LENGTH_LONG).show();
 						}
 					});
 				}

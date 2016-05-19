@@ -293,7 +293,7 @@
     <string name="confirm_forward_to">Confirm to forward to：%1$s ?</string>
     <string name="confirm_resend">Confirm to resend？</string>
     <string name="confirm_the_members">Move this member to group blacklist?</string>
-    <string name="confirmpassword">Confirm password</string>
+    <string name="confirmpassword">确认密码</string>
     <string name="connect_conflict">The same account was loggedin in other device</string>
     <string name="connect_failuer_toast">Please check the network or try again later</string>
     <string name="copy">Copy</string>
@@ -353,7 +353,7 @@
     <string name="location_message">The location information</string>
     <string name="location_prefix">[my location]</string>
     <string name="location_recv">[%1$s location]</string>
-    <string name="login">Login</string>
+    <string name="login">登录</string>
     <string name="login_failure_failed">Logon failure: failed to retrieve contacts or groups</string>
     <string name="logout">Logout</string>
     <string name="logout_hint">Logout will never clear the chat history, this account can be used on next login</string>
@@ -376,7 +376,7 @@
     <string name="notify">New message notification</string>
     <string name="now_refresh_list">Refreshing contact list</string>
     <string name="ok">OK</string>
-    <string name="password">Password</string>
+    <string name="password">密码</string>
     <string name="people">people</string>
     <string name="photo">photo</string>
     <string name="picture">[Picture]</string>
@@ -388,7 +388,7 @@
     <string name="recoding_fail">The recording failure, please try again！</string>
     <string name="recording_video">Record video</string>
     <string name="refreshing_group_list">Refreshing group list</string>
-    <string name="register">Register</string>
+    <string name="register">注册</string>
     <string name="registration_failed_without_permission">Registration failed, without permission!</string>
     <string name="relay_call">Relay</string>
     <string name="release_to_cancel">Finger release to cancel sending</string>
@@ -431,7 +431,7 @@
     <string name="unable_to_get_loaction">Unable to get to your location information!</string>
     <string name="upload_avatar_failed">upload avatar failed!</string>
     <string name="user_card">Business card</string>
-    <string name="user_name">User name</string>
+    <string name="user_name">用户名</string>
     <string name="video">[Video]</string>
     <string name="voice">Voice</string>
     <string name="voice_call">[Voice call]</string>
