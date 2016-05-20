@@ -190,7 +190,8 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/register_btn_login"
+                android:id="@+id/login"
+                android:onClick="login"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -198,7 +199,6 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="10dp"
                 android:background="#fff"
-                android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/login"
@@ -206,7 +206,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/register_btn_register"
+                android:id="@+id/register"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
