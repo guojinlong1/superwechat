@@ -25,6 +25,7 @@ import cn.ucai.superwechat.bean.Contact;
 import cn.ucai.superwechat.bean.Group;
 import cn.ucai.superwechat.bean.Member;
 import cn.ucai.superwechat.bean.User;
+import cn.ucai.superwechat.data.RequestManager;
 
 public class SuperWeChatApplication extends Application {
     public static final String SEVER_ROOT = "http://10.0.2.2:8080/SuperWeChatServer/Server";
@@ -104,7 +105,9 @@ public class SuperWeChatApplication extends Application {
 	 *
 	 */
 	public void setPassword(String pwd) {
-	    hxSDKHelper.setPassword(pwd);
+
+		hxSDKHelper.setPassword(pwd);
+		RequestManager.init(applicationContext);
 	}
 
 	/**
