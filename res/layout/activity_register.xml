@@ -175,7 +175,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/iv_avatar"
                 android:background="@null"
-                android:hint="@string/confirmpassword"
+                android:hint="头像"
                 android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
