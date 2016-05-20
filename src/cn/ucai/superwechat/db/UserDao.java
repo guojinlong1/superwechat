@@ -15,8 +15,8 @@ import cn.ucai.superwechat.bean.User;
 public class UserDao  extends SQLiteOpenHelper{
     public static final String TABLE_NAME = "user";
 
-    public UserDao(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "user.db", factory, 1);
+    public UserDao(Context context) {
+        super(context, "user.db", null, 1);
     }
 
     @Override
