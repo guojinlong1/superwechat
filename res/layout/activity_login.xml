@@ -100,7 +100,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/login_btn_register"
+                android:id="@+id/register1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -108,7 +108,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/pop_bg"
                 android:gravity="center"
-                android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/register"
@@ -124,7 +123,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_login_bg"
                 android:gravity="center"
-                android:onClick="login"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/login"
@@ -140,6 +138,7 @@
         android:text="设置服务器的IP地址"
         android:textColor="#000"
         android:layout_marginBottom="10dp"
+        android:onClick="btnUrl"
         android:textSize="18dp"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>
