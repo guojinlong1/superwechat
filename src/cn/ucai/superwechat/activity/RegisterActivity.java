@@ -13,6 +13,7 @@
  */
 package cn.ucai.superwechat.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +26,12 @@ import android.widget.Toast;
 
 import com.easemob.EMError;
 import com.easemob.chat.EMChatManager;
+
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.listener.OnSetAvatarListener;
+
 import com.easemob.exceptions.EaseMobException;
 
 /**
@@ -34,13 +39,18 @@ import com.easemob.exceptions.EaseMobException;
  * 
  */
 public class RegisterActivity extends BaseActivity {
+	OnSetAvatarListener mOnSetAvatarListener;
 	private final static String TAG = RegisterActivity.class.getName();
-	Context mContext;
+	Activity mContext;
+	String avatarName;
 	private EditText userNameEditText;
 	private EditText passwordEditText;
 	private EditText confirmPwdEditText;
 	private EditText nickEditText;
 	private ImageView mIVAvatar;
+	String username;
+	String nick;
+	String pwd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,31 @@ public class RegisterActivity extends BaseActivity {
 	private void setListener() {
 		setOnRegisterListener();
 		setOnLoginListener();
+		setOnAvatarListener();
+	}
+
+	private void setOnAvatarListener() {
+		findViewById(R.id.layout_user_avatar).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mOnSetAvatarListener = new OnSetAvatarListener(mContext,R.id.layout_user_avatar,getAvatarName(),
+						I.AVATAR_TYPE_USER_PATH);
+
+			}
+		});
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==RESULT_OK){
+			mOnSetAvatarListener.setAvatar(requestCode,data,mIVAvatar);
+		}
+	}
+
+	private String getAvatarName() {
+		avatarName = System.currentTimeMillis()+"";
+		return avatarName;
 	}
 
 	private void setOnLoginListener() {
@@ -82,22 +117,33 @@ public class RegisterActivity extends BaseActivity {
 		findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final String username = userNameEditText.getText().toString().trim();
-				final String pwd = passwordEditText.getText().toString().trim();
+				username = userNameEditText.getText().toString().trim();
+				nick = nickEditText.getText().toString().trim();
+				pwd = passwordEditText.getText().toString().trim();
 				String confirm_pwd = confirmPwdEditText.getText().toString().trim();
 				if (TextUtils.isEmpty(username)) {
-					Toast.makeText(mContext, getResources().getString(R.string.User_name_cannot_be_empty), Toast.LENGTH_SHORT).show();
 					userNameEditText.requestFocus();
+					userNameEditText.setError(getResources().getString(R.string.User_name_cannot_be_empty));
 					return;
-				} else if (TextUtils.isEmpty(pwd)) {
-					Toast.makeText(mContext, getResources().getString(R.string.Password_cannot_be_empty), Toast.LENGTH_SHORT).show();
+				} else if (!username.matches("[\\w][\\w\\d_]+")) {
+					userNameEditText.requestFocus();
+					userNameEditText.setError(getResources().getString(R.string.User_name_cannot_be_wd));
+					return;
+				}else if (TextUtils.isEmpty(nick)) {
+					nickEditText.requestFocus();
+					nickEditText.setError(getResources().getString(R.string.Nick_name_cannot_be_empty));
+					return;
+				}
+				else if (TextUtils.isEmpty(pwd)) {
 					passwordEditText.requestFocus();
+					passwordEditText.setError(getResources().getString(R.string.Password_cannot_be_empty));
 					return;
-				} else if (TextUtils.isEmpty(confirm_pwd)) {
-					Toast.makeText(mContext, getResources().getString(R.string.Confirm_password_cannot_be_empty), Toast.LENGTH_SHORT).show();
+				}else if (TextUtils.isEmpty(confirm_pwd)) {
 					confirmPwdEditText.requestFocus();
+					confirmPwdEditText.setError(getResources().getString(R.string.Confirm_password_cannot_be_empty));
 					return;
 				} else if (!pwd.equals(confirm_pwd)) {
+
 					Toast.makeText(mContext, getResources().getString(R.string.Two_input_password), Toast.LENGTH_SHORT).show();
 					return;
 				}
