@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eff2f6"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/layout_register">
 
 
 
@@ -167,7 +168,7 @@
                 />
 
             <EditText
-                android:id="@+id/avatar"
+                android:id="@+id/etAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -189,6 +190,7 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/login"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -196,7 +198,6 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="10dp"
                 android:background="#fff"
-                android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/login"
@@ -204,6 +205,7 @@
                 android:textSize="20sp" />
 
             <Button
+                android:id="@+id/register"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
@@ -211,7 +213,6 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_login_bg"
-                android:onClick="register"
                 android:paddingBottom="7dp"
                 android:paddingTop="7dp"
                 android:text="@string/register"
