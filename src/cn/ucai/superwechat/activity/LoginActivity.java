@@ -13,15 +13,16 @@
  */
 package cn.ucai.superwechat.activity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
@@ -34,20 +35,32 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.easemob.EMCallBack;
+
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Message;
 import cn.ucai.superwechat.bean.User;
+import cn.ucai.superwechat.data.ApiParams;
+import cn.ucai.superwechat.data.GsonRequest;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.EMUserDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.EMUser;
+import cn.ucai.superwechat.listener.OnSetAvatarListener;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.MD5;
+import cn.ucai.superwechat.utils.Utils;
 
 /**
  * 登陆页面
@@ -70,8 +83,9 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setListener();
 		mContext = this;
+		setListener();
+
 		if (SuperWeChatApplication.getInstance().getUserName() != null) {
 			usernameEditText.setText(SuperWeChatApplication.getInstance().getUserName());
 		}
@@ -81,6 +95,7 @@ public class LoginActivity extends BaseActivity {
 		OnUserNameChangedListener();
 		setOnRegisterListener();
 		setOnLoginListener();
+
 
 	}
 
@@ -151,9 +166,28 @@ public class LoginActivity extends BaseActivity {
 					@Override
 					public void onSuccess() {
 						if (!progressShow) {
+
+
 							return;
 						}
 						loginAppServer();
+
+						// 更新当前用户的nickname 此方法的作用是在ios离线推送时能够显示用户nick
+						boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(
+								SuperWeChatApplication.currentUserNick.trim());
+						if (!updatenick) {
+							Log.e("LoginActivity", "update current user nick fail");
+						}
+						if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
+							pd.dismiss();
+						}
+						// 进入主页面
+						Intent intent = new Intent(LoginActivity.this,
+								MainActivity.class);
+						startActivity(intent);
+
+						finish();
+						loginSuccess();
 					}
 
 					@Override
@@ -185,15 +219,36 @@ public class LoginActivity extends BaseActivity {
 		User user = dao.findUserByUserName(currentUsername);
 		if(user!=null){
 			if(user.getMUserPassword().equals(MD5.getData(currentPassword))){
-				saveUser(user);
 				loginSuccess();
 			}else {
 				pd.dismiss();
 				Toast.makeText(getApplicationContext(), R.string.login_failure_failed, Toast.LENGTH_LONG).show();
 			}
 		}else {
-
+			try {
+				String path = new ApiParams().with(I.User.USER_NAME,currentUsername)
+                        .with(I.User.PASSWORD,currentPassword).getRequestUrl(I.REQUEST_LOGIN);
+				executeRequest(	new GsonRequest<User>(path,User.class,
+				responseListener(),errorListener()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+	}
+
+	private Response.Listener<User> responseListener() {
+		return new Response.Listener<User>() {
+			@Override
+			public void onResponse(User user) {
+				if(user.isResult()){
+					saveUser(user);
+					loginSuccess();
+				}else {
+					pd.dismiss();
+					Utils.showToast(mContext,Utils.getResourceString(mContext,user.getMsg()),Toast.LENGTH_SHORT);
+				}
+			}
+		};
 	}
 
 	private void saveUser(User user) {
@@ -201,7 +256,7 @@ public class LoginActivity extends BaseActivity {
 		instance.setUser(user);
 		// 登陆成功，保存用户名密码
 		instance.setUserName(user.getMUserName());
-		instance.setPassword(currentPassword);
+		instance.setPassword(user.getMUserPassword());
 		SuperWeChatApplication.currentUserNick = user.getMUserNick();
 
 	}
@@ -216,6 +271,27 @@ public class LoginActivity extends BaseActivity {
 			EMChatManager.getInstance().loadAllConversations();
 			// 处理好友和群组
 			initializeContacts();
+			//下载头像
+			final OkHttpUtils<Message> utils = new OkHttpUtils<Message>();
+			utils.url(SuperWeChatApplication.SEVER_ROOT)
+					.addParam(I.KEY_REQUEST,I.REQUEST_DOWNLOAD_AVATAR)
+					.addParam(I.AVATAR_TYPE,currentUsername)
+					.doInBackground(new Callback() {
+						@Override
+						public void onFailure(Request request, IOException e) {
+							Toast.makeText(mContext,e.getMessage(),Toast.LENGTH_SHORT).show();
+						}
+
+						@Override
+						public void onResponse(com.squareup.okhttp.Response response) throws IOException {
+							String avatarPath = I.AVATAR_TYPE_USER_PATH + I.BACKSLASH
+									+ currentUsername + I.AVATAR_SUFFIX_JPG;
+							File file = OnSetAvatarListener.getAvatarFile(mContext,avatarPath);
+							FileOutputStream out = null;
+							out = new FileOutputStream(file);
+							utils.downloadFile(response,file,false);
+						}
+					}).execute(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 取好友或者群聊失败，不让进入主页面
@@ -228,21 +304,7 @@ public class LoginActivity extends BaseActivity {
 			});
 			return;
 		}
-		// 更新当前用户的nickname 此方法的作用是在ios离线推送时能够显示用户nick
-		boolean updatenick = EMChatManager.getInstance().updateCurrentUserNick(
-				SuperWeChatApplication.currentUserNick.trim());
-		if (!updatenick) {
-			Log.e("LoginActivity", "update current user nick fail");
-		}
-		if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
-			pd.dismiss();
-		}
-		// 进入主页面
-		Intent intent = new Intent(LoginActivity.this,
-				MainActivity.class);
-		startActivity(intent);
 
-		finish();
 	}
 
 	private void showProgressShow() {
