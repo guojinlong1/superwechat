@@ -110,6 +110,19 @@ public class UserUtils {
     	}
     }
 
+	public static void setUserBeanNick(String userName,TextView textView){
+		Contact contact = getUserBeanInfo(userName);
+		if(contact!=null){
+			if(contact.getMUserNick()!=null){
+				textView.setText(contact.getMUserNick());
+			}else if (contact.getMContactCname()!=null){
+				textView.setText(contact.getMContactCname());
+			}
+		}else {
+			textView.setText(userName);
+		}
+	}
+
     /**
      * 保存或更新某个用户
      */
