@@ -40,8 +40,8 @@ import com.easemob.EMValueCallBack;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContact;
+
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.db.EMUserDao;
 import cn.ucai.superwechat.domain.RobotUser;
 import com.easemob.exceptions.EaseMobException;
@@ -60,13 +60,13 @@ public class RobotsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		setContentView(R.layout.fragment_robots);
+		setContentView(cn.ucai.superwechat.R.layout.fragment_robots);
 		inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-		mListView = (ListView) findViewById(R.id.list);
-		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
+		mListView = (ListView) findViewById(cn.ucai.superwechat.R.id.list);
+		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(cn.ucai.superwechat.R.id.swipe_layout);
 		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
 				android.R.color.holo_orange_light, android.R.color.holo_red_light);
-		progressBar = findViewById(R.id.progress_bar);
+		progressBar = findViewById(cn.ucai.superwechat.R.id.progress_bar);
 		swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
 
 			@Override
@@ -181,9 +181,9 @@ public class RobotsActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.row_robots, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_robots, null);
 			}
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getNick());
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name)).setText(getItem(position).getNick());
 			return convertView;
 		}
 

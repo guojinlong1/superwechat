@@ -24,7 +24,7 @@ import android.net.NetworkInfo;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import cn.ucai.superwechat.Constant;
-import cn.ucai.superwechat.R;
+
 import com.easemob.util.EMLog;
 
 public class CommonUtils {
@@ -74,22 +74,22 @@ public class CommonUtils {
             if (message.direct == EMMessage.Direct.RECEIVE) {
                 //从sdk中提到了ui中，使用更简单不犯错的获取string方法
 //              digest = EasyUtils.getAppResourceString(context, "location_recv");
-                digest = getString(context, R.string.location_recv);
+                digest = getString(context, cn.ucai.superwechat.R.string.location_recv);
                 digest = String.format(digest, message.getFrom());
                 return digest;
             } else {
 //              digest = EasyUtils.getAppResourceString(context, "location_prefix");
-                digest = getString(context, R.string.location_prefix);
+                digest = getString(context, cn.ucai.superwechat.R.string.location_prefix);
             }
             break;
         case IMAGE: // 图片消息
-            digest = getString(context, R.string.picture);
+            digest = getString(context, cn.ucai.superwechat.R.string.picture);
             break;
         case VOICE:// 语音消息
-            digest = getString(context, R.string.voice);
+            digest = getString(context, cn.ucai.superwechat.R.string.voice);
             break;
         case VIDEO: // 视频消息
-            digest = getString(context, R.string.video);
+            digest = getString(context, cn.ucai.superwechat.R.string.video);
             break;
         case TXT: // 文本消息
             if(!message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL,false)){
@@ -97,11 +97,11 @@ public class CommonUtils {
                 digest = txtBody.getMessage();
             }else{
                 TextMessageBody txtBody = (TextMessageBody) message.getBody();
-                digest = getString(context, R.string.voice_call) + txtBody.getMessage();
+                digest = getString(context, cn.ucai.superwechat.R.string.voice_call) + txtBody.getMessage();
             }
             break;
         case FILE: //普通文件消息
-            digest = getString(context, R.string.file);
+            digest = getString(context, cn.ucai.superwechat.R.string.file);
             break;
         default:
             EMLog.e(TAG, "error, unknow type");

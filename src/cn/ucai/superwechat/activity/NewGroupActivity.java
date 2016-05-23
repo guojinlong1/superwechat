@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.easemob.chat.EMGroupManager;
-import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EaseMobException;
 
 public class NewGroupActivity extends BaseActivity {
@@ -40,12 +39,12 @@ public class NewGroupActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_group);
-		groupNameEditText = (EditText) findViewById(R.id.edit_group_name);
-		introductionEditText = (EditText) findViewById(R.id.edit_group_introduction);
-		checkBox = (CheckBox) findViewById(R.id.cb_public);
-		memberCheckbox = (CheckBox) findViewById(R.id.cb_member_inviter);
-		openInviteContainer = (LinearLayout) findViewById(R.id.ll_open_invite);
+		setContentView(cn.ucai.superwechat.R.layout.activity_new_group);
+		groupNameEditText = (EditText) findViewById(cn.ucai.superwechat.R.id.edit_group_name);
+		introductionEditText = (EditText) findViewById(cn.ucai.superwechat.R.id.edit_group_introduction);
+		checkBox = (CheckBox) findViewById(cn.ucai.superwechat.R.id.cb_public);
+		memberCheckbox = (CheckBox) findViewById(cn.ucai.superwechat.R.id.cb_member_inviter);
+		openInviteContainer = (LinearLayout) findViewById(cn.ucai.superwechat.R.id.ll_open_invite);
 		
 		checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -64,7 +63,7 @@ public class NewGroupActivity extends BaseActivity {
 	 * @param v
 	 */
 	public void save(View v) {
-		String str6 = getResources().getString(R.string.Group_name_cannot_be_empty);
+		String str6 = getResources().getString(cn.ucai.superwechat.R.string.Group_name_cannot_be_empty);
 		String name = groupNameEditText.getText().toString();
 		if (TextUtils.isEmpty(name)) {
 			Intent intent = new Intent(this, AlertDialog.class);
@@ -79,8 +78,8 @@ public class NewGroupActivity extends BaseActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		String st1 = getResources().getString(R.string.Is_to_create_a_group_chat);
-		final String st2 = getResources().getString(R.string.Failed_to_create_groups);
+		String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_to_create_a_group_chat);
+		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_create_groups);
 		if (resultCode == RESULT_OK) {
 			//新建群组
 			progressDialog = new ProgressDialog(this);
@@ -115,7 +114,7 @@ public class NewGroupActivity extends BaseActivity {
 						runOnUiThread(new Runnable() {
 							public void run() {
 								progressDialog.dismiss();
-								Toast.makeText(NewGroupActivity.this, st2 + e.getLocalizedMessage(), 1).show();
+								Toast.makeText(NewGroupActivity.this, st2 + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 							}
 						});
 					}

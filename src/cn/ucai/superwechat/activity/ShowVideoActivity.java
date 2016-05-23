@@ -17,8 +17,6 @@ import android.widget.RelativeLayout;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
-import cn.ucai.superwechat.R;
-
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 
@@ -41,9 +39,9 @@ public class ShowVideoActivity extends BaseActivity{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.showvideo_activity);
-		loadingLayout = (RelativeLayout) findViewById(R.id.loading_layout);
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		setContentView(cn.ucai.superwechat.R.layout.showvideo_activity);
+		loadingLayout = (RelativeLayout) findViewById(cn.ucai.superwechat.R.id.loading_layout);
+		progressBar = (ProgressBar) findViewById(cn.ucai.superwechat.R.id.progressBar);
 		localFilePath = getIntent().getStringExtra("localpath");
 		String remotepath = getIntent().getStringExtra("remotepath");
 		String secret = getIntent().getStringExtra("secret");

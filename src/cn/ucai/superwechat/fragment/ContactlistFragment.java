@@ -61,7 +61,6 @@ import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMContactManager;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.adapter.ContactAdapter;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.EMUserDao;
@@ -107,7 +106,7 @@ public class ContactlistFragment extends Fragment {
 		                        progressBar.setVisibility(View.GONE);
                                 refresh();
 		                    }else{
-		                        String s1 = getResources().getString(R.string.get_failed_please_check);
+		                        String s1 = getResources().getString(cn.ucai.superwechat.R.string.get_failed_please_check);
 		                        Toast.makeText(getActivity(), s1, Toast.LENGTH_LONG).show();
 		                        progressBar.setVisibility(View.GONE);
 		                    }
@@ -157,7 +156,7 @@ public class ContactlistFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_contact_list, container, false);
+		return inflater.inflate(cn.ucai.superwechat.R.layout.fragment_contact_list, container, false);
 	}
 
 	@Override
@@ -167,8 +166,8 @@ public class ContactlistFragment extends Fragment {
 		if(savedInstanceState != null && savedInstanceState.getBoolean("isConflict", false))
 		    return;
 		inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-		listView = (ListView) getView().findViewById(R.id.list);
-		sidebar = (Sidebar) getView().findViewById(R.id.sidebar);
+		listView = (ListView) getView().findViewById(cn.ucai.superwechat.R.id.list);
+		sidebar = (Sidebar) getView().findViewById(cn.ucai.superwechat.R.id.sidebar);
 		sidebar.setListView(listView);
         
 		//黑名单列表
@@ -178,9 +177,9 @@ public class ContactlistFragment extends Fragment {
 		getContactList();
 		
 		//搜索框
-		query = (EditText) getView().findViewById(R.id.query);
-		query.setHint(R.string.search);
-		clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
+		query = (EditText) getView().findViewById(cn.ucai.superwechat.R.id.query);
+		query.setHint(cn.ucai.superwechat.R.string.search);
+		clearSearch = (ImageButton) getView().findViewById(cn.ucai.superwechat.R.id.search_clear);
 		query.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				adapter.getFilter().filter(s);
@@ -207,7 +206,7 @@ public class ContactlistFragment extends Fragment {
 		});
 		
 		// 设置adapter
-		adapter = new ContactAdapter(getActivity(), R.layout.row_contact, contactList);
+		adapter = new ContactAdapter(getActivity(), cn.ucai.superwechat.R.layout.row_contact, contactList);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -248,7 +247,7 @@ public class ContactlistFragment extends Fragment {
 			}
 		});
 
-		ImageView addContactView = (ImageView) getView().findViewById(R.id.iv_new_contact);
+		ImageView addContactView = (ImageView) getView().findViewById(cn.ucai.superwechat.R.id.iv_new_contact);
 		// 进入添加好友页
 		addContactView.setOnClickListener(new OnClickListener() {
 
@@ -259,7 +258,7 @@ public class ContactlistFragment extends Fragment {
 		});
 		registerForContextMenu(listView);
 		
-		progressBar = (View) getView().findViewById(R.id.progress_bar);
+		progressBar = (View) getView().findViewById(cn.ucai.superwechat.R.id.progress_bar);
 
 		contactSyncListener = new HXContactSyncListener();
 		HXSDKHelper.getInstance().addSyncContactListener(contactSyncListener);
@@ -283,13 +282,13 @@ public class ContactlistFragment extends Fragment {
 		if (((AdapterContextMenuInfo) menuInfo).position > 1) {
 		    toBeProcessUser = adapter.getItem(((AdapterContextMenuInfo) menuInfo).position);
 		    toBeProcessUsername = toBeProcessUser.getUsername();
-			getActivity().getMenuInflater().inflate(R.menu.context_contact_list, menu);
+			getActivity().getMenuInflater().inflate(cn.ucai.superwechat.R.menu.context_contact_list, menu);
 		}
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.delete_contact) {
+		if (item.getItemId() == cn.ucai.superwechat.R.id.delete_contact) {
 			try {
                 // 删除此联系人
                 deleteContact(toBeProcessUser);
@@ -300,7 +299,7 @@ public class ContactlistFragment extends Fragment {
                 e.printStackTrace();
             }
 			return true;
-		}else if(item.getItemId() == R.id.add_to_blacklist){
+		}else if(item.getItemId() == cn.ucai.superwechat.R.id.add_to_blacklist){
 			moveToBlacklist(toBeProcessUsername);
 			return true;
 		}
@@ -326,12 +325,11 @@ public class ContactlistFragment extends Fragment {
 
 	/**
 	 * 删除联系人
-	 * 
 	 * @param tobeDeleteUser
-	 */
+     */
 	public void deleteContact(final EMUser tobeDeleteUser) {
-		String st1 = getResources().getString(R.string.deleting);
-		final String st2 = getResources().getString(R.string.Delete_failed);
+		String st1 = getResources().getString(cn.ucai.superwechat.R.string.deleting);
+		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Delete_failed);
 		final ProgressDialog pd = new ProgressDialog(getActivity());
 		pd.setMessage(st1);
 		pd.setCanceledOnTouchOutside(false);
@@ -372,9 +370,9 @@ public class ContactlistFragment extends Fragment {
 	 */
 	private void moveToBlacklist(final String username){
 		final ProgressDialog pd = new ProgressDialog(getActivity());
-		String st1 = getResources().getString(R.string.Is_moved_into_blacklist);
-		final String st2 = getResources().getString(R.string.Move_into_blacklist_success);
-		final String st3 = getResources().getString(R.string.Move_into_blacklist_failure);
+		String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_moved_into_blacklist);
+		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Move_into_blacklist_success);
+		final String st3 = getResources().getString(cn.ucai.superwechat.R.string.Move_into_blacklist_failure);
 		pd.setMessage(st1);
 		pd.setCanceledOnTouchOutside(false);
 		pd.show();
@@ -479,7 +477,7 @@ public class ContactlistFragment extends Fragment {
 //        if(users.get(Constant.CHAT_ROOM) != null)
 //            contactList.add(0, users.get(Constant.CHAT_ROOM));
         if(users.get(Constant.GROUP_USERNAME) != null)
-           contactList.add(0, users.get(Constant.GROUP_USERNAME));
+            contactList.add(0, users.get(Constant.GROUP_USERNAME));
         
 		// 把"申请与通知"添加到首位
 		if(users.get(Constant.NEW_FRIENDS_USERNAME) != null)

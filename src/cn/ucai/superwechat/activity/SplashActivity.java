@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity {
 	private TextView versionText;
 	Context mContext;
 	String currentUsername;
-	
+
 	private static final int sleepTime = 2000;
 
 	@Override
@@ -99,7 +99,7 @@ public class SplashActivity extends BaseActivity {
 		}).start();
 
 	}
-	
+
 	/**
 	 * 获取当前应用程序的版本号
 	 */

@@ -34,7 +34,6 @@ import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.applib.model.HXNotifier;
-import cn.ucai.superwechat.applib.model.HXNotifier.HXNotificationInfoProvider;
 import cn.ucai.superwechat.applib.model.HXSDKModel;
 import com.easemob.chat.CmdMessageBody;
 import com.easemob.chat.EMChatManager;
@@ -58,7 +57,7 @@ import com.easemob.util.EasyUtils;
  * @author easemob
  *
  */
-public class DemoHXSDKHelper extends HXSDKHelper{
+public class DemoHXSDKHelper extends HXSDKHelper {
 
     private static final String TAG = "DemoHXSDKHelper";
     
@@ -279,9 +278,9 @@ public class DemoHXSDKHelper extends HXSDKHelper{
      * @return
      */
     @Override
-    protected HXNotificationInfoProvider getNotificationListener() {
+    protected HXNotifier.HXNotificationInfoProvider getNotificationListener() {
         //可以覆盖默认的设置
-        return new HXNotificationInfoProvider() {
+        return new HXNotifier.HXNotificationInfoProvider() {
             
             @Override
             public String getTitle(EMMessage message) {
@@ -534,7 +533,6 @@ public class DemoHXSDKHelper extends HXSDKHelper{
     /**
      * update User cach And db
      *
-     * @param contactInfoList
      */
     public void updateContactList(List<EMUser> contactInfoList) {
          for (EMUser u : contactInfoList) {

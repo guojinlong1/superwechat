@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChat;
-import cn.ucai.superwechat.R;
 import com.easemob.util.EMLog;
 
 /**
@@ -40,10 +39,10 @@ public class DiagnoseActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_diagnose);
+		setContentView(cn.ucai.superwechat.R.layout.activity_diagnose);
 
-		currentVersion = (TextView) findViewById(R.id.tv_version);
-		uploadLog = (Button) findViewById(R.id.button_uploadlog);
+		currentVersion = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_version);
+		uploadLog = (Button) findViewById(cn.ucai.superwechat.R.id.button_uploadlog);
 		uploadLog.setOnClickListener(this);
 		String strVersion = "";
 		try {
@@ -53,7 +52,7 @@ public class DiagnoseActivity extends BaseActivity implements OnClickListener {
 		if (!TextUtils.isEmpty(strVersion))
 			currentVersion.setText("V" + strVersion);
 		else{
-			String st = getResources().getString(R.string.Not_Set);
+			String st = getResources().getString(cn.ucai.superwechat.R.string.Not_Set);
 			currentVersion.setText(st);}
 	}
 
@@ -75,7 +74,7 @@ public class DiagnoseActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.button_uploadlog:
+		case cn.ucai.superwechat.R.id.button_uploadlog:
 			uploadlog();
 			break;
 
@@ -91,11 +90,11 @@ public class DiagnoseActivity extends BaseActivity implements OnClickListener {
 
 		if (progressDialog == null)
 			progressDialog = new ProgressDialog(this);
-		String stri = getResources().getString(R.string.Upload_the_log);
+		String stri = getResources().getString(cn.ucai.superwechat.R.string.Upload_the_log);
 		progressDialog.setMessage(stri);
 		progressDialog.setCancelable(false);
 		progressDialog.show();
-		final String st = getResources().getString(R.string.Log_uploaded_successfully);
+		final String st = getResources().getString(cn.ucai.superwechat.R.string.Log_uploaded_successfully);
 		EMChat.getInstance().uploadLog(new EMCallBack() {
 
 			@Override
@@ -123,7 +122,7 @@ public class DiagnoseActivity extends BaseActivity implements OnClickListener {
 				// });
 
 			}
-			String st3 = getResources().getString(R.string.Log_Upload_failed);
+			String st3 = getResources().getString(cn.ucai.superwechat.R.string.Log_Upload_failed);
 			@Override
 			public void onError(int code, String message) {
 				EMLog.e("###", message);

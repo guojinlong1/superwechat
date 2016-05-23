@@ -30,8 +30,6 @@ import android.widget.TextView;
 
 import com.easemob.chat.EMChatRoom;
 
-import cn.ucai.superwechat.R;
-
 public class ChatRoomAdapter extends ArrayAdapter<EMChatRoom> {
 
 	private LayoutInflater inflater;
@@ -40,7 +38,7 @@ public class ChatRoomAdapter extends ArrayAdapter<EMChatRoom> {
 	public ChatRoomAdapter(Context context, int res, List<EMChatRoom> groups) {
 		super(context, res, groups);
 		this.inflater = LayoutInflater.from(context);
-		addChatRoomString = context.getResources().getString(R.string.add_public_chat_room);
+		addChatRoomString = context.getResources().getString(cn.ucai.superwechat.R.string.add_public_chat_room);
 	}
 
 	@Override
@@ -63,10 +61,10 @@ public class ChatRoomAdapter extends ArrayAdapter<EMChatRoom> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (getItemViewType(position) == 0) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.search_bar_with_padding, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.search_bar_with_padding, null);
 			}
-			final EditText query = (EditText) convertView.findViewById(R.id.query);
-			final ImageButton clearSearch = (ImageButton) convertView.findViewById(R.id.search_clear);
+			final EditText query = (EditText) convertView.findViewById(cn.ucai.superwechat.R.id.query);
+			final ImageButton clearSearch = (ImageButton) convertView.findViewById(cn.ucai.superwechat.R.id.search_clear);
 			query.addTextChangedListener(new TextWatcher() {
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
 					getFilter().filter(s);
@@ -91,17 +89,17 @@ public class ChatRoomAdapter extends ArrayAdapter<EMChatRoom> {
 			});
 		}else if (getItemViewType(position) == 1) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.row_add_group, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_add_group, null);
 			}
-			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.add_public_group);
-			((TextView) convertView.findViewById(R.id.name)).setText(addChatRoomString);
-			((TextView) convertView.findViewById(R.id.header)).setVisibility(View.VISIBLE);
+			((ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.avatar)).setImageResource(cn.ucai.superwechat.R.drawable.add_public_group);
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name)).setText(addChatRoomString);
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.header)).setVisibility(View.VISIBLE);
 
 		} else {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.row_group, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_group, null);
 			}
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 2).getName());
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name)).setText(getItem(position - 2).getName());
 
 		}
 

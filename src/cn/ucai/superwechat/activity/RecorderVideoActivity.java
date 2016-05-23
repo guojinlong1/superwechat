@@ -21,7 +21,6 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
@@ -51,7 +50,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.video.util.Utils;
 import com.easemob.util.EMLog;
@@ -87,8 +85,8 @@ public class RecorderVideoActivity extends BaseActivity implements
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
 		// 选择支持半透明模式，在有surfaceview的activity中使用
 		getWindow().setFormat(PixelFormat.TRANSLUCENT);
-		setContentView(R.layout.recorder_activity);
-		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		setContentView(cn.ucai.superwechat.R.layout.recorder_activity);
+		PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
 		mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK,
 				CLASS_LABEL);
 		mWakeLock.acquire();
@@ -96,18 +94,18 @@ public class RecorderVideoActivity extends BaseActivity implements
 	}
 
 	private void initViews() {
-		btn_switch = (Button) findViewById(R.id.switch_btn);
+		btn_switch = (Button) findViewById(cn.ucai.superwechat.R.id.switch_btn);
 		btn_switch.setOnClickListener(this);
 		btn_switch.setVisibility(View.VISIBLE);
-		mVideoView = (VideoView) findViewById(R.id.mVideoView);
-		btnStart = (ImageView) findViewById(R.id.recorder_start);
-		btnStop = (ImageView) findViewById(R.id.recorder_stop);
+		mVideoView = (VideoView) findViewById(cn.ucai.superwechat.R.id.mVideoView);
+		btnStart = (ImageView) findViewById(cn.ucai.superwechat.R.id.recorder_start);
+		btnStop = (ImageView) findViewById(cn.ucai.superwechat.R.id.recorder_stop);
 		btnStart.setOnClickListener(this);
 		btnStop.setOnClickListener(this);
 		mSurfaceHolder = mVideoView.getHolder();
 		mSurfaceHolder.addCallback(this);
 		mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-		chronometer = (Chronometer) findViewById(R.id.chronometer);
+		chronometer = (Chronometer) findViewById(cn.ucai.superwechat.R.id.chronometer);
 	}
 
 	public void back(View view) {
@@ -121,7 +119,7 @@ public class RecorderVideoActivity extends BaseActivity implements
 		super.onResume();
 		if (mWakeLock == null) {
 			// 获取唤醒锁,保持屏幕常亮
-			PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+			PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
 			mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK,
 					CLASS_LABEL);
 			mWakeLock.acquire();
@@ -139,7 +137,7 @@ public class RecorderVideoActivity extends BaseActivity implements
 			} else {
 				mCamera = Camera.open(CameraInfo.CAMERA_FACING_FRONT);
 			}
-			Camera.Parameters camParams = mCamera.getParameters();
+			Parameters camParams = mCamera.getParameters();
 			mCamera.lock();
 			mSurfaceHolder = mVideoView.getHolder();
 			mSurfaceHolder.addCallback(this);
@@ -180,10 +178,10 @@ public class RecorderVideoActivity extends BaseActivity implements
 
 		}
 		// 获取摄像头的所有支持的分辨率
-		List<Camera.Size> resolutionList = Utils.getResolutionList(mCamera);
+		List<Size> resolutionList = Utils.getResolutionList(mCamera);
 		if (resolutionList != null && resolutionList.size() > 0) {
 			Collections.sort(resolutionList, new Utils.ResolutionComparator());
-			Camera.Size previewSize = null;
+			Size previewSize = null;
 			boolean hasSize = false;
 			// 如果摄像头支持640*480，那么强制设为640*480
 			for (int i = 0; i < resolutionList.size(); i++) {
@@ -223,14 +221,14 @@ public class RecorderVideoActivity extends BaseActivity implements
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()) {
-		case R.id.switch_btn:
+		case cn.ucai.superwechat.R.id.switch_btn:
 			switchCamera();
 			break;
-		case R.id.recorder_start:
+		case cn.ucai.superwechat.R.id.recorder_start:
 			// start recording
 		    if(!startRecording())
 		        return;
-			Toast.makeText(this, R.string.The_video_to_start, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, cn.ucai.superwechat.R.string.The_video_to_start, Toast.LENGTH_SHORT).show();
 			btn_switch.setVisibility(View.INVISIBLE);
 			btnStart.setVisibility(View.INVISIBLE);
 			btnStart.setEnabled(false);
@@ -239,7 +237,7 @@ public class RecorderVideoActivity extends BaseActivity implements
 			chronometer.setBase(SystemClock.elapsedRealtime());
 			chronometer.start();
 			break;
-		case R.id.recorder_stop:
+		case cn.ucai.superwechat.R.id.recorder_stop:
 		    btnStop.setEnabled(false);
 			// 停止拍摄
 			stopRecording();
@@ -248,8 +246,8 @@ public class RecorderVideoActivity extends BaseActivity implements
 			btnStart.setVisibility(View.VISIBLE);
 			btnStop.setVisibility(View.INVISIBLE);
 			new AlertDialog.Builder(this)
-					.setMessage(R.string.Whether_to_send)
-					.setPositiveButton(R.string.ok,
+					.setMessage(cn.ucai.superwechat.R.string.Whether_to_send)
+					.setPositiveButton(cn.ucai.superwechat.R.string.ok,
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -260,7 +258,7 @@ public class RecorderVideoActivity extends BaseActivity implements
 
 								}
 							})
-					.setNegativeButton(R.string.cancel,
+					.setNegativeButton(cn.ucai.superwechat.R.string.cancel,
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -510,10 +508,10 @@ public class RecorderVideoActivity extends BaseActivity implements
 			if (localPath == null) {
 				return;
 			}
-			String st3 = getResources().getString(R.string.Whether_to_send);
+			String st3 = getResources().getString(cn.ucai.superwechat.R.string.Whether_to_send);
 			new AlertDialog.Builder(this)
 					.setMessage(st3)
-					.setPositiveButton(R.string.ok,
+					.setPositiveButton(cn.ucai.superwechat.R.string.ok,
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -523,7 +521,7 @@ public class RecorderVideoActivity extends BaseActivity implements
 									sendVideo(null);
 
 								}
-							}).setNegativeButton(R.string.cancel, null)
+							}).setNegativeButton(cn.ucai.superwechat.R.string.cancel, null)
 					.setCancelable(false).show();
 		}
 
@@ -572,9 +570,9 @@ public class RecorderVideoActivity extends BaseActivity implements
 
 	private void showFailDialog() {
 		new AlertDialog.Builder(this)
-				.setTitle(R.string.prompt)
-				.setMessage(R.string.Open_the_equipment_failure)
-				.setPositiveButton(R.string.ok,
+				.setTitle(cn.ucai.superwechat.R.string.prompt)
+				.setMessage(cn.ucai.superwechat.R.string.Open_the_equipment_failure)
+				.setPositiveButton(cn.ucai.superwechat.R.string.ok,
 						new DialogInterface.OnClickListener() {
 
 							@Override
@@ -589,9 +587,9 @@ public class RecorderVideoActivity extends BaseActivity implements
 	
 	private void showNoSDCardDialog() {
 	    new AlertDialog.Builder(this)
-        .setTitle(R.string.prompt)
+        .setTitle(cn.ucai.superwechat.R.string.prompt)
         .setMessage("No sd card!")
-        .setPositiveButton(R.string.ok,
+        .setPositiveButton(cn.ucai.superwechat.R.string.ok,
                 new DialogInterface.OnClickListener() {
 
                     @Override

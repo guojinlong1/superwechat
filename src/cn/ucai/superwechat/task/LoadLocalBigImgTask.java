@@ -20,7 +20,6 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.utils.ImageCache;
 import cn.ucai.superwechat.widget.photoview.PhotoView;
 import com.easemob.util.ImageUtils;
@@ -73,7 +72,7 @@ public class LoadLocalBigImgTask extends AsyncTask<Void, Void, Bitmap> {
 			ImageCache.getInstance().put(path, result);
 		else
 			result = BitmapFactory.decodeResource(context.getResources(),
-					R.drawable.signin_local_gallry);
+					cn.ucai.superwechat.R.drawable.signin_local_gallry);
 		photoView.setImageBitmap(result);
 	}
 }

@@ -16,56 +16,58 @@ import cn.ucai.superwechat.data.GsonRequest;
 import cn.ucai.superwechat.utils.Utils;
 
 /**
- * Created by Administrator on 2016/5/23 0023.
+ * Created by sks on 2016/5/23.
  */
-public class DownloadPublicGroupTask extends BaseActivity {
+public class DownloadPublicGroupTask extends BaseActivity{
     private static final String TAG = DownloadPublicGroupTask.class.getName();
-    Context mContext;
-    String userName;
+    Context mcontext;
+    String username;
+    int page_id;
+    int page_size;
     String path;
-    int mPage_id;
-    int mPage_size;
 
-
-    public DownloadPublicGroupTask(Context mContext, String userName,int Page_id,int Page_size) {
-        this.mContext = mContext;
-        this.userName = userName;
-        this.mPage_id=Page_id;
-        this.mPage_size = Page_size;
+    public DownloadPublicGroupTask(Context mcontext, String username, int page_id, int page_size) {
+        this.mcontext = mcontext;
+        this.username = username;
+        this.page_id = page_id;
+        this.page_size = page_size;
         initPath();
     }
 
     private void initPath() {
         try {
             path = new ApiParams()
-                    .with(I.Contact.USER_NAME,userName)
-                    .with(I.PAGE_ID,mPage_id+"")
-                    .with(I.PAGE_SIZE,mPage_size+"")
-                    .getRequestUrl(I.REQUEST_FIND_PUBLIC_GROUPS)
-                    ;
+                    .with(I.User.USER_NAME, username)
+                    .with(I.PAGE_ID, page_id+"")
+                    .with(I.PAGE_SIZE, page_size+"")
+                    .getRequestUrl(I.REQUEST_FIND_PUBLIC_GROUPS);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public void execute(){
-        executeRequest(new GsonRequest<Group[]>(path,Group[].class
-                ,responseDownloadPublicGroupTaskListener(),errorListener()));
+    public void execute() {
+        executeRequest(new GsonRequest<Group[]>(path,Group[].class,
+                responseDownloadPublicGroupTaskListener(),errorListener()));
     }
 
     private Response.Listener<Group[]> responseDownloadPublicGroupTaskListener() {
         return new Response.Listener<Group[]>() {
             @Override
-            public void onResponse(Group[] contacts) {
-                if(contacts!=null){
-                    ArrayList<Group> contactList=
-                            SuperWeChatApplication.getInstance().getPublicGroupList();
-                    ArrayList<Group> list = Utils.array2List(contacts);
-                    contactList.clear();
-                    contactList.addAll(list);
-                    mContext.sendStickyBroadcast(new Intent("update_public_group"));
+            public void onResponse(Group[] groups) {
+                if (groups != null && groups.length > 1) {
+                    ArrayList<Group> groupList =
+                            SuperWeChatApplication.getInstance().getGroupList();
+                    ArrayList<Group> list = Utils.array2List(groups);
+                    for (Group g : list) {
+                        if (!groupList.contains(g)) {
+                            groupList.add(g);
+                        }
+                    }
+                    mcontext.sendStickyBroadcast(new Intent("update_public_group"));
                 }
             }
         };
     }
+
+
 }

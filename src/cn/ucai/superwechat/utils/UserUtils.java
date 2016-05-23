@@ -5,10 +5,16 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.ucai.superwechat.I;
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Contact;
+import cn.ucai.superwechat.data.RequestManager;
 import cn.ucai.superwechat.domain.EMUser;
+
+import com.android.volley.toolbox.NetworkImageView;
 import com.squareup.picasso.Picasso;
 
 public class UserUtils {
@@ -18,11 +24,11 @@ public class UserUtils {
      * @return
      */
     public static EMUser getUserInfo(String username){
-        EMUser user = ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getContactList().get(username);
+        EMUser user = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(username);
         if(user == null){
             user = new EMUser(username);
         }
-            
+
         if(user != null){
             //demo没有这些数据，临时填充
         	if(TextUtils.isEmpty(user.getNick()))
@@ -30,8 +36,13 @@ public class UserUtils {
         }
         return user;
     }
-    
-    /**
+
+	public static Contact getUserBeanInfo(String username) {
+		Contact contact = SuperWeChatApplication.getInstance().getUserList().get(username);
+		return contact;
+	}
+
+	/**
      * 设置用户头像
      * @param username
      */
@@ -43,8 +54,29 @@ public class UserUtils {
             Picasso.with(context).load(R.drawable.default_avatar).into(imageView);
         }
     }
-    
-    /**
+
+	public static void setUserBeanAvatar(String userName, NetworkImageView imageView){
+		Contact contact = getUserBeanInfo(userName);
+		if(contact!=null&&contact.getMContactCname()!=null){
+			setUserAvatar(getAvatarPath(userName),imageView);
+		}
+	}
+
+	private static void setUserAvatar(String url, NetworkImageView imageView) {
+		if (url == null || url.isEmpty())return;
+
+		imageView.setDefaultImageResId(R.drawable.default_avatar);
+		imageView.setImageUrl(url, RequestManager.getImageLoader());
+		imageView.setErrorImageResId(R.drawable.default_avatar);
+	}
+
+	private static String getAvatarPath(String userName) {
+		if(userName==null || userName.isEmpty())return null;
+		return I.REQUEST_DOWNLOAD_AVATAR_USER + userName;
+	}
+
+
+	/**
      * 设置当前用户头像
      */
 	public static void setCurrentUserAvatar(Context context, ImageView imageView) {
@@ -55,7 +87,7 @@ public class UserUtils {
 			Picasso.with(context).load(R.drawable.default_avatar).into(imageView);
 		}
 	}
-    
+
     /**
      * 设置用户昵称
      */
@@ -67,7 +99,7 @@ public class UserUtils {
     		textView.setText(username);
     	}
     }
-    
+
     /**
      * 设置当前用户昵称
      */
@@ -77,10 +109,9 @@ public class UserUtils {
     		textView.setText(user.getNick());
     	}
     }
-    
+
     /**
      * 保存或更新某个用户
-     * @param newUser
      */
 	public static void saveUserInfo(EMUser newUser) {
 		if (newUser == null || newUser.getUsername() == null) {
@@ -88,5 +119,5 @@ public class UserUtils {
 		}
 		((DemoHXSDKHelper) HXSDKHelper.getInstance()).saveContact(newUser);
 	}
-    
+
 }

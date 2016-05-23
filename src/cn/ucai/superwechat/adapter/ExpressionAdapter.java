@@ -21,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
-import cn.ucai.superwechat.R;
-
 public class ExpressionAdapter extends ArrayAdapter<String>{
 
 	public ExpressionAdapter(Context context, int textViewResourceId, List<String> objects) {
@@ -33,10 +31,10 @@ public class ExpressionAdapter extends ArrayAdapter<String>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if(convertView == null){
-			convertView = View.inflate(getContext(), R.layout.row_expression, null);
+			convertView = View.inflate(getContext(), cn.ucai.superwechat.R.layout.row_expression, null);
 		}
 		
-		ImageView imageView = (ImageView) convertView.findViewById(R.id.iv_expression);
+		ImageView imageView = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_expression);
 		
 		String filename = getItem(position);
 		int resId = getContext().getResources().getIdentifier(filename, "drawable", getContext().getPackageName());

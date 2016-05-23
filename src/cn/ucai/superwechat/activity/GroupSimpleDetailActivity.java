@@ -26,7 +26,6 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
-import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EaseMobException;
 
 public class GroupSimpleDetailActivity extends BaseActivity {
@@ -41,12 +40,12 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_group_simle_details);
-		tv_name = (TextView) findViewById(R.id.name);
-		tv_admin = (TextView) findViewById(R.id.tv_admin);
-		btn_add_group = (Button) findViewById(R.id.btn_add_to_group);
-		tv_introduction = (TextView) findViewById(R.id.tv_introduction);
-		progressBar = (ProgressBar) findViewById(R.id.loading);
+		setContentView(cn.ucai.superwechat.R.layout.activity_group_simle_details);
+		tv_name = (TextView) findViewById(cn.ucai.superwechat.R.id.name);
+		tv_admin = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_admin);
+		btn_add_group = (Button) findViewById(cn.ucai.superwechat.R.id.btn_add_to_group);
+		tv_introduction = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_introduction);
+		progressBar = (ProgressBar) findViewById(cn.ucai.superwechat.R.id.loading);
 
 		EMGroupInfo groupInfo = (EMGroupInfo) getIntent().getSerializableExtra("groupinfo");
 		String groupname = null;
@@ -81,11 +80,11 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 					});
 				} catch (final EaseMobException e) {
 					e.printStackTrace();
-					final String st1 = getResources().getString(R.string.Failed_to_get_group_chat_information);
+					final String st1 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_get_group_chat_information);
 					runOnUiThread(new Runnable() {
 						public void run() {
 							progressBar.setVisibility(View.INVISIBLE);
-							Toast.makeText(GroupSimpleDetailActivity.this, st1+e.getMessage(), 1).show();
+							Toast.makeText(GroupSimpleDetailActivity.this, st1+e.getMessage(), Toast.LENGTH_LONG).show();
 						}
 					});
 				}
@@ -97,11 +96,11 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 	
 	//加入群聊
 	public void addToGroup(View view){
-		String st1 = getResources().getString(R.string.Is_sending_a_request);
-		final String st2 = getResources().getString(R.string.Request_to_join);
-		final String st3 = getResources().getString(R.string.send_the_request_is);
-		final String st4 = getResources().getString(R.string.Join_the_group_chat);
-		final String st5 = getResources().getString(R.string.Failed_to_join_the_group_chat);
+		String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_sending_a_request);
+		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Request_to_join);
+		final String st3 = getResources().getString(cn.ucai.superwechat.R.string.send_the_request_is);
+		final String st4 = getResources().getString(cn.ucai.superwechat.R.string.Join_the_group_chat);
+		final String st5 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_join_the_group_chat);
 		final ProgressDialog pd = new ProgressDialog(this);
 //		getResources().getString(R.string)
 		pd.setMessage(st1);
@@ -120,9 +119,9 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 						public void run() {
 							pd.dismiss();
 							if(group.isMembersOnly())
-								Toast.makeText(GroupSimpleDetailActivity.this, st3, 0).show();
+								Toast.makeText(GroupSimpleDetailActivity.this, st3, Toast.LENGTH_SHORT).show();
 							else
-								Toast.makeText(GroupSimpleDetailActivity.this, st4, 0).show();
+								Toast.makeText(GroupSimpleDetailActivity.this, st4, Toast.LENGTH_SHORT).show();
 							btn_add_group.setEnabled(false);
 						}
 					});
@@ -131,7 +130,7 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 					runOnUiThread(new Runnable() {
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(GroupSimpleDetailActivity.this, st5+e.getMessage(), 0).show();
+							Toast.makeText(GroupSimpleDetailActivity.this, st5+e.getMessage(), Toast.LENGTH_SHORT).show();
 						}
 					});
 				}

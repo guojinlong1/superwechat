@@ -35,7 +35,6 @@ import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.adapter.ContactAdapter;
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.widget.Sidebar;
@@ -53,7 +52,7 @@ public class GroupPickContactsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_group_pick_contacts);
+		setContentView(cn.ucai.superwechat.R.layout.activity_group_pick_contacts);
 
 		// String groupName = getIntent().getStringExtra("groupName");
 		String groupId = getIntent().getStringExtra("groupId");
@@ -68,7 +67,7 @@ public class GroupPickContactsActivity extends BaseActivity {
 			exitingMembers = new ArrayList<String>();
 		// 获取好友列表
 		final List<EMUser> alluserList = new ArrayList<EMUser>();
-		for (EMUser user : ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().values()) {
+		for (EMUser user : ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getContactList().values()) {
 			if (!user.getUsername().equals(Constant.NEW_FRIENDS_USERNAME) & !user.getUsername().equals(Constant.GROUP_USERNAME) & !user.getUsername().equals(Constant.CHAT_ROOM) & !user.getUsername().equals(Constant.CHAT_ROBOT))
 				alluserList.add(user);
 		}
@@ -81,15 +80,15 @@ public class GroupPickContactsActivity extends BaseActivity {
 			}
 		});
 
-		listView = (ListView) findViewById(R.id.list);
-		contactAdapter = new PickContactAdapter(this, R.layout.row_contact_with_checkbox, alluserList);
+		listView = (ListView) findViewById(cn.ucai.superwechat.R.id.list);
+		contactAdapter = new PickContactAdapter(this, cn.ucai.superwechat.R.layout.row_contact_with_checkbox, alluserList);
 		listView.setAdapter(contactAdapter);
-		((Sidebar) findViewById(R.id.sidebar)).setListView(listView);
+		((Sidebar) findViewById(cn.ucai.superwechat.R.id.sidebar)).setListView(listView);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
+				CheckBox checkBox = (CheckBox) view.findViewById(cn.ucai.superwechat.R.id.checkbox);
 				checkBox.toggle();
 
 			}
@@ -142,11 +141,11 @@ public class GroupPickContactsActivity extends BaseActivity {
 //			if (position > 0) {
 				final String username = getItem(position).getUsername();
 				// 选择框checkbox
-				final CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkbox);
+				final CheckBox checkBox = (CheckBox) view.findViewById(cn.ucai.superwechat.R.id.checkbox);
 				if(exitingMembers != null && exitingMembers.contains(username)){
-					checkBox.setButtonDrawable(R.drawable.checkbox_bg_gray_selector);
+					checkBox.setButtonDrawable(cn.ucai.superwechat.R.drawable.checkbox_bg_gray_selector);
 				}else{
-					checkBox.setButtonDrawable(R.drawable.checkbox_bg_selector);
+					checkBox.setButtonDrawable(cn.ucai.superwechat.R.drawable.checkbox_bg_selector);
 				}
 				if (checkBox != null) {
 					// checkBox.setOnCheckedChangeListener(null);

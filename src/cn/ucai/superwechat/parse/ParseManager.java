@@ -8,6 +8,7 @@ import android.text.TextUtils;
 
 import com.easemob.EMValueCallBack;
 import com.easemob.chat.EMChatManager;
+
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.utils.UserUtils;
 import com.easemob.util.EMLog;
@@ -112,8 +113,7 @@ public class ParseManager {
 
 	/**
      * 设置hearder属性，方便通讯中对联系人按header分类显示，以及通过右侧ABCD...字母栏快速定位联系人
-     * 
-     * @param user
+     *
      * @param user
      */
     private static void setUserHearder(EMUser user) {

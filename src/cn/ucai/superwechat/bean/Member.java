@@ -101,10 +101,10 @@ public class Member extends User implements java.io.Serializable {
 
 		Member member = (Member) o;
 
-		return  (!mmemberUserId.equals(member.mmemberUserId)
-		    &&mmemberUserName.equals(member.mmemberUserName)
-			&&mmemberGroupId.equals(member.mmemberGroupId)
-		 	&&mmemberGroupHxid.equals(member.mmemberGroupHxid));
+		return  (mmemberUserId.equals(member.mmemberUserId)
+				&&mmemberUserName.equals(member.mmemberUserName)
+				&&mmemberGroupId.equals(member.mmemberGroupId)
+				&&mmemberGroupHxid.equals(member.mmemberGroupHxid));
 
 	}
 

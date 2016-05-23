@@ -42,7 +42,6 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.chat.EMConversation.EMConversationType;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.domain.RobotUser;
 import cn.ucai.superwechat.utils.DateUtils;
 import cn.ucai.superwechat.utils.SmileUtils;
@@ -73,24 +72,24 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.row_chat_history, parent, false);
+			convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_chat_history, parent, false);
 		}
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		if (holder == null) {
 			holder = new ViewHolder();
-			holder.name = (TextView) convertView.findViewById(R.id.name);
-			holder.unreadLabel = (TextView) convertView.findViewById(R.id.unread_msg_number);
-			holder.message = (TextView) convertView.findViewById(R.id.message);
-			holder.time = (TextView) convertView.findViewById(R.id.time);
-			holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
-			holder.msgState = convertView.findViewById(R.id.msg_state);
-			holder.list_item_layout = (RelativeLayout) convertView.findViewById(R.id.list_item_layout);
+			holder.name = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name);
+			holder.unreadLabel = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.unread_msg_number);
+			holder.message = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.message);
+			holder.time = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.time);
+			holder.avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.avatar);
+			holder.msgState = convertView.findViewById(cn.ucai.superwechat.R.id.msg_state);
+			holder.list_item_layout = (RelativeLayout) convertView.findViewById(cn.ucai.superwechat.R.id.list_item_layout);
 			convertView.setTag(holder);
 		}
 		if (position % 2 == 0) {
-			holder.list_item_layout.setBackgroundResource(R.drawable.mm_listitem);
+			holder.list_item_layout.setBackgroundResource(cn.ucai.superwechat.R.drawable.mm_listitem);
 		} else {
-			holder.list_item_layout.setBackgroundResource(R.drawable.mm_listitem_grey);
+			holder.list_item_layout.setBackgroundResource(cn.ucai.superwechat.R.drawable.mm_listitem_grey);
 		}
 
 		// 获取与此用户/群组的会话
@@ -99,11 +98,11 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		String username = conversation.getUserName();
 		if (conversation.getType() == EMConversationType.GroupChat) {
 			// 群聊消息，显示群聊头像
-			holder.avatar.setImageResource(R.drawable.group_icon);
+			holder.avatar.setImageResource(cn.ucai.superwechat.R.drawable.group_icon);
 			EMGroup group = EMGroupManager.getInstance().getGroup(username);
 			holder.name.setText(group != null ? group.getGroupName() : username);
 		} else if(conversation.getType() == EMConversationType.ChatRoom){
-		    holder.avatar.setImageResource(R.drawable.group_icon);
+		    holder.avatar.setImageResource(cn.ucai.superwechat.R.drawable.group_icon);
             EMChatRoom room = EMChatManager.getInstance().getChatRoom(username);
             holder.name.setText(room != null && !TextUtils.isEmpty(room.getName()) ? room.getName() : username);
 		}else {
@@ -167,24 +166,24 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				// 从sdk中提到了ui中，使用更简单不犯错的获取string的方法
 				// digest = EasyUtils.getAppResourceString(context,
 				// "location_recv");
-				digest = getStrng(context, R.string.location_recv);
+				digest = getStrng(context, cn.ucai.superwechat.R.string.location_recv);
 				digest = String.format(digest, message.getFrom());
 				return digest;
 			} else {
 				// digest = EasyUtils.getAppResourceString(context,
 				// "location_prefix");
-				digest = getStrng(context, R.string.location_prefix);
+				digest = getStrng(context, cn.ucai.superwechat.R.string.location_prefix);
 			}
 			break;
 		case IMAGE: // 图片消息
 			ImageMessageBody imageBody = (ImageMessageBody) message.getBody();
-			digest = getStrng(context, R.string.picture) + imageBody.getFileName();
+			digest = getStrng(context, cn.ucai.superwechat.R.string.picture) + imageBody.getFileName();
 			break;
 		case VOICE:// 语音消息
-			digest = getStrng(context, R.string.voice);
+			digest = getStrng(context, cn.ucai.superwechat.R.string.voice);
 			break;
 		case VIDEO: // 视频消息
-			digest = getStrng(context, R.string.video);
+			digest = getStrng(context, cn.ucai.superwechat.R.string.video);
 			break;
 		case TXT: // 文本消息
 			
@@ -192,14 +191,14 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				digest = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getRobotMenuMessageDigest(message);
 			}else if(message.getBooleanAttribute(Constant.MESSAGE_ATTR_IS_VOICE_CALL,false)){
 				TextMessageBody txtBody = (TextMessageBody) message.getBody();
-				digest = getStrng(context, R.string.voice_call) + txtBody.getMessage();
+				digest = getStrng(context, cn.ucai.superwechat.R.string.voice_call) + txtBody.getMessage();
 			}else{
 				TextMessageBody txtBody = (TextMessageBody) message.getBody();
 				digest = txtBody.getMessage();
 			}
 			break;
 		case FILE: // 普通文件消息
-			digest = getStrng(context, R.string.file);
+			digest = getStrng(context, cn.ucai.superwechat.R.string.file);
 			break;
 		default:
 			EMLog.e(TAG, "unknow type");

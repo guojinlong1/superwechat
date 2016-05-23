@@ -31,7 +31,6 @@ import android.widget.ListView;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.DemoHXSDKHelper;
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.adapter.ContactAdapter;
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.widget.Sidebar;
@@ -46,15 +45,15 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_pick_contact_no_checkbox);
-		listView = (ListView) findViewById(R.id.list);
-		sidebar = (Sidebar) findViewById(R.id.sidebar);
+		setContentView(cn.ucai.superwechat.R.layout.activity_pick_contact_no_checkbox);
+		listView = (ListView) findViewById(cn.ucai.superwechat.R.id.list);
+		sidebar = (Sidebar) findViewById(cn.ucai.superwechat.R.id.sidebar);
 		sidebar.setListView(listView);
 		contactList = new ArrayList<EMUser>();
 		// 获取设置contactlist
 		getContactList();
 		// 设置adapter
-		contactAdapter = new ContactAdapter(this, R.layout.row_contact, contactList);
+		contactAdapter = new ContactAdapter(this, cn.ucai.superwechat.R.layout.row_contact, contactList);
 		listView.setAdapter(contactAdapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -80,7 +79,7 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 
 	private void getContactList() {
 		contactList.clear();
-		Map<String, EMUser> users = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList();
+		Map<String, EMUser> users = ((DemoHXSDKHelper) HXSDKHelper.getInstance()).getContactList();
 		Iterator<Entry<String, EMUser>> iterator = users.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Entry<String, EMUser> entry = iterator.next();

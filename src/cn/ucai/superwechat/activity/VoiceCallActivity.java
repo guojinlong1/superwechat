@@ -38,7 +38,6 @@ import android.widget.Toast;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import com.easemob.chat.EMCallStateChangeListener;
 import com.easemob.chat.EMChatManager;
-import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EMServiceNotReadyException;
 
 /**
@@ -73,21 +72,21 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
         	finish();
         	return;
         }
-		setContentView(R.layout.activity_voice_call);
+		setContentView(cn.ucai.superwechat.R.layout.activity_voice_call);
 		
 		HXSDKHelper.getInstance().isVoiceCalling = true;
 
-		comingBtnContainer = (LinearLayout) findViewById(R.id.ll_coming_call);
-		refuseBtn = (Button) findViewById(R.id.btn_refuse_call);
-		answerBtn = (Button) findViewById(R.id.btn_answer_call);
-		hangupBtn = (Button) findViewById(R.id.btn_hangup_call);
-		muteImage = (ImageView) findViewById(R.id.iv_mute);
-		handsFreeImage = (ImageView) findViewById(R.id.iv_handsfree);
-		callStateTextView = (TextView) findViewById(R.id.tv_call_state);
-		nickTextView = (TextView) findViewById(R.id.tv_nick);
-		durationTextView = (TextView) findViewById(R.id.tv_calling_duration);
-		chronometer = (Chronometer) findViewById(R.id.chronometer);
-		voiceContronlLayout = (LinearLayout) findViewById(R.id.ll_voice_control);
+		comingBtnContainer = (LinearLayout) findViewById(cn.ucai.superwechat.R.id.ll_coming_call);
+		refuseBtn = (Button) findViewById(cn.ucai.superwechat.R.id.btn_refuse_call);
+		answerBtn = (Button) findViewById(cn.ucai.superwechat.R.id.btn_answer_call);
+		hangupBtn = (Button) findViewById(cn.ucai.superwechat.R.id.btn_hangup_call);
+		muteImage = (ImageView) findViewById(cn.ucai.superwechat.R.id.iv_mute);
+		handsFreeImage = (ImageView) findViewById(cn.ucai.superwechat.R.id.iv_handsfree);
+		callStateTextView = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_call_state);
+		nickTextView = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_nick);
+		durationTextView = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_calling_duration);
+		chronometer = (Chronometer) findViewById(cn.ucai.superwechat.R.id.chronometer);
+		voiceContronlLayout = (LinearLayout) findViewById(cn.ucai.superwechat.R.id.ll_voice_control);
 
 		refuseBtn.setOnClickListener(this);
 		answerBtn.setOnClickListener(this);
@@ -111,11 +110,11 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 		nickTextView.setText(username);
 		if (!isInComingCall) {// 拨打电话
 			soundPool = new SoundPool(1, AudioManager.STREAM_RING, 0);
-			outgoing = soundPool.load(this, R.raw.outgoing, 1);
+			outgoing = soundPool.load(this, cn.ucai.superwechat.R.raw.outgoing, 1);
 
 			comingBtnContainer.setVisibility(View.INVISIBLE);
 			hangupBtn.setVisibility(View.VISIBLE);
-			st1 = getResources().getString(R.string.Are_connected_to_each_other);
+			st1 = getResources().getString(cn.ucai.superwechat.R.string.Are_connected_to_each_other);
 			callStateTextView.setText(st1);
 			handler.postDelayed(new Runnable() {
 				public void run() {
@@ -127,10 +126,10 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 				EMChatManager.getInstance().makeVoiceCall(username);
 			} catch (EMServiceNotReadyException e) {
 				e.printStackTrace();
-				final String st2 = getResources().getString(R.string.Is_not_yet_connected_to_the_server);
+				final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Is_not_yet_connected_to_the_server);
 				runOnUiThread(new Runnable() {
 					public void run() {
-						Toast.makeText(VoiceCallActivity.this, st2, 0).show();
+						Toast.makeText(VoiceCallActivity.this, st2, Toast.LENGTH_SHORT).show();
 					}
 				});
 			}
@@ -172,7 +171,7 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
                         @Override
                         public void run() {
                             // TODO Auto-generated method stub
-                            String st3 = getResources().getString(R.string.have_connected_with);
+                            String st3 = getResources().getString(cn.ucai.superwechat.R.string.have_connected_with);
                             callStateTextView.setText(st3);
                         }
 
@@ -192,13 +191,13 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
                             if(!isHandsfreeState)
                                 closeSpeakerOn();
                             //显示是否为直连，方便测试
-                            ((TextView)findViewById(R.id.tv_is_p2p)).setText(EMChatManager.getInstance().isDirectCall()
-                                    ? R.string.direct_call : R.string.relay_call);
+                            ((TextView)findViewById(cn.ucai.superwechat.R.id.tv_is_p2p)).setText(EMChatManager.getInstance().isDirectCall()
+                                    ? cn.ucai.superwechat.R.string.direct_call : cn.ucai.superwechat.R.string.relay_call);
                             chronometer.setVisibility(View.VISIBLE);
                             chronometer.setBase(SystemClock.elapsedRealtime());
                             // 开始记时
                             chronometer.start();
-                            String str4 = getResources().getString(R.string.In_the_call);
+                            String str4 = getResources().getString(cn.ucai.superwechat.R.string.In_the_call);
                             callStateTextView.setText(str4);
                             callingState = CallingState.NORMAL;
                         }
@@ -216,7 +215,7 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
                                     saveCallRecord(0);
                                     Animation animation = new AlphaAnimation(1.0f, 0.0f);
                                     animation.setDuration(800);
-                                    findViewById(R.id.root_layout).startAnimation(animation);
+                                    findViewById(cn.ucai.superwechat.R.id.root_layout).startAnimation(animation);
                                     finish();
                                 }
 
@@ -227,18 +226,18 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
                         public void run() {
                             chronometer.stop();
                             callDruationText = chronometer.getText().toString();
-                            String st2 = getResources().getString(R.string.The_other_party_refused_to_accept);
-                            String st3 = getResources().getString(R.string.Connection_failure);
-                            String st4 = getResources().getString(R.string.The_other_party_is_not_online);
-                            String st5 = getResources().getString(R.string.The_other_is_on_the_phone_please);
+                            String st2 = getResources().getString(cn.ucai.superwechat.R.string.The_other_party_refused_to_accept);
+                            String st3 = getResources().getString(cn.ucai.superwechat.R.string.Connection_failure);
+                            String st4 = getResources().getString(cn.ucai.superwechat.R.string.The_other_party_is_not_online);
+                            String st5 = getResources().getString(cn.ucai.superwechat.R.string.The_other_is_on_the_phone_please);
                             
-                            String st6 = getResources().getString(R.string.The_other_party_did_not_answer_new);
-                            String st7 = getResources().getString(R.string.hang_up);
-                            String st8 = getResources().getString(R.string.The_other_is_hang_up);
+                            String st6 = getResources().getString(cn.ucai.superwechat.R.string.The_other_party_did_not_answer_new);
+                            String st7 = getResources().getString(cn.ucai.superwechat.R.string.hang_up);
+                            String st8 = getResources().getString(cn.ucai.superwechat.R.string.The_other_is_hang_up);
                             
-                            String st9 = getResources().getString(R.string.did_not_answer);
-                            String st10 = getResources().getString(R.string.Has_been_cancelled);
-                            String st11 = getResources().getString(R.string.hang_up);
+                            String st9 = getResources().getString(cn.ucai.superwechat.R.string.did_not_answer);
+                            String st10 = getResources().getString(cn.ucai.superwechat.R.string.Has_been_cancelled);
+                            String st11 = getResources().getString(cn.ucai.superwechat.R.string.hang_up);
                             
                             if (fError == CallError.REJECTED) {
                                 callingState = CallingState.BEREFUESD;
@@ -295,7 +294,7 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_refuse_call: // 拒绝接听
+		case cn.ucai.superwechat.R.id.btn_refuse_call: // 拒绝接听
 		    refuseBtn.setEnabled(false);
 			if (ringtone != null)
 				ringtone.stop();
@@ -309,7 +308,7 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 			callingState = CallingState.REFUESD;
 			break;
 
-		case R.id.btn_answer_call: // 接听电话
+		case cn.ucai.superwechat.R.id.btn_answer_call: // 接听电话
 		    answerBtn.setEnabled(false);
 		    if (ringtone != null)
                 ringtone.stop();
@@ -332,13 +331,13 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
             closeSpeakerOn();
 			break;
 
-		case R.id.btn_hangup_call: // 挂断电话
+		case cn.ucai.superwechat.R.id.btn_hangup_call: // 挂断电话
 		    hangupBtn.setEnabled(false);
 			if (soundPool != null)
 				soundPool.stop(streamID);
 			chronometer.stop();
 			endCallTriggerByMe = true;
-			callStateTextView.setText(getResources().getString(R.string.hanging_up));
+			callStateTextView.setText(getResources().getString(cn.ucai.superwechat.R.string.hanging_up));
 			try {
 				EMChatManager.getInstance().endCall();
 			} catch (Exception e) {
@@ -348,27 +347,27 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 			}
 			break;
 
-		case R.id.iv_mute: // 静音开关
+		case cn.ucai.superwechat.R.id.iv_mute: // 静音开关
 			if (isMuteState) {
 				// 关闭静音
-				muteImage.setImageResource(R.drawable.icon_mute_normal);
+				muteImage.setImageResource(cn.ucai.superwechat.R.drawable.icon_mute_normal);
 				audioManager.setMicrophoneMute(false);
 				isMuteState = false;
 			} else {
 				// 打开静音
-				muteImage.setImageResource(R.drawable.icon_mute_on);
+				muteImage.setImageResource(cn.ucai.superwechat.R.drawable.icon_mute_on);
 				audioManager.setMicrophoneMute(true);
 				isMuteState = true;
 			}
 			break;
-		case R.id.iv_handsfree: // 免提开关
+		case cn.ucai.superwechat.R.id.iv_handsfree: // 免提开关
 			if (isHandsfreeState) {
 				// 关闭免提
-				handsFreeImage.setImageResource(R.drawable.icon_speaker_normal);
+				handsFreeImage.setImageResource(cn.ucai.superwechat.R.drawable.icon_speaker_normal);
 				closeSpeakerOn();
 				isHandsfreeState = false;
 			} else {
-				handsFreeImage.setImageResource(R.drawable.icon_speaker_on);
+				handsFreeImage.setImageResource(cn.ucai.superwechat.R.drawable.icon_speaker_on);
 				openSpeakerOn();
 				isHandsfreeState = true;
 			}

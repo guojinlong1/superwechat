@@ -32,7 +32,6 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMMessage;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.SmileUtils;
 import com.easemob.util.DateUtils;
@@ -53,34 +52,34 @@ public class ChatHistoryAdapter extends ArrayAdapter<EMContact> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.row_chat_history, parent, false);
+			convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_chat_history, parent, false);
 		}
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		if (holder == null) {
 			holder = new ViewHolder();
-			holder.name = (TextView) convertView.findViewById(R.id.name);
-			holder.unreadLabel = (TextView) convertView.findViewById(R.id.unread_msg_number);
-			holder.message = (TextView) convertView.findViewById(R.id.message);
-			holder.time = (TextView) convertView.findViewById(R.id.time);
-			holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
-			holder.msgState = convertView.findViewById(R.id.msg_state);
-			holder.list_item_layout=(RelativeLayout) convertView.findViewById(R.id.list_item_layout);
+			holder.name = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name);
+			holder.unreadLabel = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.unread_msg_number);
+			holder.message = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.message);
+			holder.time = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.time);
+			holder.avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.avatar);
+			holder.msgState = convertView.findViewById(cn.ucai.superwechat.R.id.msg_state);
+			holder.list_item_layout=(RelativeLayout) convertView.findViewById(cn.ucai.superwechat.R.id.list_item_layout);
 			convertView.setTag(holder);
 		}
 		if(position%2==0)
 		{
-			holder.list_item_layout.setBackgroundResource(R.drawable.mm_listitem);
+			holder.list_item_layout.setBackgroundResource(cn.ucai.superwechat.R.drawable.mm_listitem);
 		}else{
-			holder.list_item_layout.setBackgroundResource(R.drawable.mm_listitem_grey);
+			holder.list_item_layout.setBackgroundResource(cn.ucai.superwechat.R.drawable.mm_listitem_grey);
 		}
 		
 		
 		EMContact user = getItem(position);
 		if(user instanceof EMGroup){
 			//群聊消息，显示群聊头像
-			holder.avatar.setImageResource(R.drawable.groups_icon);
+			holder.avatar.setImageResource(cn.ucai.superwechat.R.drawable.groups_icon);
 		}else{
-			holder.avatar.setImageResource(R.drawable.default_avatar);
+			holder.avatar.setImageResource(cn.ucai.superwechat.R.drawable.default_avatar);
 		}
 		
 		String username = user.getUsername();

@@ -46,7 +46,6 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.CoordinateConverter;
-import cn.ucai.superwechat.R;
 
 public class BaiduMapActivity extends BaseActivity {
 
@@ -76,10 +75,10 @@ public class BaiduMapActivity extends BaseActivity {
 	public class BaiduSDKReceiver extends BroadcastReceiver {
 		public void onReceive(Context context, Intent intent) {
 			String s = intent.getAction();
-			String st1 = getResources().getString(R.string.Network_error);
+			String st1 = getResources().getString(cn.ucai.superwechat.R.string.Network_error);
 			if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
 				
-				String st2 = getResources().getString(R.string.please_check);
+				String st2 = getResources().getString(cn.ucai.superwechat.R.string.please_check);
 				Toast.makeText(instance, st2, Toast.LENGTH_SHORT).show();
 			} else if (s.equals(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR)) {
 				Toast.makeText(instance, st1, Toast.LENGTH_SHORT).show();
@@ -97,9 +96,9 @@ public class BaiduMapActivity extends BaseActivity {
 		//在使用SDK各组件之前初始化context信息，传入ApplicationContext  
         //注意该方法要再setContentView方法之前实现  
         SDKInitializer.initialize(getApplicationContext());  
-		setContentView(R.layout.activity_baidumap);
-		mMapView = (MapView) findViewById(R.id.bmapView);
-		sendButton = (Button) findViewById(R.id.btn_location_send);
+		setContentView(cn.ucai.superwechat.R.layout.activity_baidumap);
+		mMapView = (MapView) findViewById(cn.ucai.superwechat.R.id.bmapView);
+		sendButton = (Button) findViewById(cn.ucai.superwechat.R.id.btn_location_send);
 		Intent intent = getIntent();
 		double latitude = intent.getDoubleExtra("latitude", 0);
 		mCurrentMode = LocationMode.NORMAL;
@@ -137,7 +136,7 @@ public class BaiduMapActivity extends BaseActivity {
 		converter.from(CoordinateConverter.CoordType.COMMON);
 		LatLng convertLatLng = converter.convert();
 		OverlayOptions ooA = new MarkerOptions().position(convertLatLng).icon(BitmapDescriptorFactory
-				.fromResource(R.drawable.icon_marka))
+				.fromResource(cn.ucai.superwechat.R.drawable.icon_marka))
 				.zIndex(4).draggable(true);
 		mBaiduMap.addOverlay(ooA);
 		MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(convertLatLng, 17.0f);
@@ -145,7 +144,7 @@ public class BaiduMapActivity extends BaseActivity {
 	}
 
 	private void showMapWithLocationClient() {
-		String str1 = getResources().getString(R.string.Making_sure_your_location);
+		String str1 = getResources().getString(cn.ucai.superwechat.R.string.Making_sure_your_location);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setCanceledOnTouchOutside(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -240,7 +239,7 @@ public class BaiduMapActivity extends BaseActivity {
 			converter.from(CoordinateConverter.CoordType.COMMON);
 			LatLng convertLatLng = converter.convert();
 			OverlayOptions ooA = new MarkerOptions().position(convertLatLng).icon(BitmapDescriptorFactory
-					.fromResource(R.drawable.icon_marka))
+					.fromResource(cn.ucai.superwechat.R.drawable.icon_marka))
 					.zIndex(4).draggable(true);
 			mBaiduMap.addOverlay(ooA);
 			MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(convertLatLng, 17.0f);
@@ -270,7 +269,7 @@ public class BaiduMapActivity extends BaseActivity {
 		intent.putExtra("address", lastLocation.getAddrStr());
 		this.setResult(RESULT_OK, intent);
 		finish();
-		overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+		overridePendingTransition(cn.ucai.superwechat.R.anim.slide_in_from_left, cn.ucai.superwechat.R.anim.slide_out_to_right);
 	}
 
 }

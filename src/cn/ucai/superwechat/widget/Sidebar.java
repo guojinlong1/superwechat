@@ -25,7 +25,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.adapter.ContactAdapter;
 import com.easemob.util.DensityUtil;
 
@@ -50,7 +49,7 @@ public class Sidebar extends View{
 	private String[] sections; 
 
 	private void init(){
-	    String st = context.getString(R.string.search_new);
+	    String st = context.getString(cn.ucai.superwechat.R.string.search_new);
         sections= new String[]{st,"#","A","B","C","D","E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		paint.setColor(Color.parseColor("#8C8C8C"));
@@ -107,11 +106,11 @@ public class Sidebar extends View{
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:{
 			if(header == null){
-				header = (TextView) ((View)getParent()).findViewById(R.id.floating_header);
+				header = (TextView) ((View)getParent()).findViewById(cn.ucai.superwechat.R.id.floating_header);
 			}
 			setHeaderTextAndscroll(event);
 			header.setVisibility(View.VISIBLE);
-			setBackgroundResource(R.drawable.sidebar_background_pressed);
+			setBackgroundResource(cn.ucai.superwechat.R.drawable.sidebar_background_pressed);
 			return true;
 		}
 		case MotionEvent.ACTION_MOVE:{

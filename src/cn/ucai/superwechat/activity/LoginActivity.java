@@ -67,7 +67,7 @@ import cn.ucai.superwechat.utils.Utils;
 
 /**
  * 登陆页面
- * 
+ *
  */
 public class LoginActivity extends BaseActivity {
 	private static final String TAG = "LoginActivity";
@@ -137,7 +137,7 @@ public class LoginActivity extends BaseActivity {
 
 	/**
 	 * 登录
-	 * 
+	 *
 	 *
 	 */
 	private void setOnLoginListener() {
@@ -160,7 +160,7 @@ public class LoginActivity extends BaseActivity {
 					return;
 				}
 
-				 showProgressShow();
+				showProgressShow();
 
 				final long start = System.currentTimeMillis();
 				// 调用sdk登陆方法登陆聊天服务器
@@ -228,9 +228,9 @@ public class LoginActivity extends BaseActivity {
 		}else {
 			try {
 				String path = new ApiParams().with(I.User.USER_NAME,currentUsername)
-                        .with(I.User.PASSWORD,currentPassword).getRequestUrl(I.REQUEST_LOGIN);
+						.with(I.User.PASSWORD,currentPassword).getRequestUrl(I.REQUEST_LOGIN);
 				executeRequest(	new GsonRequest<User>(path,User.class,
-				responseListener(),errorListener()));
+						responseListener(),errorListener()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -243,6 +243,9 @@ public class LoginActivity extends BaseActivity {
 			public void onResponse(User user) {
 				if(user.isResult()){
 					saveUser(user);
+					user.setMUserPassword(MD5.getData(user.getMUserPassword()));
+					UserDao dao = new UserDao(mContext);
+					dao.addUser(user);
 					loginSuccess();
 				}else {
 					pd.dismiss();
@@ -272,7 +275,7 @@ public class LoginActivity extends BaseActivity {
 			initializeContacts();
 			//下载头像
 			final OkHttpUtils<Message> utils = new OkHttpUtils<Message>();
-			utils.url(SuperWeChatApplication.SEVER_ROOT)
+			utils.url(SuperWeChatApplication.SERVER_ROOT)
 					.addParam(I.KEY_REQUEST,I.REQUEST_DOWNLOAD_AVATAR)
 					.addParam(I.AVATAR_TYPE,currentUsername)
 					.doInBackground(new Callback() {
@@ -292,15 +295,15 @@ public class LoginActivity extends BaseActivity {
 						}
 					}).execute(null);
 
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							new DownloadContactListTask(mContext,currentUsername).execute();
-							new DownloadAllGroupTask(mContext,currentUsername).execute();
-							new DownloadPublicGroupTask(mContext,currentUsername,
-									I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
-						}
-					});
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					new DownloadContactListTask(mContext,currentUsername).execute();
+					new DownloadAllGroupTask(mContext,currentUsername).execute();
+					new DownloadPublicGroupTask(mContext,currentUsername,
+							I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
+				}
+			});
 
 
 		} catch (Exception e) {
@@ -350,7 +353,7 @@ public class LoginActivity extends BaseActivity {
 		groupUser.setNick(strGroup);
 		groupUser.setHeader("");
 		userlist.put(Constant.GROUP_USERNAME, groupUser);
-		
+
 //		// 添加"Robot"
 //		EMUser robotUser = new EMUser();
 //		String strRobot = getResources().getString(R.string.robot_chat);
@@ -358,7 +361,7 @@ public class LoginActivity extends BaseActivity {
 //		robotUser.setNick(strRobot);
 //		robotUser.setHeader("");
 //		userlist.put(Constant.CHAT_ROBOT, robotUser);
-		
+
 		// 存入内存
 		((DemoHXSDKHelper) HXSDKHelper.getInstance()).setContactList(userlist);
 		// 存入db
@@ -366,10 +369,10 @@ public class LoginActivity extends BaseActivity {
 		List<EMUser> users = new ArrayList<EMUser>(userlist.values());
 		dao.saveContactList(users);
 	}
-	
+
 	/**
 	 * 注册
-	 * 
+	 *
 	 *
 	 */
 	private void setOnRegisterListener() {

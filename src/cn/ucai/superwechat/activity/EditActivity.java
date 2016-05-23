@@ -1,7 +1,5 @@
 package cn.ucai.superwechat.activity;
 
-import cn.ucai.superwechat.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,13 +13,13 @@ public class EditActivity extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		setContentView(R.layout.activity_edit);
+		setContentView(cn.ucai.superwechat.R.layout.activity_edit);
 		
-		editText = (EditText) findViewById(R.id.edittext);
+		editText = (EditText) findViewById(cn.ucai.superwechat.R.id.edittext);
 		String title = getIntent().getStringExtra("title");
 		String data = getIntent().getStringExtra("data");
 		if(title != null)
-			((TextView)findViewById(R.id.tv_title)).setText(title);
+			((TextView)findViewById(cn.ucai.superwechat.R.id.tv_title)).setText(title);
 		if(data != null)
 			editText.setText(data);
 		editText.setSelection(editText.length());

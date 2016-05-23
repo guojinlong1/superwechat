@@ -46,7 +46,6 @@ import com.easemob.EMChatRoomChangeListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatRoom;
 import com.easemob.chat.EMCursorResult;
-import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EaseMobException;
 
 public class PublicChatRoomsActivity extends BaseActivity {
@@ -73,25 +72,25 @@ public class PublicChatRoomsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_public_groups);
+		setContentView(cn.ucai.superwechat.R.layout.activity_public_groups);
 
 		// 搜索框
-		searching = (EditText)findViewById(R.id.query);
-		clean = (ImageButton)findViewById(R.id.search_clear);
-		searching.setHint(R.string.search);
-		inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		searching = (EditText)findViewById(cn.ucai.superwechat.R.id.query);
+		clean = (ImageButton)findViewById(cn.ucai.superwechat.R.id.search_clear);
+		searching.setHint(cn.ucai.superwechat.R.string.search);
+		inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
 		
-		pb = (ProgressBar) findViewById(R.id.progressBar);
-		listView = (ListView) findViewById(R.id.list);
-		title = (TextView)findViewById(R.id.tv_title);
-		title.setText(getResources().getString(R.string.chat_room));
+		pb = (ProgressBar) findViewById(cn.ucai.superwechat.R.id.progressBar);
+		listView = (ListView) findViewById(cn.ucai.superwechat.R.id.list);
+		title = (TextView)findViewById(cn.ucai.superwechat.R.id.tv_title);
+		title.setText(getResources().getString(cn.ucai.superwechat.R.string.chat_room));
 		chatRoomList = new ArrayList<EMChatRoom>();
 		rooms = new ArrayList<EMChatRoom>();
 		
-		View footView = getLayoutInflater().inflate(R.layout.listview_footer_view, null);
-        footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
-        footLoadingPB = (ProgressBar)footView.findViewById(R.id.loading_bar);
-        footLoadingText = (TextView) footView.findViewById(R.id.loading_text);
+		View footView = getLayoutInflater().inflate(cn.ucai.superwechat.R.layout.listview_footer_view, null);
+        footLoadingLayout = (LinearLayout) footView.findViewById(cn.ucai.superwechat.R.id.loading_layout);
+        footLoadingPB = (ProgressBar)footView.findViewById(cn.ucai.superwechat.R.id.loading_bar);
+        footLoadingText = (TextView) footView.findViewById(cn.ucai.superwechat.R.id.loading_text);
         listView.addFooterView(footView, null, false);
         footLoadingLayout.setVisibility(View.GONE);
         
@@ -239,7 +238,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
                                     hasMoreData = false;
                                     footLoadingLayout.setVisibility(View.VISIBLE);
                                     footLoadingPB.setVisibility(View.GONE);
-                                    footLoadingText.setText(getResources().getString(R.string.no_more_messages));
+                                    footLoadingText.setText(getResources().getString(cn.ucai.superwechat.R.string.no_more_messages));
                                 }
                                 adapter.notifyDataSetChanged();
                             }
@@ -253,7 +252,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
                             isLoading = false;
                             pb.setVisibility(View.INVISIBLE);
                             footLoadingLayout.setVisibility(View.GONE);
-                            Toast.makeText(PublicChatRoomsActivity.this, getResources().getString(R.string.failed_to_load_data), 0).show();
+                            Toast.makeText(PublicChatRoomsActivity.this, getResources().getString(cn.ucai.superwechat.R.string.failed_to_load_data), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -285,10 +284,10 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.row_group, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_group, null);
 			}
 
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getName());
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name)).setText(getItem(position).getName());
 
 			return convertView;
 		}

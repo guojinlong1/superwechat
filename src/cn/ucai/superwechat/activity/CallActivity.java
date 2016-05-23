@@ -1,6 +1,5 @@
 package cn.ucai.superwechat.activity;
 
-import android.content.Context;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.SoundPool;
@@ -11,7 +10,6 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import cn.ucai.superwechat.Constant;
-import cn.ucai.superwechat.R;
 
 public class CallActivity extends BaseActivity {
 
@@ -30,7 +28,7 @@ public class CallActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
     }
     
     @Override
@@ -47,12 +45,9 @@ public class CallActivity extends BaseActivity {
             EMChatManager.getInstance().removeCallStateChangeListener(callStateListener);
             
     }
-    
+
     /**
      * 播放拨号响铃
-     * 
-     * @param sound
-     * @param number
      */
     protected int playMakeCallSounds() {
         try {
@@ -124,14 +119,14 @@ public class CallActivity extends BaseActivity {
             message.setFrom(username);
         }
 
-        String st1 = getResources().getString(R.string.call_duration);
-        String st2 = getResources().getString(R.string.Refused);
-        String st3 = getResources().getString(R.string.The_other_party_has_refused_to);
-        String st4 = getResources().getString(R.string.The_other_is_not_online);
-        String st5 = getResources().getString(R.string.The_other_is_on_the_phone);
-        String st6 = getResources().getString(R.string.The_other_party_did_not_answer);
-        String st7 = getResources().getString(R.string.did_not_answer);
-        String st8 = getResources().getString(R.string.Has_been_cancelled);
+        String st1 = getResources().getString(cn.ucai.superwechat.R.string.call_duration);
+        String st2 = getResources().getString(cn.ucai.superwechat.R.string.Refused);
+        String st3 = getResources().getString(cn.ucai.superwechat.R.string.The_other_party_has_refused_to);
+        String st4 = getResources().getString(cn.ucai.superwechat.R.string.The_other_is_not_online);
+        String st5 = getResources().getString(cn.ucai.superwechat.R.string.The_other_is_on_the_phone);
+        String st6 = getResources().getString(cn.ucai.superwechat.R.string.The_other_party_did_not_answer);
+        String st7 = getResources().getString(cn.ucai.superwechat.R.string.did_not_answer);
+        String st8 = getResources().getString(cn.ucai.superwechat.R.string.Has_been_cancelled);
         switch (callingState) {
         case NORMAL:
             txtBody = new TextMessageBody(st1 + callDruationText);

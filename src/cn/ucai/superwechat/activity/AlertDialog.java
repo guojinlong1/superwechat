@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.task.DownloadImageTask;
 import cn.ucai.superwechat.utils.ImageCache;
 import com.easemob.util.ImageUtils;
@@ -41,11 +40,11 @@ public class AlertDialog extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.alert_dialog);
-		mTextView = (TextView) findViewById(R.id.title);
-		mButton = (Button) findViewById(R.id.btn_cancel);
-		imageView = (ImageView) findViewById(R.id.image);
-		editText = (EditText) findViewById(R.id.edit);
+		setContentView(cn.ucai.superwechat.R.layout.alert_dialog);
+		mTextView = (TextView) findViewById(cn.ucai.superwechat.R.id.title);
+		mButton = (Button) findViewById(cn.ucai.superwechat.R.id.btn_cancel);
+		imageView = (ImageView) findViewById(cn.ucai.superwechat.R.id.image);
+		editText = (EditText) findViewById(cn.ucai.superwechat.R.id.edit);
 		//提示内容
 		String msg = getIntent().getStringExtra("msg");
 		//提示标题
@@ -63,7 +62,7 @@ public class AlertDialog extends BaseActivity {
 		String edit_text = getIntent().getStringExtra("edit_text");
 		
 		if(msg != null)
-		    ((TextView)findViewById(R.id.alert_message)).setText(msg);
+		    ((TextView)findViewById(cn.ucai.superwechat.R.id.alert_message)).setText(msg);
 		if(title != null)
 			mTextView.setText(title);
 		if(isCanceTitle){
@@ -76,7 +75,7 @@ public class AlertDialog extends BaseActivity {
 			if(!new File(path).exists())
 				path = DownloadImageTask.getThumbnailImagePath(path);
 		    imageView.setVisibility(View.VISIBLE);
-		    ((TextView)findViewById(R.id.alert_message)).setVisibility(View.GONE);
+		    ((TextView)findViewById(cn.ucai.superwechat.R.id.alert_message)).setVisibility(View.GONE);
 		    if(ImageCache.getInstance().get(path) != null){
 		        imageView.setImageBitmap(ImageCache.getInstance().get(path));
 		    }else{

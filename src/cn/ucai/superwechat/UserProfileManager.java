@@ -6,12 +6,13 @@ import java.util.List;
 import android.content.Context;
 
 import com.easemob.EMValueCallBack;
-import cn.ucai.superwechat.applib.controller.HXSDKHelper.HXSyncListener;
+
 import cn.ucai.superwechat.applib.utils.HXPreferenceUtils;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.parse.ParseManager;
+import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 
 public class UserProfileManager {
 
@@ -29,7 +30,7 @@ public class UserProfileManager {
 	/**
 	 * HuanXin sync contact nick and avatar listener
 	 */
-	private List<HXSyncListener> syncContactInfosListeners;
+	private List<HXSDKHelper.HXSyncListener> syncContactInfosListeners;
 
 	private boolean isSyncingContactInfosWithServer = false;
 
@@ -43,12 +44,12 @@ public class UserProfileManager {
 			return true;
 		}
 		ParseManager.getInstance().onInit(context);
-		syncContactInfosListeners = new ArrayList<HXSyncListener>();
+		syncContactInfosListeners = new ArrayList<HXSDKHelper.HXSyncListener>();
 		sdkInited = true;
 		return true;
 	}
 
-	public void addSyncContactInfoListener(HXSyncListener listener) {
+	public void addSyncContactInfoListener(HXSDKHelper.HXSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -57,7 +58,7 @@ public class UserProfileManager {
 		}
 	}
 
-	public void removeSyncContactInfoListener(HXSyncListener listener) {
+	public void removeSyncContactInfoListener(HXSDKHelper.HXSyncListener listener) {
 		if (listener == null) {
 			return;
 		}
@@ -99,7 +100,7 @@ public class UserProfileManager {
 	}
 
 	public void notifyContactInfosSyncListener(boolean success) {
-		for (HXSyncListener listener : syncContactInfosListeners) {
+		for (HXSDKHelper.HXSyncListener listener : syncContactInfosListeners) {
 			listener.onSyncSucess(success);
 		}
 	}

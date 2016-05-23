@@ -31,7 +31,6 @@ public class BaseActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle arg0) {
-
         super.onCreate(arg0);
         activity = this;
     }
@@ -71,6 +70,7 @@ public class BaseActivity extends FragmentActivity {
     public void executeRequest(Request<?> request){
         RequestManager.addRequest(request,activity);
     }
+
     public Response.ErrorListener errorListener(){
         return new Response.ErrorListener() {
             @Override
@@ -79,4 +79,5 @@ public class BaseActivity extends FragmentActivity {
             }
         };
     }
+
 }

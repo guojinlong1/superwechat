@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
-import cn.ucai.superwechat.R;
+
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
@@ -53,26 +53,26 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 		final ViewHolder holder;
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = View.inflate(context, R.layout.row_invite_msg, null);
-			holder.avator = (ImageView) convertView.findViewById(R.id.avatar);
-			holder.reason = (TextView) convertView.findViewById(R.id.message);
-			holder.name = (TextView) convertView.findViewById(R.id.name);
-			holder.status = (Button) convertView.findViewById(R.id.user_state);
-			holder.groupContainer = (LinearLayout) convertView.findViewById(R.id.ll_group);
-			holder.groupname = (TextView) convertView.findViewById(R.id.tv_groupName);
+			convertView = View.inflate(context, cn.ucai.superwechat.R.layout.row_invite_msg, null);
+			holder.avator = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.avatar);
+			holder.reason = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.message);
+			holder.name = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name);
+			holder.status = (Button) convertView.findViewById(cn.ucai.superwechat.R.id.user_state);
+			holder.groupContainer = (LinearLayout) convertView.findViewById(cn.ucai.superwechat.R.id.ll_group);
+			holder.groupname = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_groupName);
 			// holder.time = (TextView) convertView.findViewById(R.id.time);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		String str1 = context.getResources().getString(R.string.Has_agreed_to_your_friend_request);
-		String str2 = context.getResources().getString(R.string.agree);
+		String str1 = context.getResources().getString(cn.ucai.superwechat.R.string.Has_agreed_to_your_friend_request);
+		String str2 = context.getResources().getString(cn.ucai.superwechat.R.string.agree);
 		
-		String str3 = context.getResources().getString(R.string.Request_to_add_you_as_a_friend);
-		String str4 = context.getResources().getString(R.string.Apply_to_the_group_of);
-		String str5 = context.getResources().getString(R.string.Has_agreed_to);
-		String str6 = context.getResources().getString(R.string.Has_refused_to);
+		String str3 = context.getResources().getString(cn.ucai.superwechat.R.string.Request_to_add_you_as_a_friend);
+		String str4 = context.getResources().getString(cn.ucai.superwechat.R.string.Apply_to_the_group_of);
+		String str5 = context.getResources().getString(cn.ucai.superwechat.R.string.Has_agreed_to);
+		String str6 = context.getResources().getString(cn.ucai.superwechat.R.string.Has_refused_to);
 		final InviteMessage msg = getItem(position);
 		if (msg != null) {
 			if(msg.getGroupId() != null){ // 显示群聊提示
@@ -133,13 +133,12 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 	 * 同意好友请求或者群申请
 	 * 
 	 * @param button
-	 * @param username
 	 */
 	private void acceptInvitation(final Button button, final InviteMessage msg) {
 		final ProgressDialog pd = new ProgressDialog(context);
-		String str1 = context.getResources().getString(R.string.Are_agree_with);
-		final String str2 = context.getResources().getString(R.string.Has_agreed_to);
-		final String str3 = context.getResources().getString(R.string.Agree_with_failure);
+		String str1 = context.getResources().getString(cn.ucai.superwechat.R.string.Are_agree_with);
+		final String str2 = context.getResources().getString(cn.ucai.superwechat.R.string.Has_agreed_to);
+		final String str3 = context.getResources().getString(cn.ucai.superwechat.R.string.Agree_with_failure);
 		pd.setMessage(str1);
 		pd.setCanceledOnTouchOutside(false);
 		pd.show();
@@ -174,7 +173,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 						@Override
 						public void run() {
 							pd.dismiss();
-							Toast.makeText(context, str3 + e.getMessage(), 1).show();
+							Toast.makeText(context, str3 + e.getMessage(), Toast.LENGTH_LONG).show();
 						}
 					});
 

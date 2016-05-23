@@ -46,15 +46,21 @@ public class ImageUtils {
         EMLog.d("msg", "thum image path:" + path);
         return path;
     }
-	
-	/**给一个头像的保存地址，返回这个头像在sd卡的绝对路径*/
 
-	public static String getAvatarPath(Context context,String path){
+	/**
+	 * 返回头像保存的sd卡中的位置
+	 * @param context
+	 * @param path
+     * @return
+     */
+	public static String getAvatarPath(Context context, String path) {
 		File dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-		File file = new File(dir,path);
-		if(!file.exists()){
-			file.mkdir();
+		File folder = new File(dir, path);
+		if (!folder.exists()) {
+			folder.mkdir();
 		}
-		return file.getAbsolutePath();
+		return folder.getAbsolutePath();
 	}
+	
+	
 }

@@ -22,7 +22,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.activity.AlertDialog;
 import cn.ucai.superwechat.activity.ChatActivity;
 
@@ -63,7 +62,7 @@ public class PasteEditText extends EditText{
 //                intent.setDataAndType(Uri.fromFile(new File("/sdcard/mn1.jpg")), "image/*");     
                 text = text.replace(ChatActivity.COPY_IMAGE, "");
                 Intent intent = new Intent(context,AlertDialog.class);
-                String str = context.getResources().getString(R.string.Send_the_following_pictures);
+                String str = context.getResources().getString(cn.ucai.superwechat.R.string.Send_the_following_pictures);
                 intent.putExtra("title", str);
                 intent.putExtra("forwardImage", text);
                 intent.putExtra("cancel", true);

@@ -38,7 +38,6 @@ import android.widget.Toast;
 import com.easemob.chat.EMCursorResult;
 import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
-import cn.ucai.superwechat.R;
 import com.easemob.exceptions.EaseMobException;
 
 public class PublicGroupsActivity extends BaseActivity {
@@ -61,17 +60,17 @@ public class PublicGroupsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_public_groups);
+		setContentView(cn.ucai.superwechat.R.layout.activity_public_groups);
 
-		pb = (ProgressBar) findViewById(R.id.progressBar);
-		listView = (ListView) findViewById(R.id.list);
+		pb = (ProgressBar) findViewById(cn.ucai.superwechat.R.id.progressBar);
+		listView = (ListView) findViewById(cn.ucai.superwechat.R.id.list);
 		groupsList = new ArrayList<EMGroupInfo>();
-		searchBtn = (Button) findViewById(R.id.btn_search);
+		searchBtn = (Button) findViewById(cn.ucai.superwechat.R.id.btn_search);
 		
-		View footView = getLayoutInflater().inflate(R.layout.listview_footer_view, null);
-        footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
-        footLoadingPB = (ProgressBar)footView.findViewById(R.id.loading_bar);
-        footLoadingText = (TextView) footView.findViewById(R.id.loading_text);
+		View footView = getLayoutInflater().inflate(cn.ucai.superwechat.R.layout.listview_footer_view, null);
+        footLoadingLayout = (LinearLayout) footView.findViewById(cn.ucai.superwechat.R.id.loading_layout);
+        footLoadingPB = (ProgressBar)footView.findViewById(cn.ucai.superwechat.R.id.loading_bar);
+        footLoadingText = (TextView) footView.findViewById(cn.ucai.superwechat.R.id.loading_text);
         listView.addFooterView(footView, null, false);
         footLoadingLayout.setVisibility(View.GONE);
         
@@ -162,7 +161,7 @@ public class PublicGroupsActivity extends BaseActivity {
                             isLoading = false;
                             pb.setVisibility(View.INVISIBLE);
                             footLoadingLayout.setVisibility(View.GONE);
-                            Toast.makeText(PublicGroupsActivity.this, "加载数据失败，请检查网络或稍后重试", 0).show();
+                            Toast.makeText(PublicGroupsActivity.this, "加载数据失败，请检查网络或稍后重试", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -185,10 +184,10 @@ public class PublicGroupsActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.row_group, null);
+				convertView = inflater.inflate(cn.ucai.superwechat.R.layout.row_group, null);
 			}
 
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getGroupName());
+			((TextView) convertView.findViewById(cn.ucai.superwechat.R.id.name)).setText(getItem(position).getGroupName());
 
 			return convertView;
 		}
