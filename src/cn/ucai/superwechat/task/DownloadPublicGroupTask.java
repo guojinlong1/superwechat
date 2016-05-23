@@ -6,12 +6,10 @@ import android.content.Intent;
 import com.android.volley.Response;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.activity.BaseActivity;
-import cn.ucai.superwechat.bean.Contact;
 import cn.ucai.superwechat.bean.Group;
 import cn.ucai.superwechat.data.ApiParams;
 import cn.ucai.superwechat.data.GsonRequest;
@@ -25,10 +23,15 @@ public class DownloadPublicGroupTask extends BaseActivity {
     Context mContext;
     String userName;
     String path;
+    int mPage_id;
+    int mPage_size;
 
-    public DownloadPublicGroupTask(Context mContext, String userName) {
+
+    public DownloadPublicGroupTask(Context mContext, String userName,int Page_id,int Page_size) {
         this.mContext = mContext;
         this.userName = userName;
+        this.mPage_id=Page_id;
+        this.mPage_size = Page_size;
         initPath();
     }
 
@@ -36,7 +39,10 @@ public class DownloadPublicGroupTask extends BaseActivity {
         try {
             path = new ApiParams()
                     .with(I.Contact.USER_NAME,userName)
-                    .getRequestUrl(I.REQUEST_FIND_PUBLIC_GROUPS);
+                    .with(I.PAGE_ID,mPage_id+"")
+                    .with(I.PAGE_SIZE,mPage_size+"")
+                    .getRequestUrl(I.REQUEST_FIND_PUBLIC_GROUPS)
+                    ;
         } catch (Exception e) {
             e.printStackTrace();
         }

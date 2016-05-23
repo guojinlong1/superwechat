@@ -58,6 +58,9 @@ import cn.ucai.superwechat.db.EMUserDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.listener.OnSetAvatarListener;
+import cn.ucai.superwechat.task.DownloadAllGroupTask;
+import cn.ucai.superwechat.task.DownloadContactListTask;
+import cn.ucai.superwechat.task.DownloadPublicGroupTask;
 import cn.ucai.superwechat.utils.CommonUtils;
 import cn.ucai.superwechat.utils.MD5;
 import cn.ucai.superwechat.utils.Utils;
@@ -67,7 +70,6 @@ import cn.ucai.superwechat.utils.Utils;
  * 
  */
 public class LoginActivity extends BaseActivity {
-	Activity mContext;
 	private static final String TAG = "LoginActivity";
 	public static final int REQUEST_CODE_SETNICK = 1;
 	private EditText usernameEditText;
@@ -79,6 +81,7 @@ public class LoginActivity extends BaseActivity {
 	private String currentUsername;
 	private String currentPassword;
 	ProgressDialog pd;
+	Activity mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -166,8 +169,6 @@ public class LoginActivity extends BaseActivity {
 					@Override
 					public void onSuccess() {
 						if (!progressShow) {
-
-
 							return;
 						}
 						loginAppServer();
@@ -262,8 +263,6 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void loginSuccess(){
-
-
 		try {
 			// ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
 			// ** manually load all local groups and
@@ -292,6 +291,18 @@ public class LoginActivity extends BaseActivity {
 							utils.downloadFile(response,file,false);
 						}
 					}).execute(null);
+
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							new DownloadContactListTask(mContext,currentUsername).execute();
+							new DownloadAllGroupTask(mContext,currentUsername).execute();
+							new DownloadPublicGroupTask(mContext,currentUsername,
+									I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
+						}
+					});
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 取好友或者群聊失败，不让进入主页面

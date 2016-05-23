@@ -38,7 +38,10 @@ public class RequestManager {
         if (tag != null) {
             request.setTag(tag);
         }
-        mRequestQueue.add(request);
+        if(mRequestQueue!=null){
+			mRequestQueue.add(request);
+		}
+
     }
 	
 	public static void cancelAll( Object tag) {
