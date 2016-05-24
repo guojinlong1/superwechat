@@ -108,6 +108,8 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
 		if(username.equals(Constant.NEW_FRIENDS_USERNAME)){
 		    holder.nameTextview.setText(user.getMUserNick());
 		    holder.avatar.setDefaultImageResId(R.drawable.new_friends_icon);
+			holder.avatar.setImageUrl("", RequestManager.getImageLoader());
+			holder.avatar.setErrorImageResId(R.drawable.new_friends_icon);
 			if(user.getMUserUnreadMsgCount() > 0){
 			    holder.unreadMsgView.setVisibility(View.VISIBLE);
 //			    holder.unreadMsgView.setText(user.getUnreadMsgCount()+"");
@@ -122,6 +124,8 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
             //群聊item
             holder.nameTextview.setText(user.getMUserNick());
             holder.avatar.setDefaultImageResId(R.drawable.groups_icon);
+			holder.avatar.setImageUrl("", RequestManager.getImageLoader());
+			holder.avatar.setErrorImageResId(R.drawable.groups_icon);
 		}else if(username.equals(Constant.CHAT_ROBOT)){
 			//Robot item
 			holder.nameTextview.setText(user.getMUserNick());
