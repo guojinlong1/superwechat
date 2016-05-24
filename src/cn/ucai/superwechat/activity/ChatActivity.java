@@ -404,6 +404,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 			    onGroupViewCreation();
 			}else{ 
 			    onChatRoomViewCreation();
+
 			}
 		}
         
