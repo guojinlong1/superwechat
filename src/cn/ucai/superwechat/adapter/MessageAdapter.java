@@ -51,6 +51,7 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.easemob.EMCallBack;
 import com.easemob.EMError;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
@@ -84,6 +85,8 @@ import cn.ucai.superwechat.utils.ImageCache;
 import cn.ucai.superwechat.utils.ImageUtils;
 import cn.ucai.superwechat.utils.SmileUtils;
 import cn.ucai.superwechat.utils.UserUtils;
+import cn.ucai.superwechat.utils.Utils;
+
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DensityUtil;
 import com.easemob.util.EMLog;
@@ -323,7 +326,7 @@ public class MessageAdapter extends BaseAdapter{
 			if (message.getType() == Type.IMAGE) {
 				try {
 					holder.iv = ((ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_sendPicture));
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.percentage);
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.progressBar);
 					holder.staus_iv = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.msg_status);
@@ -336,7 +339,7 @@ public class MessageAdapter extends BaseAdapter{
 				try {
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.msg_status);
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					// 这里是文字内容
 					holder.tv = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_chatcontent);
 					holder.tv_usernick = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_userid);
@@ -356,7 +359,7 @@ public class MessageAdapter extends BaseAdapter{
 			} else if (message.getType() == Type.VOICE) {
 				try {
 					holder.iv = ((ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_voice));
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_length);
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.msg_status);
@@ -366,7 +369,7 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			} else if (message.getType() == Type.LOCATION) {
 				try {
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_location);
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.msg_status);
@@ -376,7 +379,7 @@ public class MessageAdapter extends BaseAdapter{
 			} else if (message.getType() == Type.VIDEO) {
 				try {
 					holder.iv = ((ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.chatting_content_iv));
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					holder.tv = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.percentage);
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.progressBar);
 					holder.staus_iv = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.msg_status);
@@ -390,7 +393,7 @@ public class MessageAdapter extends BaseAdapter{
 				}
 			} else if (message.getType() == Type.FILE) {
 				try {
-					holder.iv_avatar = (ImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
+					holder.iv_avatar = (NetworkImageView) convertView.findViewById(cn.ucai.superwechat.R.id.iv_userhead);
 					holder.tv_file_name = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_file_name);
 					holder.tv_file_size = (TextView) convertView.findViewById(cn.ucai.superwechat.R.id.tv_file_size);
 					holder.pb = (ProgressBar) convertView.findViewById(cn.ucai.superwechat.R.id.pb_sending);
@@ -567,12 +570,15 @@ public class MessageAdapter extends BaseAdapter{
 	 * @param message
 	 * @param imageView
 	 */
-	private void setUserAvatar(final EMMessage message, ImageView imageView){
+	private void setUserAvatar(final EMMessage message, NetworkImageView imageView){
 	    if(message.direct == Direct.SEND){
 	        //显示自己头像
-	        UserUtils.setCurrentUserAvatar(context, imageView);
+	        //UserUtils.setCurrentUserAvatar(context, imageView);
+			UserUtils.setCurrentUserAvatar(imageView);
+
 	    }else{
-	        UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+	       // UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+			UserUtils.setUserBeanAvatar(message.getFrom(), imageView);
 	    }
 	    imageView.setOnClickListener(new OnClickListener() {
 			
@@ -585,6 +591,7 @@ public class MessageAdapter extends BaseAdapter{
 			}
 		});
 	}
+
 
 	/**
 	 * 文本消息
@@ -1529,7 +1536,7 @@ public class MessageAdapter extends BaseAdapter{
 		TextView tv;
 		ProgressBar pb;
 		ImageView staus_iv;
-		ImageView iv_avatar;
+		NetworkImageView iv_avatar;
 		TextView tv_usernick;
 		ImageView playBtn;
 		TextView timeLength;
