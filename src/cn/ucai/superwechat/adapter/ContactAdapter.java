@@ -31,6 +31,7 @@ import android.widget.TextView;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.bean.Contact;
+import cn.ucai.superwechat.data.RequestManager;
 import cn.ucai.superwechat.utils.UserUtils;
 
 import com.android.volley.toolbox.NetworkImageView;
@@ -61,7 +62,11 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
 		copyUserList.addAll(objects);
 		layoutInflater = LayoutInflater.from(context);
 	}
-	
+
+	public void remove(Contact tobeDeleteUser) {
+		userList.remove(tobeDeleteUser);
+	}
+
 	private static class ViewHolder {
 		NetworkImageView avatar;
 	    TextView unreadMsgView;
