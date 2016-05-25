@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -124,14 +125,14 @@ public class AddContactActivity extends BaseActivity{
 				if(user!=null){
 					HashMap<String, Contact> userList = SuperWeChatApplication.getInstance().getUserList();
 					if(userList.containsKey(user.getMUserName())){
-						startActivity(new Intent(AddContactActivity.this,UserProfileActivity.class).putExtra("userName",user.getMUserName()));
+						startActivity(new Intent(AddContactActivity.this,UserProfileActivity.class).putExtra("username",user.getMUserName()));
 					}else {
 						//服务器存在此用户，显示此用户和添加按钮
 						searchedUserLayout.setVisibility(View.VISIBLE);
 						nameText.setText(user.getMUserNick());
 						UserUtils.setUserBeanAvatar(user,avatar);
 					}
-
+					Log.e("main",user.getMUserName());
 
 					findViewById(R.id.tv_show_nothing).setVisibility(View.GONE);
 
