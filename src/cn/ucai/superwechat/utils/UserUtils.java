@@ -64,6 +64,11 @@ public class UserUtils {
 			setUserAvatar(getAvatarPath(userName),imageView);
 		}
 	}
+	public static void setUserBeanAvatar(User user, NetworkImageView imageView){
+		if(user!=null&&user.getMUserName()!=null){
+			setUserAvatar(getAvatarPath(user.getMUserName()),imageView);
+		}
+	}
 
 	private static void setUserAvatar(String url, NetworkImageView imageView) {
 		if (url == null || url.isEmpty())return;
