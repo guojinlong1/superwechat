@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.activity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -28,14 +30,21 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.easemob.EMValueCallBack;
 
 import cn.ucai.superwechat.I;
+import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.DemoHXSDKHelper;
+import cn.ucai.superwechat.bean.Message;
 import cn.ucai.superwechat.bean.User;
 import cn.ucai.superwechat.data.ApiParams;
 import cn.ucai.superwechat.data.GsonRequest;
+import cn.ucai.superwechat.data.MultipartRequest;
+import cn.ucai.superwechat.data.RequestManager;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.domain.EMUser;
+import cn.ucai.superwechat.listener.OnSetAvatarListener;
+import cn.ucai.superwechat.utils.ImageLoader;
+import cn.ucai.superwechat.utils.ImageUtils;
 import cn.ucai.superwechat.utils.UserUtils;
 import cn.ucai.superwechat.utils.Utils;
 
@@ -52,7 +61,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private TextView tvUsername;
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
-	Context mContext;
+	UserProfileActivity mContext;
+	OnSetAvatarListener mOnSetAvatarListener;
 	
 	
 	
@@ -92,7 +102,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			Log.e("main",SuperWeChatApplication.getInstance().getUserName());
 			tvUsername.setText(SuperWeChatApplication.getInstance().getUserName());
 			UserUtils.setCurrentUserBeanNick(tvNickName);
-			Log.e("main",SuperWeChatApplication.getInstance().getUser().getMUserNick());
 			UserUtils.setCurrentUserAvatar(headAvatar);
 		} else {
 			tvUsername.setText(username);
@@ -106,7 +115,8 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case cn.ucai.superwechat.R.id.user_head_avatar:
-			uploadHeadPhoto();
+			mOnSetAvatarListener = new OnSetAvatarListener(mContext, R.id.layout_user_profile,getAvatarName(),I.AVATAR_TYPE_USER_PATH);
+			//uploadHeadPhoto();
 			break;
 		case cn.ucai.superwechat.R.id.rl_nickname:
 			final EditText editText = new EditText(this);
@@ -129,7 +139,12 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 		}
 
 	}
-	
+	String avatarName;
+	private String getAvatarName() {
+		avatarName = System.currentTimeMillis()+"";
+		return avatarName;
+	}
+
 	public void asyncFetchUserInfo(String username){
 		((DemoHXSDKHelper) HXSDKHelper.getInstance()).getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<EMUser>() {
 			
@@ -247,22 +262,113 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		case REQUESTCODE_PICK:
-			if (data == null || data.getData() == null) {
-				return;
-			}
-			startPhotoZoom(data.getData());
-			break;
-		case REQUESTCODE_CUTTING:
-			if (data != null) {
-				setPicToView(data);
-			}
-			break;
-		default:
-			break;
-		}
+//		switch (requestCode) {
+//		case REQUESTCODE_PICK:
+//			if (data == null || data.getData() == null) {
+//				return;
+//			}
+//			startPhotoZoom(data.getData());
+//			break;
+//		case REQUESTCODE_CUTTING:
+//			if (data != null) {
+//				setPicToView(data);
+//			}
+//			break;
+//		default:
+//			break;
+//		}
 		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode!=RESULT_OK){
+			return;
+		}
+		mOnSetAvatarListener.setAvatar(requestCode,data,headAvatar);
+		if(requestCode==OnSetAvatarListener.REQUEST_CROP_PHOTO){
+			dialog = ProgressDialog.show(this, getString(cn.ucai.superwechat.R.string.dl_update_photo), getString(cn.ucai.superwechat.R.string.dl_waiting));
+			RequestManager.getRequestQueue().getCache().remove(UserUtils.getAvatarPath(
+					SuperWeChatApplication.getInstance().getUserName()
+			));
+			updateUserAvatar();
+			dialog.show();
+		}
+	}
+	private final String boundary = "apiclient-" + System.currentTimeMillis();
+	private final String mimeType = "multipart/form-data;boundary=" + boundary;
+	byte[] multipartBody;
+	private Bitmap bitmap;
+	private void updateUserAvatar() {
+
+		File file = new File (ImageUtils.getAvatarPath(mContext,I.AVATAR_TYPE_USER_PATH),avatarName+I.AVATAR_SUFFIX_JPG);
+		String  path = file.getAbsolutePath();
+		bitmap = BitmapFactory.decodeFile(path);
+		multipartBody = getImageBytes(bitmap);
+		String url = null;
+		try {
+			url = new ApiParams()
+                    .with(I.User.USER_NAME,SuperWeChatApplication.getInstance().getUserName())
+                    .with(I.AVATAR_TYPE,I.AVATAR_TYPE_USER_PATH)
+                    .getRequestUrl(I.REQUEST_UPLOAD_AVATAR);
+			executeRequest(new MultipartRequest<Message>(url,Message.class,null,
+					responseUpdateAvatar(),errorListener(),mimeType,multipartBody));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Response.Listener<Message> responseUpdateAvatar() {
+		return new Response.Listener<Message>() {
+			@Override
+			public void onResponse(Message message) {
+				if(message.isResult()){
+					RequestManager.getRequestQueue()
+							.getCache().remove(UserUtils.
+					getAvatarPath(SuperWeChatApplication.getInstance().getUserName()));
+					UserUtils.setCurrentUserAvatar(headAvatar);
+					ImageLoader loader = new ImageLoader(mContext);
+					try {
+						String path = new ApiParams()
+                                .with(I.User.USER_NAME,SuperWeChatApplication.getInstance().getUserName())
+                                .with(I.AVATAR_TYPE,I.AVATAR_TYPE_USER_PATH)
+                                .getRequestUrl(I.REQUEST_DOWNLOAD_AVATAR_USER);
+						 bitmap = loader.displayImage(path, SuperWeChatApplication.getInstance().getUserName(), 80, 80,
+								new ImageLoader.OnImageLoadListener() {
+									@Override
+									public void onSuccess(String path, Bitmap bitmap) {
+
+									}
+
+									@Override
+									public void error(String errorMsg) {
+
+									}
+								});
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					if(bitmap!=null){
+						headAvatar.setImageBitmap(bitmap);
+					}else {
+						headAvatar.setImageResource(R.drawable.default_avatar);
+					}
+
+					Toast.makeText(UserProfileActivity.this, getString(cn.ucai.superwechat.R.string.toast_updatephoto_success),
+							Toast.LENGTH_SHORT).show();
+				}else {
+					UserUtils.setCurrentUserAvatar(headAvatar);
+					Toast.makeText(UserProfileActivity.this,getString(R.string.toast_updatenick_fail),
+							Toast.LENGTH_SHORT).show();
+				}
+				dialog.dismiss();
+			}
+		};
+	}
+
+
+	public byte[] getImageBytes(Bitmap bmp){
+		if(bmp==null)return null;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bmp.compress(Bitmap.CompressFormat.JPEG,100,baos);
+		byte[] imageBytes = baos.toByteArray();
+		return imageBytes;
 	}
 
 	public void startPhotoZoom(Uri uri) {
