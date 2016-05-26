@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,14 +23,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.android.volley.toolbox.NetworkImageView;
 import com.easemob.EMValueCallBack;
 
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.DemoHXSDKHelper;
+import cn.ucai.superwechat.bean.User;
+import cn.ucai.superwechat.data.ApiParams;
+import cn.ucai.superwechat.data.GsonRequest;
 import cn.ucai.superwechat.domain.EMUser;
 import cn.ucai.superwechat.utils.UserUtils;
+import cn.ucai.superwechat.utils.Utils;
+
 import com.squareup.picasso.Picasso;
 
 public class UserProfileActivity extends BaseActivity implements OnClickListener{
@@ -43,12 +51,14 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private TextView tvUsername;
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
+	Context mContext;
 	
 	
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
+		mContext=this;
 		setContentView(cn.ucai.superwechat.R.layout.activity_user_profile);
 		initView();
 		initListener();
@@ -78,8 +88,10 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			iconRightArrow.setVisibility(View.INVISIBLE);
 		}
 		if (username == null || username.equals(SuperWeChatApplication.getInstance().getUserName())) {
+			Log.e("main",SuperWeChatApplication.getInstance().getUserName());
 			tvUsername.setText(SuperWeChatApplication.getInstance().getUserName());
 			UserUtils.setCurrentUserBeanNick(tvNickName);
+			Log.e("main",SuperWeChatApplication.getInstance().getUser().getMUserNick());
 			UserUtils.setCurrentUserAvatar(headAvatar);
 		} else {
 			tvUsername.setText(username);
@@ -107,7 +119,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 								Toast.makeText(UserProfileActivity.this, getString(cn.ucai.superwechat.R.string.toast_nick_not_isnull), Toast.LENGTH_SHORT).show();
 								return;
 							}
-							updateRemoteNick(nickString);
+							updateNickName(nickString);
 						}
 					}).setNegativeButton(cn.ucai.superwechat.R.string.dl_cancel, null).show();
 			break;
@@ -166,8 +178,32 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 				});
 		builder.create().show();
 	}
-	
-	
+
+	private void updateNickName(String nickName){
+		try {
+			String path = new ApiParams()
+							.with(I.User.USER_NAME,SuperWeChatApplication.getInstance().getUserName())
+                            .with(I.User.NICK,nickName)
+							.getRequestUrl(I.REQUEST_UPDATE_USER_NICK);
+			executeRequest(new GsonRequest<User>(path,User.class,responseUpdateNickname(nickName),errorListener()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Response.Listener<User> responseUpdateNickname(final String nickName) {
+		return new Response.Listener<User>() {
+			@Override
+			public void onResponse(User user) {
+				if(user!=null&&user.isResult()){
+					updateRemoteNick(nickName);
+				}else {
+					Utils.showToast(mContext,Utils.getResourceString(mContext,user.getMsg()),Toast.LENGTH_SHORT);
+				}
+			}
+		};
+	}
+
 
 	private void updateRemoteNick(final String nickName) {
 		dialog = ProgressDialog.show(this, getString(cn.ucai.superwechat.R.string.dl_update_nick), getString(cn.ucai.superwechat.R.string.dl_waiting));
