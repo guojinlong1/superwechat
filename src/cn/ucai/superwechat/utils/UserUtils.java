@@ -2,6 +2,7 @@ package cn.ucai.superwechat.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -78,7 +79,7 @@ public class UserUtils {
 		imageView.setErrorImageResId(R.drawable.default_avatar);
 	}
 
-	private static String getAvatarPath(String userName) {
+	public static String getAvatarPath(String userName) {
 		if(userName==null || userName.isEmpty())return null;
 		return I.REQUEST_DOWNLOAD_AVATAR_USER + userName;
 	}
@@ -133,6 +134,7 @@ public class UserUtils {
 		User user = SuperWeChatApplication.getInstance().getUser();
 		if(user!=null && user.getMUserName()!=null&&textView != null){
 			textView.setText(user.getMUserNick());
+			Log.e("main","setCurrentUserBeanNick:"+user.getMUserNick());
 		}
 	}
 
@@ -189,4 +191,34 @@ public class UserUtils {
 			}
 		}
 	}
+
+	public static void setGroupBeanAvatar(String mGroupHid,NetworkImageView imageView){
+		if(mGroupHid!=null&&!mGroupHid.isEmpty()){
+			setGroupAvatar(getGroupAvatarPath(mGroupHid),imageView);
+		}
+	}
+
+	private static void setGroupAvatar( String url, NetworkImageView imageView) {
+		if(url==null || url.isEmpty()) return  ;
+		imageView.setDefaultImageResId(R.drawable.group_icon);
+		imageView.setImageUrl(url,RequestManager.getImageLoader());
+		imageView.setErrorImageResId(R.drawable.group_icon);
+	}
+
+	private static String getGroupAvatarPath(String mGroupHid) {
+		if(mGroupHid==null || mGroupHid.isEmpty()) return null;
+		return I.REQUEST_DOWNLOAD_AVATAR_GROUP+mGroupHid;
+	}
+	public static String getPinYinFromHanZi(String hanzi) {
+		String pinyin = "";
+
+		for(int i=0;i<hanzi.length();i++){
+			String s = hanzi.substring(i,i+1);
+			pinyin = pinyin + HanziToPinyin.getInstance()
+					.get(s).get(0).target.toLowerCase();
+		}
+		return pinyin;
+	}
+
+
 }
