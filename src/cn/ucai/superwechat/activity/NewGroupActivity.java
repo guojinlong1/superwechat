@@ -18,6 +18,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
@@ -42,6 +44,7 @@ import cn.ucai.superwechat.bean.Group;
 import cn.ucai.superwechat.bean.Message;
 import cn.ucai.superwechat.bean.User;
 import cn.ucai.superwechat.data.ApiParams;
+import cn.ucai.superwechat.data.GsonRequest;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.listener.OnSetAvatarListener;
 import cn.ucai.superwechat.utils.ImageUtils;
@@ -262,9 +265,47 @@ public class NewGroupActivity extends BaseActivity {
 				});
 	}
 
-	private void addGroupMember(Group group,Contact[] contacts) {
-
+	private void addGroupMember(Group group, Contact[] contacts) {
+		String id[] = new String[contacts.length];
+		String contact[] = new String[contacts.length];
+		for(int i=0;i<contacts.length;i++){
+			id[i] = contacts[i].getMContactCname()+",";
+			contact[i] = contacts[i].getMContactCid() + ",";
+		}
+		Log.e("a","id:"+id.length);
+		Log.e("a",group.getMGroupHxid());
+		try {
+			String path = new ApiParams()
+					.with(I.Member.USER_ID, id + "")
+					.with(I.Member.USER_NAME, contact + "")
+					.with(I.Group.GROUP_ID, group.getMGroupHxid())
+					.getRequestUrl(I.REQUEST_ADD_GROUP_MEMBERS);
+			executeRequest(new GsonRequest<Message>(path, Message.class,
+					responseAddGroupMembersListener(group), errorListener()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
+	private Response.Listener<Message> responseAddGroupMembersListener(final Group group) {
+		return new Response.Listener<Message>() {
+			@Override
+			public void onResponse(Message message) {
+				if (message.isResult()) {
+					progressDialog.dismiss();
+					SuperWeChatApplication.getInstance().getGroupList().add(group);
+					Intent intent = new Intent("update_group_list").putExtra("group", group);
+					Utils.showToast(mContext, R.string.Create_groups_Success, Toast.LENGTH_SHORT);
+					setResult(RESULT_OK,intent);
+				} else {
+					progressDialog.dismiss();
+					Utils.showToast(mContext, R.string.Failed_to_create_groups, Toast.LENGTH_SHORT);
+				}
+				finish();
+			}
+		};
+	}
+
 
 
 
