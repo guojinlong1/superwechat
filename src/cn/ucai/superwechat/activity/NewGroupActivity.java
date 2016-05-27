@@ -57,7 +57,7 @@ public class NewGroupActivity extends BaseActivity {
 	private CheckBox checkBox;
 	private CheckBox memberCheckbox;
 	private LinearLayout openInviteContainer;
-	Activity mContext;
+	NewGroupActivity mContext;
 	String avatarName;
 	final static int CREATE_NEW_GROUP=100;
 	ImageView ivAvatar;
@@ -68,7 +68,7 @@ public class NewGroupActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = this;
-		setContentView(cn.ucai.superwechat.R.layout.activity_new_group);
+		setContentView(R.layout.activity_new_group);
 		initView();
 		setListener();
 
@@ -98,7 +98,7 @@ public class NewGroupActivity extends BaseActivity {
 		findViewById(R.id.save_group).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String str6 = getResources().getString(cn.ucai.superwechat.R.string.Group_name_cannot_be_empty);
+				String str6 = getResources().getString(R.string.Group_name_cannot_be_empty);
 				String name = groupNameEditText.getText().toString();
 				if (TextUtils.isEmpty(name)) {
 					Intent intent = new Intent(mContext, AlertDialog.class);
@@ -127,16 +127,16 @@ public class NewGroupActivity extends BaseActivity {
 	}
 
 	private void initView() {
-		groupNameEditText = (EditText) findViewById(cn.ucai.superwechat.R.id.edit_group_name);
-		introductionEditText = (EditText) findViewById(cn.ucai.superwechat.R.id.edit_group_introduction);
-		checkBox = (CheckBox) findViewById(cn.ucai.superwechat.R.id.cb_public);
-		memberCheckbox = (CheckBox) findViewById(cn.ucai.superwechat.R.id.cb_member_inviter);
-		openInviteContainer = (LinearLayout) findViewById(cn.ucai.superwechat.R.id.ll_open_invite);
+		groupNameEditText = (EditText) findViewById(R.id.edit_group_name);
+		introductionEditText = (EditText) findViewById(R.id.edit_group_introduction);
+		checkBox = (CheckBox) findViewById(R.id.cb_public);
+		memberCheckbox = (CheckBox) findViewById(R.id.cb_member_inviter);
+		openInviteContainer = (LinearLayout) findViewById(R.id.ll_open_invite);
 		ivAvatar = (ImageView) findViewById(R.id.iv_group_avatar);
 	}
 
 
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -158,7 +158,7 @@ public class NewGroupActivity extends BaseActivity {
 	}
 
 	private void setProgressDialog() {
-		String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_to_create_a_group_chat);
+		String st1 = getResources().getString(R.string.Is_to_create_a_group_chat);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage(st1);
 		progressDialog.setCanceledOnTouchOutside(false);
@@ -166,7 +166,7 @@ public class NewGroupActivity extends BaseActivity {
 	}
 
 	private void createNewGroup(final Intent data) {
-		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_create_groups);
+		final String st2 = getResources().getString(R.string.Failed_to_create_groups);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -217,7 +217,7 @@ public class NewGroupActivity extends BaseActivity {
 		}).start();
 	}
 
-	private void createNewGroupAppSever(String hxid, String groupNane, String desc, final Contact[] contacts) {
+	private void createNewGroupAppSever(final String hxid, String groupNane, String desc, final Contact[] contacts) {
 		User user = SuperWeChatApplication.getInstance().getUser();
 		boolean isPublic = checkBox.isChecked();
 		boolean isInvites = memberCheckbox.isChecked();
@@ -232,7 +232,7 @@ public class NewGroupActivity extends BaseActivity {
 				.addParam(I.Group.HX_ID,hxid)
 				.addParam(I.Group.NAME,groupNane)
 				.addParam(I.Group.DESCRIPTION,desc)
-				.addParam(I.Group.OWNER,SuperWeChatApplication.getInstance().getUserName())
+				.addParam(I.Group.OWNER,user.getMUserName())
 				.addParam(I.Group.IS_PUBLIC,isPublic+"")
 				.addParam(I.Group.ALLOW_INVITES,isInvites+"")
 				.addParam(I.User.USER_ID,user.getMUserId()+"")
@@ -248,7 +248,7 @@ public class NewGroupActivity extends BaseActivity {
 								SuperWeChatApplication.getInstance().getGroupList().add(result);
 								progressDialog.dismiss();
 								setResult(RESULT_OK);
-								mContext.sendStickyBroadcast(new Intent("update_group_list"));
+								mContext.sendBroadcast(new Intent("update_group_list"));
 								finish();
 							}
 						} else {
@@ -257,46 +257,49 @@ public class NewGroupActivity extends BaseActivity {
 						}
 					}
 
+
 					@Override
 					public void onError(String error) {
 						progressDialog.dismiss();
 						Utils.showToast(mContext, error, Toast.LENGTH_SHORT);
 					}
 				});
+
 	}
 
 	private void addGroupMember(Group group, Contact[] contacts) {
-		String id[] = new String[contacts.length];
-		String contact[] = new String[contacts.length];
-		for(int i=0;i<contacts.length;i++){
-			id[i] = contacts[i].getMContactCname()+",";
-			contact[i] = contacts[i].getMContactCid() + ",";
+		String userIds = "";
+		String userNames = "";
+		for (int i=0; i<contacts.length;i++) {
+			userIds += contacts[i].getMContactCid() + "";
+			userNames += contacts[i].getMContactCname() + "";
+
 		}
-		Log.e("a","id:"+id.length);
-		Log.e("a",group.getMGroupHxid());
 		try {
 			String path = new ApiParams()
-					.with(I.Member.USER_ID, id + "")
-					.with(I.Member.USER_NAME, contact + "")
-					.with(I.Group.GROUP_ID, group.getMGroupHxid())
+					.with(I.Member.GROUP_HX_ID, group.getMGroupHxid())
+					.with(I.Member.USER_ID, userIds)
+					.with(I.Member.USER_NAME, userNames)
 					.getRequestUrl(I.REQUEST_ADD_GROUP_MEMBERS);
-			executeRequest(new GsonRequest<Message>(path, Message.class,
-					responseAddGroupMembersListener(group), errorListener()));
+			executeRequest(new GsonRequest<Message>(path,Message.class,
+					responseListner(group),errorListener()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private Response.Listener<Message> responseAddGroupMembersListener(final Group group) {
+
+	private Response.Listener<Message> responseListner(final  Group group) {
 		return new Response.Listener<Message>() {
 			@Override
 			public void onResponse(Message message) {
 				if (message.isResult()) {
-					progressDialog.dismiss();
 					SuperWeChatApplication.getInstance().getGroupList().add(group);
-					Intent intent = new Intent("update_group_list").putExtra("group", group);
-					Utils.showToast(mContext, R.string.Create_groups_Success, Toast.LENGTH_SHORT);
-					setResult(RESULT_OK,intent);
+					progressDialog.dismiss();
+					setResult(RESULT_OK);
+					mContext.sendBroadcast(new Intent("update_group_list"));
+					finish();
+
 				} else {
 					progressDialog.dismiss();
 					Utils.showToast(mContext, R.string.Failed_to_create_groups, Toast.LENGTH_SHORT);
