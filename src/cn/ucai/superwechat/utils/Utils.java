@@ -3,6 +3,7 @@ package cn.ucai.superwechat.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,4 +56,4 @@ public class Utils {
         int resId = context.getResources().getIdentifier(msgStr, "string", context.getPackageName());
         return context.getResources().getString(resId);
     }
-}
+    }

@@ -8,7 +8,6 @@ import org.apache.http.util.EntityUtils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.support.v4.util.LruCache;
 
 /**
@@ -51,7 +50,7 @@ public class ImageLoader {
 	 * 私有的构造器
 	 * @param context
 	 */
-	private ImageLoader(Context  context){
+	public ImageLoader(Context context){
 		mContext=context;
 		//获取app的内存容量，单位：字节
 		int maxSize=(int) Runtime.getRuntime().maxMemory();

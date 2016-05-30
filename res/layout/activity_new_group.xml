@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eee"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/parent_group_avatar">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
             android:textSize="20sp" />
 
         <Button
+            android:id="@+id/save_group"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -71,9 +73,42 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:textSize="18sp" />
+    <RelativeLayout
+        android:id="@+id/layout_group_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#fff" >
+
+        <ImageView
+            android:id="@+id/iv_group_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/group_icon"
+            />
+
+        <TextView
+            android:id="@+id/etAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:text="群图标"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:singleLine="true"
+            android:textSize="18sp" />
+    </RelativeLayout>
     
     
-    <LinearLayout 
+    <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
        android:layout_height="39dp"
         android:layout_marginBottom="10dp"
@@ -81,6 +116,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/button_normal_shape"
         >
+
         <TextView 
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"

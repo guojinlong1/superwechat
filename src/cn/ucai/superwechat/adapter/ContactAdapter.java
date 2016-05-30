@@ -121,11 +121,13 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
 			    holder.unreadMsgView.setVisibility(View.INVISIBLE);
 			}
 		}else if(username.equals(Constant.GROUP_USERNAME)){
-			//群聊item
-		    holder.nameTextview.setText(user.getMUserNick());
-		    holder.avatar.setDefaultImageResId(R.drawable.groups_icon);
+			//群聊
+			holder.nameTextview.setText(user.getMUserNick());
+			holder.avatar.setDefaultImageResId(R.drawable.groups_icon);
+			holder.avatar.setImageUrl("", RequestManager.getImageLoader());
+			holder.avatar.setErrorImageResId(R.drawable.groups_icon);
 		}else if(username.equals(Constant.CHAT_ROOM)){
-            //群聊item
+            //聊天室
             holder.nameTextview.setText(user.getMUserNick());
             holder.avatar.setDefaultImageResId(R.drawable.groups_icon);
 			holder.avatar.setImageUrl("", RequestManager.getImageLoader());
@@ -133,7 +135,9 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
 		}else if(username.equals(Constant.CHAT_ROBOT)){
 			//Robot item
 			holder.nameTextview.setText(user.getMUserNick());
-			holder.avatar.setImageResource(R.drawable.groups_icon);
+			holder.avatar.setDefaultImageResId(R.drawable.groups_icon);
+			holder.avatar.setImageUrl("", RequestManager.getImageLoader());
+			holder.avatar.setErrorImageResId(R.drawable.groups_icon);
 		}else{
 		    //holder.nameTextview.setText(user.getNick());
 			UserUtils.setUserBeanNick(username,holder.nameTextview);
@@ -226,8 +230,8 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer{
 				for(int i=0;i<count;i++){
 					final Contact user = mOriginalList.get(i);
 					String username = user.getMContactCname();
-					
-					if(username.startsWith(prefixString)){
+					String nick = UserUtils.getPinYinFromHanZi(user.getMUserNick());
+					if(username.startsWith(prefixString) || nick.contains(prefix) ){
 						newValues.add(user);
 					}
 					else{
