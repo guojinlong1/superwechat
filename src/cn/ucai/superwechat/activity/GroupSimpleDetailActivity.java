@@ -28,12 +28,14 @@ import com.easemob.chat.EMGroupInfo;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 
+import cn.ucai.superwechat.bean.Group;
+
 public class GroupSimpleDetailActivity extends BaseActivity {
 	private Button btn_add_group;
 	private TextView tv_admin;
 	private TextView tv_name;
 	private TextView tv_introduction;
-	private EMGroup group;
+	private Group group;
 	private String groupid;
 	private ProgressBar progressBar;
 
@@ -47,19 +49,19 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 		tv_introduction = (TextView) findViewById(cn.ucai.superwechat.R.id.tv_introduction);
 		progressBar = (ProgressBar) findViewById(cn.ucai.superwechat.R.id.loading);
 
-		EMGroupInfo groupInfo = (EMGroupInfo) getIntent().getSerializableExtra("groupinfo");
+		Group groupInfo = (Group) getIntent().getSerializableExtra("groupinfo");
 		String groupname = null;
 		if(groupInfo != null){
-		    groupname = groupInfo.getGroupName();
-		    groupid = groupInfo.getGroupId();
-		}else{
+		    groupname = groupInfo.getMGroupName();
+		    groupid = groupInfo.getMGroupHxid();
+		}/*else{
 		    group = PublicGroupsSeachActivity.searchedGroup;
 		    if(group == null)
 		        return;
 		    groupname = group.getGroupName();
 		    groupid = group.getGroupId();
-		}
-		
+		}*/
+
 		tv_name.setText(groupname);
 		
 		
@@ -71,84 +73,85 @@ public class GroupSimpleDetailActivity extends BaseActivity {
 
 			public void run() {
 				//从服务器获取详情
-				try {
-					group = EMGroupManager.getInstance().getGroupFromServer(groupid);
-					runOnUiThread(new Runnable() {
-						public void run() {
-							showGroupDetail();
-						}
-					});
-				} catch (final EaseMobException e) {
-					e.printStackTrace();
-					final String st1 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_get_group_chat_information);
-					runOnUiThread(new Runnable() {
-						public void run() {
-							progressBar.setVisibility(View.INVISIBLE);
-							Toast.makeText(GroupSimpleDetailActivity.this, st1+e.getMessage(), Toast.LENGTH_LONG).show();
-						}
-					});
-				}
-				
+//				try {
+//					group = EMGroupManager.getInstance().getGroupFromServer(groupid);
+//					runOnUiThread(new Runnable() {
+//						public void run() {
+//							showGroupDetail();
+//						}
+//					});
+//				} catch (final EaseMobException e) {
+//					e.printStackTrace();
+//					final String st1 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_get_group_chat_information);
+//					runOnUiThread(new Runnable() {
+//						public void run() {
+//							progressBar.setVisibility(View.INVISIBLE);
+//							Toast.makeText(GroupSimpleDetailActivity.this, st1+e.getMessage(), Toast.LENGTH_LONG).show();
+//						}
+//					});
+//				}
+//
 			}
 		}).start();
-		
-	}
-	
-	//加入群聊
-	public void addToGroup(View view){
-		String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_sending_a_request);
-		final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Request_to_join);
-		final String st3 = getResources().getString(cn.ucai.superwechat.R.string.send_the_request_is);
-		final String st4 = getResources().getString(cn.ucai.superwechat.R.string.Join_the_group_chat);
-		final String st5 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_join_the_group_chat);
-		final ProgressDialog pd = new ProgressDialog(this);
+
+			}
+
+			//加入群聊
+			public void addToGroup(View view) {
+				String st1 = getResources().getString(cn.ucai.superwechat.R.string.Is_sending_a_request);
+				final String st2 = getResources().getString(cn.ucai.superwechat.R.string.Request_to_join);
+				final String st3 = getResources().getString(cn.ucai.superwechat.R.string.send_the_request_is);
+				final String st4 = getResources().getString(cn.ucai.superwechat.R.string.Join_the_group_chat);
+				final String st5 = getResources().getString(cn.ucai.superwechat.R.string.Failed_to_join_the_group_chat);
+				final ProgressDialog pd = new ProgressDialog(this);
 //		getResources().getString(R.string)
-		pd.setMessage(st1);
-		pd.setCanceledOnTouchOutside(false);
-		pd.show();
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-					//如果是membersOnly的群，需要申请加入，不能直接join
-					if(group.isMembersOnly()){
-					    EMGroupManager.getInstance().applyJoinToGroup(groupid, st2);
-					}else{
-					    EMGroupManager.getInstance().joinGroup(groupid);
+				pd.setMessage(st1);
+				pd.setCanceledOnTouchOutside(false);
+				pd.show();
+				new Thread(new Runnable() {
+					public void run() {
+//				try {
+//					//如果是membersOnly的群，需要申请加入，不能直接join
+//					if(group.isMembersOnly()){
+//					    EMGroupManager.getInstance().applyJoinToGroup(groupid, st2);
+//					}else{
+//					    EMGroupManager.getInstance().joinGroup(groupid);
+//					}
+//					runOnUiThread(new Runnable() {
+//						public void run() {
+//							pd.dismiss();
+//							if(group.isMembersOnly())
+//								Toast.makeText(GroupSimpleDetailActivity.this, st3, Toast.LENGTH_SHORT).show();
+//							else
+//								Toast.makeText(GroupSimpleDetailActivity.this, st4, Toast.LENGTH_SHORT).show();
+//							btn_add_group.setEnabled(false);
+//						}
+//					});
+//				} catch (final EaseMobException e) {
+//					e.printStackTrace();
+//					runOnUiThread(new Runnable() {
+//						public void run() {
+//							pd.dismiss();
+//							Toast.makeText(GroupSimpleDetailActivity.this, st5+e.getMessage(), Toast.LENGTH_SHORT).show();
+//						}
+//					});
+//				}
 					}
-					runOnUiThread(new Runnable() {
-						public void run() {
-							pd.dismiss();
-							if(group.isMembersOnly())
-								Toast.makeText(GroupSimpleDetailActivity.this, st3, Toast.LENGTH_SHORT).show();
-							else
-								Toast.makeText(GroupSimpleDetailActivity.this, st4, Toast.LENGTH_SHORT).show();
-							btn_add_group.setEnabled(false);
-						}
-					});
-				} catch (final EaseMobException e) {
-					e.printStackTrace();
-					runOnUiThread(new Runnable() {
-						public void run() {
-							pd.dismiss();
-							Toast.makeText(GroupSimpleDetailActivity.this, st5+e.getMessage(), Toast.LENGTH_SHORT).show();
-						}
-					});
-				}
+				}).start();
 			}
-		}).start();
-	}
-	
-     private void showGroupDetail() {
-         progressBar.setVisibility(View.INVISIBLE);
-         //获取详情成功，并且自己不在群中，才让加入群聊按钮可点击
-         if(!group.getMembers().contains(EMChatManager.getInstance().getCurrentUser()))
-             btn_add_group.setEnabled(true);
-         tv_name.setText(group.getGroupName());
-         tv_admin.setText(group.getOwner());
-         tv_introduction.setText(group.getDescription());
-     }
-	
-	public void back(View view){
-		finish();
-	}
-}
+
+			private void showGroupDetail() {
+				progressBar.setVisibility(View.INVISIBLE);
+				//获取详情成功，并且自己不在群中，才让加入群聊按钮可点击
+//         if(!group.getMembers().contains(EMChatManager.getInstance().getCurrentUser()))
+//             btn_add_group.setEnabled(true);
+				tv_name.setText(group.getMGroupName());
+				tv_admin.setText(group.getMGroupOwner());
+				tv_introduction.setText(group.getMGroupDescription());
+			}
+
+			public void back(View view) {
+				finish();
+			}
+		}
+
