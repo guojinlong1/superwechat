@@ -249,6 +249,7 @@ public class NewGroupActivity extends BaseActivity {
 								progressDialog.dismiss();
 								setResult(RESULT_OK);
 								mContext.sendBroadcast(new Intent("update_group_list"));
+								Toast.makeText(mContext,R.string.Create_groups_Success,Toast.LENGTH_LONG).show();
 								finish();
 							}
 						} else {
@@ -298,6 +299,7 @@ public class NewGroupActivity extends BaseActivity {
 					progressDialog.dismiss();
 					setResult(RESULT_OK);
 					mContext.sendBroadcast(new Intent("update_group_list"));
+					//Utils.showToast(mContext, Utils.getResourceString(mContext, message.getMsg()), Toast.LENGTH_SHORT);
 					finish();
 
 				} else {
