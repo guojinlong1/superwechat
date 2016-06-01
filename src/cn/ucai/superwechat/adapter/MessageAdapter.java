@@ -419,7 +419,8 @@ public class MessageAdapter extends BaseAdapter{
 		// 群聊时，显示接收的消息的发送人的名称
 		if ((chatType == ChatType.GroupChat || chatType == ChatType.ChatRoom) && message.direct == Direct.RECEIVE){
 		    //demo里使用username代码nick
-			UserUtils.setUserNick(message.getFrom(), holder.tv_usernick);
+			//UserUtils.setUserNick(message.getFrom(), holder.tv_usernick);
+			UserUtils.setGroupMemberNick(username,message.getFrom(),holder.tv_usernick);
 		}
 		if(message.direct == Direct.SEND){
 			UserUtils.setCurrentUserNick(holder.tv_usernick);
@@ -577,8 +578,14 @@ public class MessageAdapter extends BaseAdapter{
 			UserUtils.setCurrentUserAvatar(imageView);
 
 	    }else{
+
 	       // UserUtils.setUserAvatar(context, message.getFrom(), imageView);
-			UserUtils.setUserBeanAvatar(message.getFrom(), imageView);
+			if(message.getChatType()==ChatType.GroupChat){
+				UserUtils.setUserAvatar(UserUtils.getAvatarPath(message.getFrom()),imageView);
+			}else {
+				UserUtils.setUserBeanAvatar(message.getFrom(), imageView);
+			}
+
 	    }
 	    imageView.setOnClickListener(new OnClickListener() {
 			
@@ -587,6 +594,7 @@ public class MessageAdapter extends BaseAdapter{
 				Intent intent = new Intent();
 				intent.setClass(context, UserProfileActivity.class);
 				intent.putExtra("username", message.getFrom());
+				intent.putExtra("groupId",username);
 				context.startActivity(intent);
 			}
 		});

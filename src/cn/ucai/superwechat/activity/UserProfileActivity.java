@@ -87,6 +87,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private void initListener() {
 		Intent intent = getIntent();
 		String username = intent.getStringExtra("username");
+		String groupId = intent.getStringExtra("groupId");
 		Log.e("main","UserProfileActivity："+username);
 		boolean enableUpdate = intent.getBooleanExtra("setting", false);
 		if (enableUpdate) {
@@ -105,9 +106,15 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 			UserUtils.setCurrentUserAvatar(headAvatar);
 		} else {
 			tvUsername.setText(username);
-			UserUtils.setUserBeanNick(username, tvNickName);
-			UserUtils.setUserBeanAvatar(username, headAvatar);
-			//asyncFetchUserInfo(username);
+			if(groupId!=null){
+				UserUtils.setUserAvatar(UserUtils.getAvatarPath(username),headAvatar);
+				UserUtils.setGroupMemberNick(groupId,username,tvNickName);
+			}else {
+				UserUtils.setUserBeanNick(username, tvNickName);
+				UserUtils.setUserBeanAvatar(username, headAvatar);
+				//asyncFetchUserInfo(username);
+			}
+
 		}
 	}
 
