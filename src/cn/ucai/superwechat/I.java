@@ -185,6 +185,8 @@ public interface I {
 	String REQUEST_CREATE_GROUP			 			= 		"create_group";
 	/** 客户端发送的添加群成员请求 */
 	String REQUEST_ADD_GROUP_MEMBER 				= 		"add_group_member";
+	/** 客户端发送的添加群成员请求 */
+	String REQUEST_ADD_GROUP_MEMBER_BY_USERNAME		= 		"add_group_member_by_username";
 	/** 客户端发送的添加多个群成员请求 */
 	String REQUEST_ADD_GROUP_MEMBERS		 		= 		"add_group_members";
 	/** 客户端发送的更新群名称请求 */
@@ -212,12 +214,14 @@ public interface I {
 	/** 客户端发送的根据群组账号查找群组请求 */
 	String REQUEST_FIND_GROUP_BY_ID					= 		"find_group_by_group_id";
 	/** 客户端发送的根据群组环信id查找群组请求 */
-	String REQUEST_FIND_GROUP_BY_HXID 				= 		"find_group_by_group_hxid";
+	//String REQUEST_FIND_GROUP_BY_HXID 				= 		"find_group_by_group_hxid";
 	/**下载用户头像的网络请求*/
 	String REQUEST_DOWNLOAD_AVATAR_USER				=		SuperWeChatApplication.SERVER_ROOT + "?"
 			+ KEY_REQUEST + "=" + REQUEST_DOWNLOAD_AVATAR + "&" + AVATAR_TYPE + "=";
 	/**下载群组头像的网络请求*/
 	String REQUEST_DOWNLOAD_AVATAR_GROUP				=		SuperWeChatApplication.SERVER_ROOT + "?"
 			+ KEY_REQUEST + "=" + REQUEST_DOWNLOAD_GROUP_AVATAR + "&" + AVATAR_TYPE + "=";
+	/** 客户端发送的根据群组环信id查找群组请求 */
+	String REQUEST_FIND_GROUP_BY_HXID 				= 		"find_group_by_group_hxid";
 
 }

@@ -306,8 +306,9 @@ public class LoginActivity extends BaseActivity {
                     //下载群组集合
                     new DownloadAllGroupTask(mContext,currentUsername).execute();
                     //下载公开群组集合
-                    new DownloadPublicGroupTask(mContext,currentUsername,
+                   new DownloadPublicGroupTask(mContext,currentUsername,
                             I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
+
                 }
             });
 

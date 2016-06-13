@@ -14,6 +14,7 @@ import cn.ucai.superwechat.applib.controller.HXSDKHelper;
 import cn.ucai.superwechat.DemoHXSDKHelper;
 import cn.ucai.superwechat.bean.Contact;
 import cn.ucai.superwechat.bean.Group;
+import cn.ucai.superwechat.bean.Member;
 import cn.ucai.superwechat.bean.User;
 import cn.ucai.superwechat.data.RequestManager;
 import cn.ucai.superwechat.domain.EMUser;
@@ -44,6 +45,17 @@ public class UserUtils {
         return user;
     }
 
+	private static Member getGroupMember(String hxid,String userName){
+		ArrayList<Member> members = SuperWeChatApplication.getInstance().getGroupMembers().get(hxid);
+		if(members!=null){
+			for(Member member : members){
+				if(member.getMMemberUserName().equals(userName)){
+					return member;
+				}
+			}
+		}
+		return null;
+	}
 	public static Contact getUserBeanInfo(String username) {
 		Contact contact = SuperWeChatApplication.getInstance().getUserList().get(username);
 		return contact;
@@ -74,9 +86,8 @@ public class UserUtils {
 		}
 	}
 
-	private static void setUserAvatar(String url, NetworkImageView imageView) {
+	public static void setUserAvatar(String url, NetworkImageView imageView) {
 		if (url == null || url.isEmpty())return;
-
 		imageView.setDefaultImageResId(R.drawable.default_avatar);
 		imageView.setImageUrl(url, RequestManager.getImageLoader());
 		imageView.setErrorImageResId(R.drawable.default_avatar);
@@ -154,7 +165,22 @@ public class UserUtils {
 			textView.setText(userName);
 		}
 	}
+	public static void setUserBeanNick(User user,TextView textView){
+		if(user!=null){
+			if(user.getMUserName()!=null){
+				textView.setText(user.getMUserNick());
+			}else {
+				textView.setText(user.getMUserName());
+			}
+		}
+	}
 
+	public static void setGroupMemberNick(String hxid,String userName,TextView textView){
+		Member groupMember = getGroupMember(hxid,userName);
+		if(groupMember!=null){
+			setUserBeanNick(groupMember,textView);
+		}
+	}
     /**
      * 保存或更新某个用户
      */

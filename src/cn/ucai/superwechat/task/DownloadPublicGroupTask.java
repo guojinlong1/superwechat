@@ -26,6 +26,8 @@ public class DownloadPublicGroupTask extends BaseActivity{
     int page_id;
     int page_size;
     String path;
+    ArrayList<Group> groupList;
+    ArrayList<Group> list;
 
     public DownloadPublicGroupTask(Context mcontext, String username, int page_id, int page_size) {
         this.mcontext = mcontext;
@@ -36,6 +38,11 @@ public class DownloadPublicGroupTask extends BaseActivity{
     }
 
     private void initPath() {
+        if(groupList!=null){
+            groupList.clear();
+            list.clear();
+        }
+
         try {
             path = new ApiParams()
                     .with(I.User.USER_NAME, username)
@@ -57,9 +64,9 @@ public class DownloadPublicGroupTask extends BaseActivity{
             public void onResponse(Group[] groups) {
                 if (groups != null && groups.length > 1) {
                     Log.e("DownloadPublicGroupTask",groups.length+"");
-                    ArrayList<Group> groupList =
+                    groupList =
                             SuperWeChatApplication.getInstance().getPublicGroupList();
-                    ArrayList<Group> list = Utils.array2List(groups);
+                    list = Utils.array2List(groups);
                     for (Group g : list) {
                         if (!groupList.contains(g)) {
                             groupList.add(g);
