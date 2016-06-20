@@ -2,48 +2,6 @@
     android:id="@+id/splash_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fff">
-
-    <ImageView
-        android:id="@+id/iv_splash_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/splash_logo" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/geek"
-        android:layout_centerInParent="true"
-         />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dip"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="超级微信"
-            android:textColor="#000"
-            android:textSize="25dp"
-            android:typeface="normal" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="2.2.5"
-            android:textColor="#000"
-            android:textSize="25sp" >
-        </TextView>
-    </LinearLayout>
+    android:background="@drawable/splash1">
 
 </RelativeLayout>
