@@ -415,15 +415,7 @@ public class MessageAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		// 群聊时，显示接收的消息的发送人的名称
-		if ((chatType == ChatType.GroupChat || chatType == ChatType.ChatRoom) && message.direct == Direct.RECEIVE){
-		    //demo里使用username代码nick
-			//UserUtils.setUserNick(message.getFrom(), holder.tv_usernick);
-			UserUtils.setGroupMemberNick(username,message.getFrom(),holder.tv_usernick);
-		}
-		if(message.direct == Direct.SEND){
-			UserUtils.setCurrentUserNick(holder.tv_usernick);
-		}
+
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (!(chatType == ChatType.GroupChat || chatType == ChatType.ChatRoom) && message.direct == Direct.SEND) {
 			holder.tv_ack = (TextView) convertView.findViewById(cn.ucai.fulicenter.R.id.tv_ack);

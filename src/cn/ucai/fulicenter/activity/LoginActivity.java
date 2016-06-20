@@ -57,9 +57,7 @@ import cn.ucai.fulicenter.db.EMUserDao;
 import cn.ucai.fulicenter.db.UserDao;
 import cn.ucai.fulicenter.domain.EMUser;
 import cn.ucai.fulicenter.listener.OnSetAvatarListener;
-import cn.ucai.fulicenter.task.DownloadAllGroupTask;
 import cn.ucai.fulicenter.task.DownloadContactListTask;
-import cn.ucai.fulicenter.task.DownloadPublicGroupTask;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.MD5;
 import cn.ucai.fulicenter.utils.Utils;
@@ -110,10 +108,24 @@ public class LoginActivity extends BaseActivity {
         setLoginClickListener();
         setUserNameTextChangedListener();
         setRegisterClickListener();
+        setBackClickListener();
+    }
+
+    private void setBackClickListener() {
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setUserNameTextChangedListener() {
         // 如果用户名改变，清空密码
+        if(usernameEditText==null){
+            return;
+        }
+
         usernameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -157,7 +169,7 @@ public class LoginActivity extends BaseActivity {
 	 *
 	 */
 	public void setLoginClickListener() {
-        findViewById(R.id.btnLoginLogin).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!CommonUtils.isNetWorkConnected(mContext)) {
@@ -289,7 +301,7 @@ public class LoginActivity extends BaseActivity {
 
                 @Override
                 public void onResponse(com.squareup.okhttp.Response response) throws IOException {
-                    String avatarPath = I.AVATAR_TYPE_USER_PATH + I.BACKSLASH
+                    String avatarPath = I.AVATAR_TYPE_USER_PATH+ I.BACKSLASH
                             + currentUsername + I.AVATAR_SUFFIX_JPG;
                     File file = OnSetAvatarListener.getAvatarFile(mContext,avatarPath);
                     FileOutputStream out = null;
@@ -303,11 +315,7 @@ public class LoginActivity extends BaseActivity {
                     Log.e(TAG,"start download contact,group,public group");
                     //下载联系人集合
                     new DownloadContactListTask(mContext,currentUsername).execute();
-                    //下载群组集合
-                    new DownloadAllGroupTask(mContext,currentUsername).execute();
-                    //下载公开群组集合
-                   new DownloadPublicGroupTask(mContext,currentUsername,
-                            I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
+
 
                 }
             });
@@ -382,7 +390,7 @@ public class LoginActivity extends BaseActivity {
 	 *
 	 */
 	public void setRegisterClickListener() {
-        findViewById(R.id.btnLoginRegister).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(mContext, RegisterActivity.class), 0);
@@ -397,4 +405,6 @@ public class LoginActivity extends BaseActivity {
 			return;
 		}
 	}
+
+
 }

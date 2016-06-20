@@ -199,26 +199,9 @@ public class ChatRoomDetailsActivity extends BaseActivity implements OnClickList
 		}
 	}
 
-	/**
-	 * 点击退出群组按钮
-	 * 
-	 * @param view
-	 */
-	public void exitGroup(View view) {
-		startActivityForResult(new Intent(this, ExitGroupDialog.class), REQUEST_CODE_EXIT);
 
-	}
 
-	/**
-	 * 点击解散群组按钮
-	 * 
-	 * @param view
-	 */
-	public void exitDeleteGroup(View view) {
-		startActivityForResult(new Intent(this, ExitGroupDialog.class).putExtra("deleteToast", getString(cn.ucai.fulicenter.R.string.dissolution_group_hint)),
-				REQUEST_CODE_EXIT_DELETE);
 
-	}
 
 	/**
 	 * 清空群聊天记录

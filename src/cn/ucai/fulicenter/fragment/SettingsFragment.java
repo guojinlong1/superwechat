@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 
+import cn.ucai.fulicenter.SuperWeChatApplication;
 import cn.ucai.fulicenter.activity.BlacklistActivity;
 import cn.ucai.fulicenter.activity.DiagnoseActivity;
 import cn.ucai.fulicenter.activity.LoginActivity;
@@ -363,6 +364,9 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 			public void onSuccess() {
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
+						SuperWeChatApplication instance = SuperWeChatApplication.getInstance();
+						instance.getContactList().clear();
+						instance.getUserList().clear();
 						pd.dismiss();
 						// 重新显示登陆页面
 						((MainActivity) getActivity()).finish();

@@ -74,7 +74,6 @@ public class RegisterActivity extends BaseActivity {
 
 	private void setListener() {
 		OnSetRegisterListener();
-		OnSetLoginListener();
 		OnSetAvatarListener();
 	}
 
@@ -256,21 +255,7 @@ public class RegisterActivity extends BaseActivity {
 				});
 	}
 
-	/**
-	 * 登录
-	 */
 
-	private void OnSetLoginListener() {
-		findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-//		Intent intent = new Intent(this,LoginActivity.class);
-//		startActivity(intent);
-
-	}
 	public void back(View view) {
 		finish();
 	}

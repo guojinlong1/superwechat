@@ -14,11 +14,12 @@
             android:layout_height="wrap_content"
             android:src="@drawable/back_press"
             android:layout_marginLeft="10dp"
+            android:onClick="back"
             android:layout_gravity="center_vertical"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="账户注册"
+            android:hint="账户注册"
             android:textColor="#000"
             android:textSize="18sp"
             android:gravity="center"/>
@@ -186,6 +187,7 @@
         </RelativeLayout>
 
        <Button
+           android:id="@+id/register"
            android:layout_width="match_parent"
            android:layout_height="50dp"
            android:layout_marginTop="20dp"

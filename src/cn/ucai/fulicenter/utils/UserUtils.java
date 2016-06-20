@@ -13,8 +13,6 @@ import cn.ucai.fulicenter.SuperWeChatApplication;
 import cn.ucai.fulicenter.applib.controller.HXSDKHelper;
 import cn.ucai.fulicenter.DemoHXSDKHelper;
 import cn.ucai.fulicenter.bean.Contact;
-import cn.ucai.fulicenter.bean.Group;
-import cn.ucai.fulicenter.bean.Member;
 import cn.ucai.fulicenter.bean.User;
 import cn.ucai.fulicenter.data.RequestManager;
 import cn.ucai.fulicenter.domain.EMUser;
@@ -45,17 +43,7 @@ public class UserUtils {
         return user;
     }
 
-	private static Member getGroupMember(String hxid,String userName){
-		ArrayList<Member> members = SuperWeChatApplication.getInstance().getGroupMembers().get(hxid);
-		if(members!=null){
-			for(Member member : members){
-				if(member.getMMemberUserName().equals(userName)){
-					return member;
-				}
-			}
-		}
-		return null;
-	}
+
 	public static Contact getUserBeanInfo(String username) {
 		Contact contact = SuperWeChatApplication.getInstance().getUserList().get(username);
 		return contact;
@@ -95,7 +83,7 @@ public class UserUtils {
 
 	public static String getAvatarPath(String userName) {
 		if(userName==null || userName.isEmpty())return null;
-		return I.REQUEST_DOWNLOAD_AVATAR_USER + userName;
+		return I.REQUEST_DOWNLOAD_AVATAR + userName;
 	}
 
 
@@ -175,12 +163,7 @@ public class UserUtils {
 		}
 	}
 
-	public static void setGroupMemberNick(String hxid,String userName,TextView textView){
-		Member groupMember = getGroupMember(hxid,userName);
-		if(groupMember!=null){
-			setUserBeanNick(groupMember,textView);
-		}
-	}
+
     /**
      * 保存或更新某个用户
      */
@@ -220,34 +203,12 @@ public class UserUtils {
 			}
 		}
 	}
-	public static Group getGroupBeanFromHXID(String hxid){
-		if(hxid!=null&&!hxid.isEmpty()){
-			ArrayList<Group> groupList = SuperWeChatApplication.getInstance().getGroupList();
-			for(Group group : groupList){
-				if(group.getMGroupHxid().equals(hxid)){
-					return group;
-				}
-			}
-		}
-		return null;
-	}
-	public static void setGroupBeanAvatar(String mGroupHid,NetworkImageView imageView){
-		if(mGroupHid!=null&&!mGroupHid.isEmpty()){
-			setGroupAvatar(getGroupAvatarPath(mGroupHid),imageView);
-		}
-	}
 
-	private static void setGroupAvatar( String url, NetworkImageView imageView) {
-		if(url==null || url.isEmpty()) return  ;
-		imageView.setDefaultImageResId(R.drawable.group_icon);
-		imageView.setImageUrl(url,RequestManager.getImageLoader());
-		imageView.setErrorImageResId(R.drawable.group_icon);
-	}
 
-	private static String getGroupAvatarPath(String mGroupHid) {
-		if(mGroupHid==null || mGroupHid.isEmpty()) return null;
-		return I.REQUEST_DOWNLOAD_AVATAR_GROUP+mGroupHid;
-	}
+
+
+
+
 	public static String getPinYinFromHanZi(String hanzi) {
 		String pinyin = "";
 
