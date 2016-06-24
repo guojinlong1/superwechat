@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import cn.ucai.fulicenter.I;
-import cn.ucai.fulicenter.SuperWeChatApplication;
+import cn.ucai.fulicenter.FuLiCenterApplication;
 
 public class ApiParams extends HashMap<String, String> {
 	private static final long serialVersionUID = 8112047472727256876L;
@@ -57,15 +57,17 @@ public class ApiParams extends HashMap<String, String> {
 	}
 
 	public String getRequestUrl(String request) throws Exception {
-		StringBuilder url = new StringBuilder(SuperWeChatApplication.SERVER_ROOT);
-		if (this == null || this.isEmpty()) {
-			return url.toString();
-		}
+		StringBuilder url = new StringBuilder(FuLiCenterApplication.SERVER_ROOT);
 		url.append("?")
 				.append(I.KEY_REQUEST)
 				.append("=")
 				.append(request)
 				.append("&");
+		if (this == null || this.isEmpty()) {
+			url.deleteCharAt(url.length()-1);
+			return url.toString();
+		}
+
 		Set<String> set = this.keySet();
 		for(String key:set){
 			url.append(key)

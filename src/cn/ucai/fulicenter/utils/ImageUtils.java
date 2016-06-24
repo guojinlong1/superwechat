@@ -16,10 +16,16 @@ package cn.ucai.fulicenter.utils;
 import android.content.Context;
 import android.os.Environment;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 
 import java.io.File;
+
+import cn.ucai.fulicenter.FuLiCenterApplication;
+import cn.ucai.fulicenter.I;
+import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.data.RequestManager;
 
 public class ImageUtils {
 //	public static String getThumbnailImagePath(String imagePath) {
@@ -61,6 +67,26 @@ public class ImageUtils {
 		}
 		return folder.getAbsolutePath();
 	}
-	
-	
+
+
+	public static void setNewGoodThumb(String goodsThumb, NetworkImageView nivThumb) {
+		String path = I.DOWNLOAD_BOUTIQUE_IMG_URL + goodsThumb;
+		nivThumb.setImageUrl(path, RequestManager.getImageLoader());
+		nivThumb.setErrorImageResId(R.drawable.nopic);
+		nivThumb.setDefaultImageResId(R.drawable.nopic);
+	}
+
+
+	public static void setGoodDetail (String colorImg,NetworkImageView imageview){
+		String url = FuLiCenterApplication.SERVER_ROOT
+				+"?"+I.KEY_REQUEST+"="+I.REQUEST_DOWNLOAD_COLOR_IMG
+				+"&"+I.Color.COLOR_IMG+"="+colorImg;
+		setThumb(url,imageview);
+	}
+
+	public static void setThumb(String url, NetworkImageView imageview) {
+		imageview.setDefaultImageResId(R.drawable.nopic);
+		imageview.setErrorImageResId(R.drawable.nopic);
+		imageview.setImageUrl(url,RequestManager.getImageLoader());
+	}
 }

@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
-import cn.ucai.fulicenter.SuperWeChatApplication;
+import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.applib.controller.HXSDKHelper;
 
 import com.android.volley.Response;
@@ -95,7 +95,7 @@ public class AddContactActivity extends BaseActivity{
 						return;
 					}
 
-				if(SuperWeChatApplication.getInstance().getUserName().equals(name.trim())){
+				if(FuLiCenterApplication.getInstance().getUserName().equals(name.trim())){
 					String str = getString(cn.ucai.fulicenter.R.string.not_add_myself);
 					startActivity(new Intent(mContext, AlertDialog.class).putExtra("msg", str));
 					return;
@@ -123,7 +123,7 @@ public class AddContactActivity extends BaseActivity{
 			@Override
 			public void onResponse(User user) {
 				if(user!=null){
-					HashMap<String, Contact> userList = SuperWeChatApplication.getInstance().getUserList();
+					HashMap<String, Contact> userList = FuLiCenterApplication.getInstance().getUserList();
 					if(userList.containsKey(user.getMUserName())){
 						startActivity(new Intent(AddContactActivity.this,UserProfileActivity.class).putExtra("username",user.getMUserName()));
 					}else {

@@ -98,6 +98,8 @@
     <string name="group_name">群聊名称</string>
     <string name="Group_chat_profile">群聊简介</string>
     <string name="Whether_the_public">是否公开</string>
+    <string name="load_more">加载更多</string>
+    <string name="no_more">没有更多数据加载</string>
     <string name="Open_group_members_invited">开放群成员邀请</string>
     <string name="Open_group_chat">公开的群聊</string>
     <string name="blacklist">黑名单列表</string>
