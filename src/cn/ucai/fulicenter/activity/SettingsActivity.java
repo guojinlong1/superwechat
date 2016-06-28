@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,6 +48,8 @@ import cn.ucai.fulicenter.applib.controller.HXSDKHelper;
  * 
  */
 public class SettingsActivity extends BaseActivity implements OnClickListener {
+
+	final static String TAG = SettingsActivity.class.getName();
 	SettingsActivity mContext;
 	/**
 	 * 设置新消息通知布局
@@ -361,9 +364,9 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 						instance.setUser(null);
 						instance.setUserName(null);
 						instance.setCollectCount(0);
+						sendStickyBroadcast(new Intent("update_user"));
 						pd.dismiss();
 						// 重新显示登陆页面
-						finish();
 						startActivity(new Intent(mContext, LoginActivity.class));
 						
 					}

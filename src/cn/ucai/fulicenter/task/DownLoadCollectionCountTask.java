@@ -61,10 +61,15 @@ public class DownLoadCollectionCountTask extends BaseActivity {
                 Log.e(TAG,"messageBean="+messageBean);
                 if (messageBean != null) {
                     if (messageBean.isSuccess()) {
+                        String count = messageBean.getMsg();
+                        Log.e(TAG,count.toString());
                         FuLiCenterApplication.getInstance().setCollectCount(Integer.parseInt(messageBean.getMsg()));
-                        mContext.sendStickyBroadcast(new Intent("update_collect_count"));
                         //Log.e(TAG,messageBean.toString());
+                    }else {
+                        Log.e(TAG,"count=0");
+                        FuLiCenterApplication.getInstance().setCollectCount(0);
                     }
+                    mContext.sendStickyBroadcast(new Intent("update_collect_count"));
 
                 }
             }

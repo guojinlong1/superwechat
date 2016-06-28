@@ -66,7 +66,7 @@ public interface I {
         
         public static final String GOODS_ID="goods_id";
         
-        public static final String USER_NAME="m_user_name";
+        public static final String USER_NAME="userName";
         
         /** 商品的中文名称*/
         public static final String GOODS_NAME="goodsName";
@@ -411,4 +411,8 @@ public interface I {
     String REQUEST_PAY="pay";
     /**壹收款服务端支付URL*/
     String PAY_URL= FuLiCenterApplication.SERVER_ROOT+"?request="+I.REQUEST_PAY;
+
+    int ACTION_ADD_COLLECT = 0;
+    int ACTION_DEL_COLLECT = 1;
+
 }

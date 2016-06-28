@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.activity.CollectActivity;
 import cn.ucai.fulicenter.activity.SettingsActivity;
 import cn.ucai.fulicenter.task.DownLoadCollectionCountTask;
 import cn.ucai.fulicenter.utils.UserUtils;
@@ -35,6 +36,7 @@ import cn.ucai.fulicenter.utils.UserUtils;
 public class PersonalCenterFragment extends Fragment {
 
     Context mContext;
+
 
     //资源文件
     private int[] pic_path = {R.drawable.order_list1,
@@ -77,6 +79,7 @@ public class PersonalCenterFragment extends Fragment {
         mMyClickListener = new MyClickListener();
         mtvSetting.setOnClickListener(mMyClickListener);
         mLayoutCenterUserInfo.setOnClickListener(mMyClickListener);
+        mLinearLayout.setOnClickListener(mMyClickListener);
     }
 
     class MyClickListener implements View.OnClickListener{
@@ -86,6 +89,9 @@ public class PersonalCenterFragment extends Fragment {
                 case R.id.tv_personal_center_settings:
                 case R.id.rl_personal_center:
                     startActivity(new Intent(mContext, SettingsActivity.class));
+                    break;
+                case R.id.ll_collect:
+                    startActivity(new Intent(mContext, CollectActivity.class));
                     break;
             }
         }
@@ -143,7 +149,7 @@ public class PersonalCenterFragment extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            new DownLoadCollectionCountTask(mContext).execute();
+           // new DownLoadCollectionCountTask(mContext).execute();
             initData();
         }
     }

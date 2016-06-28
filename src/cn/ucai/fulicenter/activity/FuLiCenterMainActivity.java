@@ -1,7 +1,9 @@
 package cn.ucai.fulicenter.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +19,7 @@ import cn.ucai.fulicenter.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.fragment.CategoryFragment;
 import cn.ucai.fulicenter.fragment.NewGoodFragment;
 import cn.ucai.fulicenter.fragment.PersonalCenterFragment;
+import cn.ucai.fulicenter.utils.Utils;
 
 public class FuLiCenterMainActivity extends BaseActivity {
 
@@ -44,6 +47,7 @@ public class FuLiCenterMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fu_li_center_main);
         initView();
+        registerReceiver();
         initFragment();
         // 添加显示第一个fragment
         getSupportFragmentManager()
@@ -57,6 +61,7 @@ public class FuLiCenterMainActivity extends BaseActivity {
 //                .hide(mPersonalCenterFragment)
                   .show(mNewGoodFragment)
                 .commit();
+        mtvCartHint.setVisibility(View.GONE);
     }
 
     private void initFragment() {
@@ -162,6 +167,41 @@ public class FuLiCenterMainActivity extends BaseActivity {
             trx.show(mFragments[index]).commit();
             setRadioChecked(index);
             currentTabIndex = index;
+        }
+    }
+
+    class UpdateCartReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int count = Utils.sumCartCount();
+                if(count>0){
+                    mtvCartHint.setVisibility(View.VISIBLE);
+                    mtvCartHint.setText(""+count);
+                }else {
+                    mtvCartHint.setVisibility(View.GONE);
+                }
+
+            if(FuLiCenterApplication.getInstance().getUser()==null){
+                mtvCartHint.setText("0");
+                mtvCartHint.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    UpdateCartReceiver mReceiver;
+
+    private void registerReceiver(){
+        mReceiver = new UpdateCartReceiver();
+        IntentFilter filter = new IntentFilter("update_car_list");
+        filter.addAction("update_user");
+        registerReceiver(mReceiver,filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mReceiver!=null){
+            unregisterReceiver(mReceiver);
         }
     }
 }

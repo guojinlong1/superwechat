@@ -5,8 +5,8 @@
       <filter>
         <option name="logLevel" value="verbose" />
         <option name="logMessagePattern" value="" />
-        <option name="logTagPattern" value="action" />
-        <option name="name" value="action" />
+        <option name="logTagPattern" value="CollectActivity" />
+        <option name="name" value="CollectActivity" />
         <option name="packageNamePattern" value="" />
         <option name="pid" value="" />
       </filter>
@@ -60,15 +60,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e41a680-be7e-44e2-b3cb-cdad6b7174bc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/fragment_personal_center.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/personal_center.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/simpl_grid_item.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/MessageBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/CatChildFilterButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/ColorFilterButton.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/activity_collect.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/item_collect.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CollectActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CollectAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownloadCartListTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
@@ -80,26 +76,23 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_login.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_user_profile.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/activity_user_profile.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/fragment_conversation_settings.xml" afterPath="$PROJECT_DIR$/build/intermediates/res/merged/debug/layout/fragment_conversation_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_boutique_child.xml" afterPath="$PROJECT_DIR$/res/layout/activity_boutique_child.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_category_child.xml" afterPath="$PROJECT_DIR$/res/layout/activity_category_child.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/res/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_user_profile.xml" afterPath="$PROJECT_DIR$/res/layout/activity_user_profile.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_good_detail2.xml" afterPath="$PROJECT_DIR$/res/layout/activity_good_detail2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/good_back.xml" afterPath="$PROJECT_DIR$/res/layout/good_back.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CategoryAdapter.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CategoryAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Contact.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Contact.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/ImageUtils.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/ImageUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/UserUtils.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/UserUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/superwechat.iml" afterPath="$PROJECT_DIR$/superwechat.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CartBean.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CartBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CollectBean.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CollectBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/NewGoodFragment.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/NewGoodFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/Utils.java" afterPath="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/Utils.java" />
     </list>
     <list id="76ac441c-915c-4529-8680-53507642049e" name="Rejected commit: Default" comment="修改错误" />
     <ignored path="superwechat.iws" />
@@ -152,8 +145,26 @@
         <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="145" column="64" selection-start-line="145" selection-start-column="11" selection-end-line="145" selection-end-column="64" />
+              <caret line="90" column="80" selection-start-line="90" selection-start-column="80" selection-end-line="90" selection-end-column="80" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FuLiCenterApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.2142857">
+              <caret line="132" column="46" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+              <folding>
+                <element signature="e#3153#3162#0" expanded="true" />
+                <element signature="e#3392#3402#0" expanded="true" />
+                <element signature="e#3471#3472#0" expanded="true" />
+                <element signature="e#3529#3530#0" expanded="true" />
+                <element signature="e#3560#3561#0" expanded="true" />
+                <element signature="e#4033#4034#0" expanded="true" />
+                <element signature="e#4059#4060#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,17 +173,7 @@
         <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="351" column="48" selection-start-line="351" selection-start-column="48" selection-end-line="351" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
+              <caret line="353" column="55" selection-start-line="353" selection-start-column="55" selection-end-line="353" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -183,8 +184,21 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DownloadCartListTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownloadCartListTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="72" column="54" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
               <folding>
-                <element signature="e#0#629#0" expanded="true" />
+                <element signature="e#1915#3014#0" expanded="true" />
+                <element signature="e#3013#3014#0" expanded="true" />
+                <element signature="e#3136#3823#0" expanded="true" />
+                <element signature="e#3822#3823#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,55 +208,19 @@
         <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+              <caret line="71" column="81" selection-start-line="71" selection-start-column="61" selection-end-line="71" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="I.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.05523256">
-              <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoodDetailActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java">
+      <file leaf-file-name="GoodDetailsBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/GoodDetailsBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_good_detail2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_good_detail2.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_user_profile.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_user_profile.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -250,9 +228,36 @@
         <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="147" column="26" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+              <caret line="184" column="38" selection-start-line="184" selection-start-column="38" selection-end-line="184" selection-end-column="38" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6227273">
+              <caret line="368" column="35" selection-start-line="368" selection-start-column="35" selection-end-line="368" selection-end-column="35" />
+              <folding>
+                <element signature="e#5202#5254#0" expanded="true" />
+                <element signature="e#13344#13815#0" expanded="true" />
+                <element signature="e#13814#13815#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_conversation_settings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.275862">
+              <caret line="396" column="47" selection-start-line="396" selection-start-column="37" selection-end-line="396" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1132,15 +1137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/item_new_good.xml" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/FootViewHolder.java" />
-        <option value="$PROJECT_DIR$/res/layout/common_refresh_hint.xml" />
-        <option value="$PROJECT_DIR$/res/layout/fragment_new_good.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_fu_li_center_main.xml" />
-        <option value="$PROJECT_DIR$/res/layout/good_details.xml" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/DisplayUtils.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_good_detail2.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/data/DiskLruImageCache.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/data/RequestManager.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/data/BitmapLruCache.java" />
@@ -1148,41 +1144,50 @@
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/data/ApiParams.java" />
         <option value="$PROJECT_DIR$/res/values-zh-rCN/strings.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/GoodAdapter.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/NewGoodFragment.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/BoutiqueChildActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/item_boutique.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/BoutiqueAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/fragment_category.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/BoutiqueFragment.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/CategoryFragment.java" />
-        <option value="$PROJECT_DIR$/res/layout/good_back.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_boutique_child.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_category_child.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/ImageUtils.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/CatChildFilterButton.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/view/ColorFilterButton.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CategoryAdapter.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/personal_center.xml" />
         <option value="$PROJECT_DIR$/res/layout/simpl_grid_item.xml" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownloadCollectCountTask.java" />
         <option value="$PROJECT_DIR$/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Contact.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/User.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/UserUtils.java" />
         <option value="$PROJECT_DIR$/res/layout/fragment_personal_center.xml" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_user_profile.xml" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/activity_good_detail2.xml" />
+        <option value="$PROJECT_DIR$/res/layout/activity_boutique_child.xml" />
+        <option value="$PROJECT_DIR$/res/layout/good_back.xml" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java" />
+        <option value="$PROJECT_DIR$/res/layout/item_collect.xml" />
+        <option value="$PROJECT_DIR$/res/layout/activity_collect.xml" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/NewGoodFragment.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CollectBean.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CollectAdapter.java" />
         <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CollectActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownloadCartListTask.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CartBean.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java" />
       </list>
     </option>
   </component>
@@ -1346,66 +1351,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="superwechat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="superwechat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ucai" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fulicenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="superwechat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="superwechat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ucai" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fulicenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="fragment" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1422,12 +1367,16 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/disklrucache-2.0.2.jar" />
-    <property name="SearchEverywhereHistoryKey" value="goodDe&#9;PSI&#9;JAVA://cn.ucai.fulicenter.activity.GoodDetailActivity&#10;spl&#9;PSI&#9;JAVA://cn.ucai.fulicenter.activity.SplashActivity&#10;Ima&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/utils/ImageUtils.java&#10;item&#9;FILE&#9;file://D:/stu_homework/superwechat/res/layout/item_boutique.xml&#10;Bit&#9;PSI&#9;JAVA://cn.ucai.fulicenter.data.BitmapLruCache&#10;Req&#9;PSI&#9;JAVA://cn.ucai.fulicenter.data.RequestManager&#10;UserU&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/utils/UserUtils.java&#10;super&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/SuperWeChatApplication.java&#10;set&#9;PSI&#9;JAVA://cn.ucai.fulicenter.fragment.SettingsFragment&#10;logo&#9;FILE&#9;file://D:/stu_homework/superwechat/res/drawable-hdpi/logo_uidemo.png&#10;regis&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/RegisterActivity.java&#10;User&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/utils/UserUtils.java&#10;chat&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/ChatActivity.java&#10;Mes&#9;PSI&#9;JAVA://cn.ucai.superwechat.adapter.MessageAdapter&#10;New&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/adapter/NewFriendsMsgAdapter.java&#10;Log&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/LoginActivity.java&#10;GroupA&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/adapter/GroupAdapter.java&#10;utils&#9;PSI&#9;JAVA://cn.ucai.superwechat.utils.Utils&#10;AllGroup&#9;PSI&#9;JAVA://cn.ucai.superwechat.task.DownloadAllGroupTask&#10;re&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/RegisterActivity.java&#10;I&#9;PSI&#9;JAVA://cn.ucai.superwechat.I&#10;UserP&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/UserProfileActivity.java&#10;Main&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/MainActivity.java&#10;main&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/MainActivity.java&#10;Row_COn&#9;FILE&#9;file://D:/stu_homework/superwechat/res/layout/row_contact.xml&#10;Row_cont&#9;PSI&#9;JAVA://cn.ucai.superwechat.R.layout#row_contact&#10;row&#9;PSI&#9;JAVA://cn.ucai.superwechat.R.layout#row_contact&#10;ContactAda&#9;PSI&#9;JAVA://cn.ucai.superwechat.adapter.ContactAdapter&#10;onCreateCont&#9;PSI&#9;JAVA://cn.ucai.superwechat.activity.BlacklistActivity#onCreateContextMenu&#10;setting&#9;PSI&#9;JAVA://cn.ucai.superwechat.activity.SettingsFragment&#10;req&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/data/RequestManager.java" />
+    <property name="SearchEverywhereHistoryKey" value="Utils&#9;PSI&#9;JAVA://cn.ucai.fulicenter.utils.Utils&#10;goodDe&#9;PSI&#9;JAVA://cn.ucai.fulicenter.activity.GoodDetailActivity&#10;spl&#9;PSI&#9;JAVA://cn.ucai.fulicenter.activity.SplashActivity&#10;Ima&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/utils/ImageUtils.java&#10;item&#9;FILE&#9;file://D:/stu_homework/superwechat/res/layout/item_boutique.xml&#10;Bit&#9;PSI&#9;JAVA://cn.ucai.fulicenter.data.BitmapLruCache&#10;Req&#9;PSI&#9;JAVA://cn.ucai.fulicenter.data.RequestManager&#10;UserU&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/utils/UserUtils.java&#10;super&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/fulicenter/SuperWeChatApplication.java&#10;set&#9;PSI&#9;JAVA://cn.ucai.fulicenter.fragment.SettingsFragment&#10;logo&#9;FILE&#9;file://D:/stu_homework/superwechat/res/drawable-hdpi/logo_uidemo.png&#10;regis&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/RegisterActivity.java&#10;User&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/utils/UserUtils.java&#10;chat&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/ChatActivity.java&#10;Mes&#9;PSI&#9;JAVA://cn.ucai.superwechat.adapter.MessageAdapter&#10;New&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/adapter/NewFriendsMsgAdapter.java&#10;Log&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/LoginActivity.java&#10;GroupA&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/adapter/GroupAdapter.java&#10;utils&#9;PSI&#9;JAVA://cn.ucai.superwechat.utils.Utils&#10;AllGroup&#9;PSI&#9;JAVA://cn.ucai.superwechat.task.DownloadAllGroupTask&#10;re&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/RegisterActivity.java&#10;I&#9;PSI&#9;JAVA://cn.ucai.superwechat.I&#10;UserP&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/UserProfileActivity.java&#10;Main&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/MainActivity.java&#10;main&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/activity/MainActivity.java&#10;Row_COn&#9;FILE&#9;file://D:/stu_homework/superwechat/res/layout/row_contact.xml&#10;Row_cont&#9;PSI&#9;JAVA://cn.ucai.superwechat.R.layout#row_contact&#10;row&#9;PSI&#9;JAVA://cn.ucai.superwechat.R.layout#row_contact&#10;ContactAda&#9;PSI&#9;JAVA://cn.ucai.superwechat.adapter.ContactAdapter&#10;onCreateCont&#9;PSI&#9;JAVA://cn.ucai.superwechat.activity.BlacklistActivity#onCreateContextMenu&#10;setting&#9;PSI&#9;JAVA://cn.ucai.superwechat.activity.SettingsFragment&#10;req&#9;FILE&#9;file://D:/stu_homework/superwechat/src/cn/ucai/superwechat/data/RequestManager.java" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/res/drawable-xhdpi" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\stu_homework\superwechat\res\drawable-xhdpi" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\bean" />
+      <recent name="D:\stu_homework\superwechat\res\layout" />
+      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\view" />
+      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\data" />
+      <recent name="D:\stu_homework\superwechat\libs" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.easemob.chatuidemo" />
@@ -1436,15 +1385,12 @@
       <recent name="cn.ucai.fulicenter.activity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.ucai.fulicenter.activity" />
       <recent name="cn.ucai.fulicenter.task" />
+      <recent name="cn.ucai.fulicenter.activity" />
+      <recent name="cn.ucai.fulicenter.adapter" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\stu_homework\superwechat\res\layout" />
-      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\bean" />
-      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\view" />
-      <recent name="D:\stu_homework\superwechat\src\cn\ucai\fulicenter\data" />
-      <recent name="D:\stu_homework\superwechat\libs" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\stu_homework\superwechat\res\drawable-xhdpi" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.superwechat">
@@ -1770,12 +1716,6 @@
       <option name="number" value="Default" />
       <updated>1463544533229</updated>
     </task>
-    <task id="LOCAL-00043" summary="在ContactlistFragment中添加广播接收器，并且添加注册和注销方法，在onActivityCreate中调用注册和注销方法，onDestroy中取消广播接收器注册">
-      <created>1464062002696</created>
-      <option name="number" value="00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1464062002696</updated>
-    </task>
     <task id="LOCAL-00044" summary="添加setListener方法&#10;setContactItemClickListener();&#10;setContactListTouchListener();&#10;setAddContactListener();">
       <created>1464071716984</created>
       <option name="number" value="00044" />
@@ -2064,7 +2004,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466743842156</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="第六天结束">
+      <created>1467076272438</created>
+      <option name="number" value="00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1467076272439</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2082,28 +2028,28 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36053985" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53974897" sideWeight="0.49100256" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52719665" sideWeight="0.48843187" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39748955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5477528" sideWeight="0.50899744" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53974897" sideWeight="0.5115681" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272472" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34691012" sideWeight="0.4974293" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34588563" sideWeight="0.4974293" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.4974293" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24935733" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24100257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32496512" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24100257" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32357043" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36053985" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2124,7 +2070,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="修正会话界面登录不显示头像问题&#10;添加广播接收器" />
     <MESSAGE value="修正会话界面登录不显示头像问题和申请与通知显示提示&#10;添加广播接收器" />
     <MESSAGE value="新建群组准备工作完成" />
     <MESSAGE value="在远端服务器创建群组" />
@@ -2149,274 +2094,20 @@
     <MESSAGE value="完善闪屏界面" />
     <MESSAGE value="修改I和D文件" />
     <MESSAGE value="完成分类二级页面（还没到排序）" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成分类二级页面（还没到排序）" />
+    <MESSAGE value="第六天结束" />
+    <option name="LAST_COMMIT_MESSAGE" value="第六天结束" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="178" />
+      <option name="time" value="183" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_boutique_child.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/ImageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/view/ColorFilterButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="64" selection-start-line="146" selection-start-column="29" selection-end-line="150" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/CategoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/GoodAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1347#1348#0" expanded="false" />
-            <element signature="e#1376#1377#0" expanded="false" />
-            <element signature="e#3288#3289#0" expanded="false" />
-            <element signature="e#3317#3318#0" expanded="false" />
-            <element signature="e#5420#5421#0" expanded="false" />
-            <element signature="e#5485#5486#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/sdk/sources/android-23/android/content/res/Resources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33284885">
-          <caret line="769" column="20" selection-start-line="769" selection-start-column="20" selection-end-line="769" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_category_child.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CategoryAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="133" column="66" selection-start-line="133" selection-start-column="66" selection-end-line="133" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1348#1349#0" expanded="false" />
-            <element signature="e#1407#1408#0" expanded="false" />
-            <element signature="e#1664#1665#0" expanded="false" />
-            <element signature="e#1716#1717#0" expanded="false" />
-            <element signature="e#1943#1944#0" expanded="false" />
-            <element signature="e#1967#1968#0" expanded="false" />
-            <element signature="e#2049#2050#0" expanded="false" />
-            <element signature="e#2073#2074#0" expanded="false" />
-            <element signature="e#2124#2125#0" expanded="false" />
-            <element signature="e#2152#2153#0" expanded="false" />
-            <element signature="e#5192#5193#0" expanded="false" />
-            <element signature="e#5220#5221#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/view/CatChildFilterButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="16" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3646#3647#0" expanded="false" />
-            <element signature="e#3709#3710#0" expanded="false" />
-            <element signature="e#3785#3786#0" expanded="false" />
-            <element signature="e#3838#3839#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/BoutiqueFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/BoutiqueChildActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.7281976">
-          <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="9" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/personal_center.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6551725">
-          <caret line="202" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="428" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/simpl_grid_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4789916">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://C:/sdk/sources/android-23/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33235726">
-          <caret line="186" column="29" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3487395">
-          <caret line="112" column="28" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/listener/OnSetAvatarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33235726">
-          <caret line="237" column="23" selection-start-line="237" selection-start-column="23" selection-end-line="237" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-59.714287">
-          <caret line="153" column="34" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
-          <folding>
-            <element signature="e#3310#3311#0" expanded="false" />
-            <element signature="e#3328#3329#0" expanded="false" />
-            <element signature="e#3363#3364#0" expanded="false" />
-            <element signature="e#3386#3387#0" expanded="false" />
-            <element signature="e#3433#3434#0" expanded="false" />
-            <element signature="e#3458#3459#0" expanded="false" />
-            <element signature="e#3521#3522#0" expanded="false" />
-            <element signature="e#3558#3559#0" expanded="false" />
-            <element signature="e#3608#3609#0" expanded="false" />
-            <element signature="e#3630#3631#0" expanded="false" />
-            <element signature="e#3693#3694#0" expanded="false" />
-            <element signature="e#3724#3725#0" expanded="false" />
-            <element signature="e#3783#3784#0" expanded="false" />
-            <element signature="e#3833#3834#0" expanded="false" />
-            <element signature="e#3872#3873#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31512606">
-          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Avatar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/AlbumBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CollectBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Contact.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="5" selection-start-line="95" selection-start-column="4" selection-end-line="98" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/MessageBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2441,8 +2132,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="5" selection-start-line="21" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
           <folding>
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="false" />
+            <element signature="e#696#697#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2487,32 +2178,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/common_refresh_hint.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/fragment_personal_center.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7692307">
-          <caret line="47" column="51" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="51" />
-          <folding>
-            <element signature="e#1058#1083#0" expanded="true" />
-            <element signature="e#1109#1122#0" expanded="true" />
-            <element signature="e#8313#8338#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/AddContactActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1380814">
@@ -2520,66 +2185,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.892858">
-          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
-          <folding>
-            <element signature="e#2491#2509#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.637931">
-          <caret line="274" column="53" selection-start-line="274" selection-start-column="38" selection-end-line="274" selection-end-column="53" />
-          <folding>
-            <element signature="e#723#736#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5172415">
-          <caret line="337" column="56" selection-start-line="337" selection-start-column="56" selection-end-line="337" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/UserProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#629#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="351" column="48" selection-start-line="351" selection-start-column="48" selection-end-line="351" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -2592,28 +2201,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_good_detail2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_user_profile.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.6634921">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
           <folding />
         </state>
@@ -2622,18 +2212,308 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/view/DisplayUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="147" column="26" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+          <caret line="23" column="70" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/MessageBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="64" selection-start-line="145" selection-start-column="11" selection-end-line="145" selection-end-column="64" />
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/SettingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.9869184">
+          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_good_detail2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03015873">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/BoutiqueChildActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/view/CatChildFilterButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="85" selection-start-line="136" selection-start-column="85" selection-end-line="136" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/item_category_child.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6206896">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/view/ColorFilterButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="82" selection-start-line="99" selection-start-column="82" selection-end-line="99" selection-end-column="82" />
+          <folding>
+            <element signature="e#3722#4519#0" expanded="true" />
+            <element signature="e#4518#4519#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_boutique_child.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2931035">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/common_refresh_hint.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21111111">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_collect.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9655173">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/good_back.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.551724">
+          <caret line="20" column="10" selection-start-line="6" selection-start-column="3" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/db/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_personal_center.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="92" column="16" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.892858">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CategoryChildActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="39" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="39" />
+          <folding>
+            <element signature="e#3308#4392#0" expanded="true" />
+            <element signature="e#4391#4392#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/NewGoodFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="54" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CollectBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/item_collect.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2586207">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/adapter/CollectAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
+          <folding>
+            <element signature="e#3853#4627#0" expanded="true" />
+            <element signature="e#4626#4627#0" expanded="true" />
+            <element signature="e#4748#5179#0" expanded="true" />
+            <element signature="e#5178#5179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/CollectActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="194" column="68" selection-start-line="194" selection-start-column="68" selection-end-line="194" selection-end-column="68" />
+          <folding>
+            <element signature="e#2650#3806#0" expanded="true" />
+            <element signature="e#3109#3153#0" expanded="true" />
+            <element signature="e#3697#3739#0" expanded="true" />
+            <element signature="e#3805#3806#0" expanded="true" />
+            <element signature="e#4071#4532#0" expanded="true" />
+            <element signature="e#4531#4532#0" expanded="true" />
+            <element signature="e#7061#7062#0" expanded="true" />
+            <element signature="e#7095#7096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/sdk/sources/android-23/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33283582">
+          <caret line="186" column="29" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/GoodDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="64" selection-start-line="144" selection-start-column="19" selection-end-line="146" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_fu_li_center_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.7068965">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.142858">
+          <caret line="64" column="96" selection-start-line="64" selection-start-column="96" selection-end-line="64" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="43" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
+          <folding>
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="35" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/CartBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/bean/GoodDetailsBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/FuLiCenterApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2142857">
+          <caret line="132" column="46" selection-start-line="132" selection-start-column="46" selection-end-line="132" selection-end-column="46" />
+          <folding>
+            <element signature="e#3153#3162#0" expanded="true" />
+            <element signature="e#3392#3402#0" expanded="true" />
+            <element signature="e#3471#3472#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3560#3561#0" expanded="true" />
+            <element signature="e#4033#4034#0" expanded="true" />
+            <element signature="e#4059#4060#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2641,16 +2521,68 @@
     <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownLoadCollectionCountTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+          <caret line="71" column="81" selection-start-line="71" selection-start-column="61" selection-end-line="71" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/I.java">
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.05523256">
-          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="353" column="55" selection-start-line="353" selection-start-column="55" selection-end-line="353" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/FuLiCenterMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="184" column="38" selection-start-line="184" selection-start-column="38" selection-end-line="184" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/fragment/PersonalCenterFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="80" selection-start-line="90" selection-start-column="80" selection-end-line="90" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/task/DownloadCartListTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="54" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
+          <folding>
+            <element signature="e#1915#3014#0" expanded="true" />
+            <element signature="e#3013#3014#0" expanded="true" />
+            <element signature="e#3136#3823#0" expanded="true" />
+            <element signature="e#3822#3823#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_conversation_settings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.275862">
+          <caret line="396" column="47" selection-start-line="396" selection-start-column="37" selection-end-line="396" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/ucai/fulicenter/activity/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6227273">
+          <caret line="368" column="35" selection-start-line="368" selection-start-column="35" selection-end-line="368" selection-end-column="35" />
+          <folding>
+            <element signature="e#5202#5254#0" expanded="true" />
+            <element signature="e#13344#13815#0" expanded="true" />
+            <element signature="e#13814#13815#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

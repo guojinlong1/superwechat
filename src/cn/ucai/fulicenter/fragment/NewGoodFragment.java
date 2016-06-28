@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ import cn.ucai.fulicenter.utils.Utils;
  * Created by Administrator on 2016/6/20 0020.
  */
 public class NewGoodFragment extends Fragment {
+
+    final static String TAG = NewGoodFragment.class.getName();
     FuLiCenterMainActivity mContext;
     int pageId = 0;
     String path;
@@ -85,6 +88,7 @@ public class NewGoodFragment extends Fragment {
             @Override
             public void onResponse(NewGoodBean[] newGoodBeen) {
                 if(newGoodBeen!=null){
+                    Log.e(TAG,newGoodBeen.toString());
                     mAdapter.setMore(true);
                     mSwipeRefreshLayout.setRefreshing(false);
                     mtvHint.setVisibility(View.GONE);

@@ -58,6 +58,7 @@ import cn.ucai.fulicenter.db.UserDao;
 import cn.ucai.fulicenter.domain.EMUser;
 import cn.ucai.fulicenter.listener.OnSetAvatarListener;
 import cn.ucai.fulicenter.task.DownLoadCollectionCountTask;
+import cn.ucai.fulicenter.task.DownloadCartListTask;
 import cn.ucai.fulicenter.task.DownloadContactListTask;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.MD5;
@@ -317,6 +318,7 @@ public class LoginActivity extends BaseActivity {
                     Log.e(TAG,"start download contact,group,public group");
                     //下载联系人集合
                     new DownloadContactListTask(mContext,currentUsername).execute();
+                    new DownloadCartListTask(mContext,I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
 
 
                 }
@@ -349,7 +351,7 @@ public class LoginActivity extends BaseActivity {
         String action = getIntent().getStringExtra("action");
 
         if(action!=null){
-            new DownLoadCollectionCountTask(this).execute();
+            sendStickyBroadcast(new Intent("update_user"));
             // 进入主页面
             Intent intent = new Intent(LoginActivity.this,
                     FuLiCenterMainActivity.class).putExtra("action",action);

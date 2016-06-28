@@ -14,11 +14,13 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 
 import cn.ucai.fulicenter.DemoHXSDKHelper;
+import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.bean.User;
 import cn.ucai.fulicenter.db.UserDao;
 import cn.ucai.fulicenter.task.DownLoadCollectionCountTask;
+import cn.ucai.fulicenter.task.DownloadCartListTask;
 import cn.ucai.fulicenter.task.DownloadContactListTask;
 
 
@@ -60,6 +62,7 @@ public class SplashActivity extends BaseActivity {
 			FuLiCenterApplication.getInstance().setUser(user);
 			new DownloadContactListTask(mContext,currentUsername).execute();
 			new DownLoadCollectionCountTask(mContext).execute();
+			new DownloadCartListTask(mContext, I.PAGE_ID_DEFAULT,I.PAGE_SIZE_DEFAULT).execute();
 
 		}
 		new Thread(new Runnable() {

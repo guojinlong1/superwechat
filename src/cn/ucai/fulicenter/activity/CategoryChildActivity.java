@@ -28,6 +28,8 @@ import cn.ucai.fulicenter.view.DisplayUtils;
 
 public class CategoryChildActivity extends BaseActivity {
 
+    final static String TAG = CategoryChildActivity.class.getName();
+
     CategoryChildActivity mContext;
     int pageId = 0;
     String path;
@@ -111,6 +113,7 @@ public class CategoryChildActivity extends BaseActivity {
             @Override
             public void onResponse(NewGoodBean[] newGoodBeen) {
                 if(newGoodBeen!=null){
+                    Log.e(TAG,newGoodBeen.toString());
                     mAdapter.setMore(true);
                     mSwipeRefreshLayout.setRefreshing(false);
                     mtvHint.setVisibility(View.GONE);

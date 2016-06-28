@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.I;
+import cn.ucai.fulicenter.bean.CartBean;
 
 /**
  * Created by clawpo on 16/3/28.
@@ -63,6 +65,17 @@ public class Utils {
     public static int px2dp(Context context,int px){
         int density = (int) context.getResources().getDisplayMetrics().density;
         return px/density;
+    }
+
+    public static int sumCartCount(){
+        ArrayList<CartBean> carList = FuLiCenterApplication.getInstance().getCartList();
+        int count = 0;
+        for(CartBean cartBean : carList){
+            if(cartBean.isChecked()){
+                count+=cartBean.getCount();
+            }
+        }
+        return count;
     }
 
 }

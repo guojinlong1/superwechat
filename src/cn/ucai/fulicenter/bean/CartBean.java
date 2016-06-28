@@ -16,7 +16,7 @@ public class CartBean implements Serializable{
      */
 
     private int id;
-    private int userName;
+    private String userName;
     private int goodsId;
     private int count;
     private boolean checked;
@@ -25,7 +25,7 @@ public class CartBean implements Serializable{
     public CartBean() {
     }
 
-    public CartBean(int id, int userName, int goodsId, int count, boolean checked) {
+    public CartBean(int id, String userName, int goodsId, int count, boolean checked) {
         this.id = id;
         this.userName = userName;
         this.goodsId = goodsId;
@@ -41,11 +41,11 @@ public class CartBean implements Serializable{
         this.id = id;
     }
 
-    public int getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(int userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 

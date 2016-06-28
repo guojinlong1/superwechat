@@ -17,6 +17,7 @@
             android:id="@+id/iv_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:src="@drawable/bg_share_nor"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
