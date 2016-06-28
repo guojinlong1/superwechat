@@ -75,13 +75,14 @@ public class UserUtils {
 	public static void setUserAvatar(String url, NetworkImageView imageView) {
 		if (url == null || url.isEmpty())return;
 		imageView.setDefaultImageResId(R.drawable.default_avatar);
+		Log.e("main",url.toString());
 		imageView.setImageUrl(url, RequestManager.getImageLoader());
 		imageView.setErrorImageResId(R.drawable.default_avatar);
 	}
 
 	public static String getAvatarPath(String userName) {
 		if(userName==null || userName.isEmpty())return null;
-		return I.REQUEST_DOWNLOAD_AVATAR + userName;
+		return I.REQUEST_DOWNLOAD_AVATAR_USER + userName;
 	}
 
 

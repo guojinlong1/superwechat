@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,10 +11,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 
+import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.fragment.CategoryFragment;
 import cn.ucai.fulicenter.fragment.NewGoodFragment;
+import cn.ucai.fulicenter.fragment.PersonalCenterFragment;
 
 public class FuLiCenterMainActivity extends BaseActivity {
 
@@ -27,7 +30,8 @@ public class FuLiCenterMainActivity extends BaseActivity {
     NewGoodFragment mNewGoodFragment;
     BoutiqueFragment mBoutiqueFragment;
     CategoryFragment mCategoryFragment;
-    private Fragment[] mFragments = new Fragment[3];
+    PersonalCenterFragment mPersonalCenterFragment;
+    private Fragment[] mFragments = new Fragment[5];
     private int index;
     private int currentTabIndex;
 
@@ -49,6 +53,8 @@ public class FuLiCenterMainActivity extends BaseActivity {
                 .hide(mBoutiqueFragment)
                 .add(cn.ucai.fulicenter.R.id.fragment_container, mCategoryFragment)
                 .hide(mCategoryFragment)
+//                .add(cn.ucai.fulicenter.R.id.fragment_container, mPersonalCenterFragment)
+//                .hide(mPersonalCenterFragment)
                   .show(mNewGoodFragment)
                 .commit();
     }
@@ -57,11 +63,12 @@ public class FuLiCenterMainActivity extends BaseActivity {
         mNewGoodFragment = new NewGoodFragment();
         mBoutiqueFragment = new BoutiqueFragment();
         mCategoryFragment = new CategoryFragment();
+        mPersonalCenterFragment = new PersonalCenterFragment();
 
         mFragments[0] = mNewGoodFragment;
         mFragments[1] = mBoutiqueFragment;
         mFragments[2] = mCategoryFragment;
-
+        mFragments[4] = mPersonalCenterFragment;
     }
 
     private void initView() {
@@ -95,7 +102,12 @@ public class FuLiCenterMainActivity extends BaseActivity {
                 index = 3;
                 break;
             case cn.ucai.fulicenter.R.id.personcenter:
-                index = 4;
+                if(FuLiCenterApplication.getInstance().getUser()!=null){
+                    index = 4;
+                }else {
+                    gotoLogin();
+                }
+
                 break;
         }
         if(currentTabIndex!=index){
@@ -110,6 +122,10 @@ public class FuLiCenterMainActivity extends BaseActivity {
         }
     }
 
+    private void gotoLogin() {
+        startActivity(new Intent(this,LoginActivity.class).putExtra("action","personal"));
+    }
+
     private void setRadioChecked(int index){
         for(int i=0;i<mRadios.length;i++){
             if(i==index){
@@ -119,6 +135,33 @@ public class FuLiCenterMainActivity extends BaseActivity {
                 Log.e("main",i+"");
                 mRadios[i].setSelected(false);
             }
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final String action = getIntent().getStringExtra("action");
+        if(action!=null&&FuLiCenterApplication.getInstance().getUser()!=null){
+            if(action.equals("personal")){
+                index = 4;
+            }
+        }else {
+            setRadioChecked(index);
+        }
+        if(currentTabIndex==4 && FuLiCenterApplication.getInstance().getUser()==null){
+            index = 0;
+        }
+        if(currentTabIndex!=index){
+            FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+            trx.hide(mFragments[currentTabIndex]);
+            if (!mFragments[index].isAdded()) {
+                trx.add(cn.ucai.fulicenter.R.id.fragment_container, mFragments[index]);
+            }
+            trx.show(mFragments[index]).commit();
+            setRadioChecked(index);
+            currentTabIndex = index;
         }
     }
 }

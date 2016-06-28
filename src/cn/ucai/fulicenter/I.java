@@ -66,7 +66,7 @@ public interface I {
         
         public static final String GOODS_ID="goods_id";
         
-        public static final String USER_NAME="userName";
+        public static final String USER_NAME="m_user_name";
         
         /** 商品的中文名称*/
         public static final String GOODS_NAME="goodsName";

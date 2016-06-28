@@ -93,8 +93,8 @@ public class Contact extends User implements java.io.Serializable {
 
 	}
 
-	@Override
-	public int hashCode() {
-		return mcontactId.hashCode();
-	}
+//	@Override
+//	public int hashCode() {
+//		return mcontactId.hashCode();
+//	}
 }

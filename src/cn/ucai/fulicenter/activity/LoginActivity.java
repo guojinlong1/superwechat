@@ -57,6 +57,7 @@ import cn.ucai.fulicenter.db.EMUserDao;
 import cn.ucai.fulicenter.db.UserDao;
 import cn.ucai.fulicenter.domain.EMUser;
 import cn.ucai.fulicenter.listener.OnSetAvatarListener;
+import cn.ucai.fulicenter.task.DownLoadCollectionCountTask;
 import cn.ucai.fulicenter.task.DownloadContactListTask;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.MD5;
@@ -87,7 +88,7 @@ public class LoginActivity extends BaseActivity {
 		// 如果用户名密码都有，直接进入主页面
 		if (DemoHXSDKHelper.getInstance().isLogined()) {
 			autoLogin = true;
-			startActivity(new Intent(LoginActivity.this, MainActivity.class));
+			startActivity(new Intent(LoginActivity.this, FuLiCenterMainActivity.class));
 
 			return;
 		}
@@ -95,7 +96,7 @@ public class LoginActivity extends BaseActivity {
 		mContext = this;
 
 		usernameEditText = (EditText) findViewById(R.id.username);
-		passwordEditText = (EditText) findViewById(R.id.password);
+		passwordEditText = (EditText) findViewById(R.id.pwd);
 
 		setListener();
 
@@ -303,6 +304,7 @@ public class LoginActivity extends BaseActivity {
                 public void onResponse(com.squareup.okhttp.Response response) throws IOException {
                     String avatarPath = I.AVATAR_TYPE_USER_PATH+ I.BACKSLASH
                             + currentUsername + I.AVATAR_SUFFIX_JPG;
+                    Log.e("main",avatarPath.toString());
                     File file = OnSetAvatarListener.getAvatarFile(mContext,avatarPath);
                     FileOutputStream out = null;
                     out = new FileOutputStream(file);
@@ -343,10 +345,18 @@ public class LoginActivity extends BaseActivity {
         if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
             pd.dismiss();
         }
-        // 进入主页面
-        Intent intent = new Intent(LoginActivity.this,
-                MainActivity.class);
-        startActivity(intent);
+
+        String action = getIntent().getStringExtra("action");
+
+        if(action!=null){
+            new DownLoadCollectionCountTask(this).execute();
+            // 进入主页面
+            Intent intent = new Intent(LoginActivity.this,
+                    FuLiCenterMainActivity.class).putExtra("action",action);
+            startActivity(intent);
+            Log.e("main",FuLiCenterApplication.getInstance().getUser().toString());
+
+        }
 
         finish();
     }
