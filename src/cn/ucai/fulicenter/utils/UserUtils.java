@@ -22,6 +22,8 @@ import com.easemob.util.HanziToPinyin;
 import com.squareup.picasso.Picasso;
 
 public class UserUtils {
+
+	final static String TAG = UserUtils.class.getName();
     /**
      * 根据username获取相应user，由于demo没有真实的用户数据，这里给的模拟的数据；
      * @param username
@@ -100,6 +102,7 @@ public class UserUtils {
 
 	public static void setCurrentUserAvatar(NetworkImageView imageView){
 		User user =  FuLiCenterApplication.getInstance().getUser();
+		Log.e(TAG,"user:"+user.toString());
 		if(user!=null){
 			setUserAvatar(getAvatarPath(user.getMUserName()),imageView);
 		}

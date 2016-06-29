@@ -350,11 +350,13 @@ public class LoginActivity extends BaseActivity {
 
         String action = getIntent().getStringExtra("action");
 
+
         if(action!=null){
             sendStickyBroadcast(new Intent("update_user"));
             // 进入主页面
             Intent intent = new Intent(LoginActivity.this,
                     FuLiCenterMainActivity.class).putExtra("action",action);
+            Log.e("action","LoginActivity:"+action);
             startActivity(intent);
             Log.e("main",FuLiCenterApplication.getInstance().getUser().toString());
 

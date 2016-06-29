@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import cn.ucai.fulicenter.utils.UserUtils;
  * A simple {@link Fragment} subclass.
  */
 public class PersonalCenterFragment extends Fragment {
+    final static String TAG = PersonalCenterFragment.class.getName();
 
     Context mContext;
 
@@ -70,12 +72,13 @@ public class PersonalCenterFragment extends Fragment {
         initView(view);
         initData();
         setListener();
+        registerCollectCountChangedListener();
+        registerUpdateUserReceiver();
         return view;
     }
 
     private void setListener() {
-        registerCollectCountChangedListener();
-        registerUpdateUserReceiver();
+
         mMyClickListener = new MyClickListener();
         mtvSetting.setOnClickListener(mMyClickListener);
         mLayoutCenterUserInfo.setOnClickListener(mMyClickListener);
@@ -149,7 +152,7 @@ public class PersonalCenterFragment extends Fragment {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-           // new DownLoadCollectionCountTask(mContext).execute();
+            new DownLoadCollectionCountTask(mContext).execute();
             initData();
         }
     }
@@ -158,7 +161,7 @@ public class PersonalCenterFragment extends Fragment {
 
     private void registerUpdateUserReceiver(){
         mUserReceiver = new UpdateUserChangedReceiver();
-        IntentFilter filter = new IntentFilter("update_collect_count");
+        IntentFilter filter = new IntentFilter("update_user");
         mContext.registerReceiver(mUserReceiver,filter);
     }
 

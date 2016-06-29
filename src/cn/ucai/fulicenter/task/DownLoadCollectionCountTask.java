@@ -51,6 +51,7 @@ public class DownLoadCollectionCountTask extends BaseActivity {
         }
     }
     public void execute() {
+        if(path==null || path.isEmpty()) return;
         executeRequest(new GsonRequest<MessageBean>(path, MessageBean.class, responseDownloadCollectCountTaskListener(), errorListener()));
     }
 
@@ -59,20 +60,20 @@ public class DownLoadCollectionCountTask extends BaseActivity {
             @Override
             public void onResponse(MessageBean messageBean) {
                 Log.e(TAG,"messageBean="+messageBean);
-                if (messageBean != null) {
-                    if (messageBean.isSuccess()) {
-                        String count = messageBean.getMsg();
-                        Log.e(TAG,count.toString());
-                        FuLiCenterApplication.getInstance().setCollectCount(Integer.parseInt(messageBean.getMsg()));
-                        //Log.e(TAG,messageBean.toString());
-                    }else {
-                        Log.e(TAG,"count=0");
-                        FuLiCenterApplication.getInstance().setCollectCount(0);
-                    }
-                    mContext.sendStickyBroadcast(new Intent("update_collect_count"));
-
+                if (messageBean.isSuccess()) {
+                    String count = messageBean.getMsg();
+                    Log.e(TAG,count.toString());
+                    FuLiCenterApplication.getInstance().setCollectCount(Integer.parseInt(messageBean.getMsg()));
+                    //Log.e(TAG,messageBean.toString());
+                }else {
+                    Log.e(TAG,"count=0");
+                    FuLiCenterApplication.getInstance().setCollectCount(0);
                 }
+                Intent intent = new Intent("update_collect_count");
+                mContext.sendStickyBroadcast(intent);
             }
+
+
         };
     }
 }

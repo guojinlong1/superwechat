@@ -1,7 +1,10 @@
 
 package cn.ucai.fulicenter.activity;
 
+        import android.content.BroadcastReceiver;
+        import android.content.Context;
         import android.content.Intent;
+        import android.content.IntentFilter;
         import android.os.Bundle;
         import android.os.PersistableBundle;
         import android.util.Log;
@@ -74,7 +77,18 @@ public class GoodDetailActivity extends BaseActivity {
     }
 
     private void setListener() {
+        registerReceiver();
         setCollectListener();
+        setCartListener();
+    }
+
+    private void setCartListener() {
+        mivAddcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.addCart(mGood,mContext);
+            }
+        });
     }
 
     private void setCollectListener() {
@@ -230,7 +244,19 @@ public class GoodDetailActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         initCollectStatus();
+        initCartStatus();
 
+    }
+
+    private void initCartStatus() {
+        int count = Utils.sumCartCount();
+        if(count>0){
+            mtvCartCOunt.setVisibility(View.VISIBLE);
+            mtvCartCOunt.setText(""+count);
+        }else {
+            mtvCartCOunt.setVisibility(View.GONE);
+            mtvCartCOunt.setText("0");
+        }
     }
 
     private void initCollectStatus() {
@@ -268,5 +294,29 @@ public class GoodDetailActivity extends BaseActivity {
                 }
             }
         };
+    }
+
+
+    class UpdateCartReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            initCartStatus();
+        }
+    }
+
+    UpdateCartReceiver mReceiver;
+
+    public void registerReceiver(){
+        mReceiver = new UpdateCartReceiver();
+        IntentFilter inflter = new IntentFilter("update_cart");
+        registerReceiver(mReceiver,inflter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mReceiver!=null){
+            unregisterReceiver(mReceiver);
+        }
     }
 }

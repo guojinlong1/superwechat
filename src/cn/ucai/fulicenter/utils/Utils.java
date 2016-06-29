@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -11,11 +12,16 @@ import java.util.List;
 import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.bean.CartBean;
+import cn.ucai.fulicenter.bean.GoodDetailsBean;
+import cn.ucai.fulicenter.task.UpdateCartTask;
 
 /**
  * Created by clawpo on 16/3/28.
  */
 public class Utils {
+
+    private  final static String TAG = Utils.class.getName();
+
     public static String getPackageName(Context context){
         return context.getPackageName();
     }
@@ -78,4 +84,43 @@ public class Utils {
         return count;
     }
 
+
+    //购物车增加数量
+    public static void addCart(GoodDetailsBean goods,Context mContext) {
+        Log.e(TAG,"goods:"+goods.toString());
+        ArrayList<CartBean> cartList = FuLiCenterApplication.getInstance().getCartList();
+        boolean isExist = false;
+        CartBean mCart = null;
+        for(int i=0;i<cartList.size();i++){
+            CartBean cart = cartList.get(i);
+            if(goods.getGoodsId()==cart.getGoodsId()){
+                cart.setCount(cart.getCount()+1);
+                isExist = true;
+                mCart = cart;
+            }
+        }
+        if(!isExist){
+            String userName = FuLiCenterApplication.getInstance().getUserName();
+            mCart = new CartBean(0,userName,goods.getGoodsId(),1,true);
+            mCart.setGoods(goods);
+        }
+        new UpdateCartTask(mContext,mCart).exectue();
+    }
+
+    public static void DelCart(GoodDetailsBean goods, Context mContext) {
+        ArrayList<CartBean> cartList = FuLiCenterApplication.getInstance().getCartList();
+        boolean isExist = false;
+        CartBean mCart = null;
+        for(int i=0;i<cartList.size();i++){
+            CartBean cart = cartList.get(i);
+            if(goods.getGoodsId()==cart.getGoodsId()){
+                cart.setCount(cart.getCount()-1);
+                isExist = true;
+                mCart = cart;
+            }
+        }
+        if(isExist){
+            new UpdateCartTask(mContext,mCart).exectue();
+        }
+    }
 }

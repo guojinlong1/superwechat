@@ -14,14 +14,18 @@ import android.widget.TextView;
 
 
 import cn.ucai.fulicenter.FuLiCenterApplication;
+import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.fragment.BoutiqueFragment;
+import cn.ucai.fulicenter.fragment.CartFragment;
 import cn.ucai.fulicenter.fragment.CategoryFragment;
 import cn.ucai.fulicenter.fragment.NewGoodFragment;
 import cn.ucai.fulicenter.fragment.PersonalCenterFragment;
 import cn.ucai.fulicenter.utils.Utils;
 
 public class FuLiCenterMainActivity extends BaseActivity {
+
+    final static String TAG = FuLiCenterMainActivity.class.getName();
 
     RadioButton mRbNewGood;
     RadioButton mRbBoutique;
@@ -34,6 +38,7 @@ public class FuLiCenterMainActivity extends BaseActivity {
     BoutiqueFragment mBoutiqueFragment;
     CategoryFragment mCategoryFragment;
     PersonalCenterFragment mPersonalCenterFragment;
+    CartFragment mCartFragment;
     private Fragment[] mFragments = new Fragment[5];
     private int index;
     private int currentTabIndex;
@@ -69,10 +74,12 @@ public class FuLiCenterMainActivity extends BaseActivity {
         mBoutiqueFragment = new BoutiqueFragment();
         mCategoryFragment = new CategoryFragment();
         mPersonalCenterFragment = new PersonalCenterFragment();
+        mCartFragment = new CartFragment();
 
         mFragments[0] = mNewGoodFragment;
         mFragments[1] = mBoutiqueFragment;
         mFragments[2] = mCategoryFragment;
+        mFragments[3] = mCartFragment;
         mFragments[4] = mPersonalCenterFragment;
     }
 
@@ -104,13 +111,17 @@ public class FuLiCenterMainActivity extends BaseActivity {
                 index = 2;
                 break;
             case cn.ucai.fulicenter.R.id.cart:
-                index = 3;
+                if(FuLiCenterApplication.getInstance().getUser()!=null){
+                    index = 3;
+                }else {
+                    gotoLogin(I.ACTION_TYPE_CART);
+                }
                 break;
             case cn.ucai.fulicenter.R.id.personcenter:
                 if(FuLiCenterApplication.getInstance().getUser()!=null){
                     index = 4;
                 }else {
-                    gotoLogin();
+                    gotoLogin(I.ACTION_TYPE_PERSONAL);
                 }
 
                 break;
@@ -127,8 +138,8 @@ public class FuLiCenterMainActivity extends BaseActivity {
         }
     }
 
-    private void gotoLogin() {
-        startActivity(new Intent(this,LoginActivity.class).putExtra("action","personal"));
+    private void gotoLogin(String action) {
+        startActivity(new Intent(this,LoginActivity.class).putExtra("action",action));
     }
 
     private void setRadioChecked(int index){
@@ -138,7 +149,7 @@ public class FuLiCenterMainActivity extends BaseActivity {
 
             }else {
                 Log.e("main",i+"");
-                mRadios[i].setSelected(false);
+                mRadios[i].setChecked(false);
             }
         }
     }
@@ -147,10 +158,16 @@ public class FuLiCenterMainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final String action = getIntent().getStringExtra("action");
+        String action = getIntent().getStringExtra("action");
+        Log.e("action","MainActivity:"+action);
         if(action!=null&&FuLiCenterApplication.getInstance().getUser()!=null){
-            if(action.equals("personal")){
+            if(action.equals(I.ACTION_TYPE_PERSONAL)){
                 index = 4;
+                Log.e(TAG,"index=========4");
+            }
+            if(action.equals(I.ACTION_TYPE_CART)){
+                Log.e(TAG,"index=========3");
+                index =3;
             }
         }else {
             setRadioChecked(index);
@@ -194,6 +211,7 @@ public class FuLiCenterMainActivity extends BaseActivity {
         mReceiver = new UpdateCartReceiver();
         IntentFilter filter = new IntentFilter("update_car_list");
         filter.addAction("update_user");
+        filter.addAction("update_cart");
         registerReceiver(mReceiver,filter);
     }
 

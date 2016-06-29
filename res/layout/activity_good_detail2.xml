@@ -46,7 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/iv_collect"
-            android:text="12"/>
+            android:text="12"
+            android:textColor="#fff"
+            android:layout_marginRight="13dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_good_details"
